@@ -1,0 +1,82 @@
+<template>
+
+<div class="overview-container">
+
+    <!-- KPI ROW -->
+
+    <div class="kpi-grid">
+
+        <!-- Sales (Gross Revenue) -->
+        <div class="kpi-cell">
+            <c-partner-dashboard-kpi-card
+                title="Sales"
+                value={salesLabel}
+                subtitle="Total cash captured"
+                icon="utility:trending">
+            </c-partner-dashboard-kpi-card>
+        </div>
+
+        <!-- Same-calendar-month realized (beside Sales) -->
+        <div class="kpi-cell">
+            <c-partner-dashboard-kpi-card
+                title="Realized Revenue - Same Month"
+                value={realizedSameMonthLabel}
+                subtitle="Tests bought &amp; completed same month"
+                icon="utility:flash"
+                trend-value={realizedSameMonthTrendValue}
+                trend-direction="up"
+                trend-compare-text="">
+            </c-partner-dashboard-kpi-card>
+        </div>
+
+        <!-- Realized Revenue -->
+        <div class="kpi-cell">
+            <c-partner-dashboard-kpi-card
+                title="Realized Revenue"
+                value={realizedRevenueLabel}
+                subtitle="From completed tests at PSCs"
+                icon="utility:success">
+            </c-partner-dashboard-kpi-card>
+        </div>
+
+        <!-- Auto-Cancellation Risk -->
+        <div class="kpi-cell">
+            <c-partner-dashboard-kpi-card
+                title="Auto-Cancellation Risk"
+                value={cancellationRiskLabel}
+                subtitle={cancellationRiskSubtitle}
+                icon="utility:clock"
+                highlight-text="Orders at 45-60 days">
+            </c-partner-dashboard-kpi-card>
+        </div>
+
+        <!-- Refund Liability -->
+        <div class="kpi-cell">
+            <c-partner-dashboard-kpi-card
+                title="Refund Liability"
+                value={refundLiabilityLabel}
+                subtitle="Tests nearing 30-day expiration"
+                icon="utility:warning">
+            </c-partner-dashboard-kpi-card>
+        </div>
+
+    </div>
+
+    <!-- REVENUE SPLIT (QMoR / PMoR) -->
+
+    <c-partner-dashboard-revenue-split
+        is-loading={isLoadingSummary}
+        qmor-revenue={summary.qmorRevenue}
+        pmor-revenue={summary.pmorRevenue}
+        gross-revenue={summary.grossRevenue}>
+    </c-partner-dashboard-revenue-split>
+
+    <!-- PARTNER PERFORMANCE TABLE -->
+
+    <c-partner-dashboard-partner-performance-table
+        date-range={selectedDateRange}>
+    </c-partner-dashboard-partner-performance-table>
+
+</div>
+
+</template>

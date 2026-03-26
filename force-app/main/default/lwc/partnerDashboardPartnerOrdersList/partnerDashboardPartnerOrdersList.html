@@ -1,0 +1,91 @@
+<template>
+    <div class="orders-view slds-card">
+        <div class="orders-header slds-p-top_medium slds-p-horizontal_medium slds-p-bottom_large">
+            <div class="header-top-row">
+                <lightning-button
+                    variant="base"
+                    label="Back to Partner Detail"
+                    icon-name="utility:back"
+                    icon-position="left"
+                    onclick={handleBack}>
+                </lightning-button>
+
+                <div class="export-row">
+                    <lightning-button
+                        variant="brand"
+                        label={exportButtonLabel}
+                        icon-name="utility:download"
+                        icon-position="left"
+                        onclick={handleExport}
+                        disabled={disableExport}>
+                    </lightning-button>
+                </div>
+            </div>
+
+            <div class="title-row">
+                <div class="title-left">
+                    <template if:true={partnerLabel}>
+                        <div class="partner-label">{partnerLabel}</div>
+                    </template>
+                    <div class="title-line">
+                        <lightning-icon icon-name="utility:table" size="small" class="title-icon"></lightning-icon>
+                        <h2 class="orders-title">{cardTitle}</h2>
+                    </div>
+                </div>
+                <span class="orders-count">{ordersCountLabel}</span>
+            </div>
+        </div>
+
+        <div class="slds-p-horizontal_medium slds-p-bottom_medium">
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading orders" size="medium"></lightning-spinner>
+            </template>
+
+            <template if:false={isLoading}>
+                <template if:true={hasData}>
+                    <lightning-datatable
+                        key-field="id"
+                        data={data}
+                        columns={columns}
+                        hide-checkbox-column
+                        sorted-by={sortedBy}
+                        sorted-direction={sortedDirection}
+                        onsort={handleSort}
+                        onrowaction={handleRowAction}
+                        class="orders-table">
+                    </lightning-datatable>
+
+                    <div class="pagination-bar">
+                        <span class="page-info">{pageInfoLabel}</span>
+
+                        <div class="pagination-controls">
+                            <lightning-button-group>
+                                <lightning-button label="First" onclick={handleFirst} disabled={disableFirstOrPrevious}></lightning-button>
+                                <lightning-button label="Previous" onclick={handlePrevious} disabled={disableFirstOrPrevious}></lightning-button>
+                                <lightning-button label="Next" onclick={handleNext} disabled={disableNextOrLast}></lightning-button>
+                                <lightning-button label="Last" onclick={handleLast} disabled={disableNextOrLast}></lightning-button>
+                            </lightning-button-group>
+
+                            <div class="jump-shell">
+                                <span class="jump-label">Page</span>
+                                <input
+                                    class="slds-input jump-input"
+                                    type="number"
+                                    min="1"
+                                    value={pageInput}
+                                    onchange={handlePageInputChange}
+                                    onblur={handlePageInputBlur}
+                                    onkeydown={handlePageInputKeydown} />
+                                <span class="jump-label">of {totalPages}</span>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+                <template if:false={hasData}>
+                    <div class="slds-p-around_medium slds-text-color_weak">No orders found for this metric.</div>
+                </template>
+            </template>
+        </div>
+    </div>
+</template>

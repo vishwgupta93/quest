@@ -1,0 +1,89 @@
+<template>
+
+<template if:true={isAuthPage}>
+<div class="auth-layout">
+
+    <section class="auth-brand-panel">
+
+        <div class="auth-brand-inner">
+            <img src={logoUrl} class="auth-logo"/>
+
+            <div class="auth-title">
+                HealthTech Portal
+            </div>
+
+            <div class="auth-subtitle">
+                Partner Analytics
+            </div>
+        </div>
+
+    </section>
+
+    <section class="auth-content">
+        <div class="auth-card-shell">
+            <slot></slot>
+        </div>
+    </section>
+
+</div>
+</template>
+
+<template if:false={isAuthPage}>
+<div class="layout">
+
+    <!-- MOBILE HEADER -->
+    <div class="header">
+
+        <lightning-button-icon
+            icon-name="utility:rows"
+            alternative-text="Menu"
+            onclick={toggleSidebar}
+            class="hamburger">
+        </lightning-button-icon>
+
+        <div class="header-title">
+            Quest HealthTech Portal
+        </div>
+
+    </div>
+
+    <!-- OVERLAY -->
+    <div class={overlayClass} onclick={toggleSidebar}></div>
+
+    <!-- SIDEBAR -->
+    <div class={sidebarClass}>
+        <c-partner-dashboard-sidebar-navigation></c-partner-dashboard-sidebar-navigation>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+        <template if:true={showPageHeader}>
+            <div class="page-header-region">
+                <slot name="page-header">
+                    <c-partner-dashboard-page-filters
+                        embedded
+                        show-actions={headerConfig.showActions}
+                        show-partner-search={headerConfig.showPartnerSearch}
+                        show-date-range={headerConfig.showDateRange}
+                        show-category-filter={headerConfig.showCategoryFilter}
+                        title={headerConfig.title}
+                        subtitle={headerConfig.subtitle}
+                        search-placeholder={headerConfig.searchPlaceholder}
+                        selected-partner-id={selectedPartnerId}
+                        date-range={selectedDateRange}
+                        custom-start-date={selectedCustomStartDate}
+                        custom-end-date={selectedCustomEndDate}>
+                    </c-partner-dashboard-page-filters>
+                </slot>
+            </div>
+        </template>
+
+        <div class="page-body">
+            <slot></slot>
+        </div>
+    </div>
+
+</div>
+</template>
+
+</template>

@@ -1,0 +1,50 @@
+<template>
+
+<div class="sidebar">
+
+    <!-- LOGO AREA -->
+
+    <div class="sidebar-header">
+
+        <img src={logoUrl} class="logo"/>
+
+        <div class="portal-title">
+            HealthTech Portal
+        </div>
+
+        <div class="portal-subtitle">
+            Partner Analytics
+        </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <div class="nav-container">
+
+        <template for:each={menuItems} for:item="item">
+
+            <div
+                key={item.page}
+                class={item.class}
+                data-page={item.page}
+                onclick={navigate}
+            >
+
+                <lightning-icon
+                    icon-name={item.icon}
+                    size="x-small"
+                ></lightning-icon>
+
+                <span>{item.label}</span>
+
+            </div>
+
+        </template>
+
+    </div>
+
+</div>
+
+</template>

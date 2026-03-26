@@ -1,0 +1,168 @@
+<template>
+
+<section class={containerClass}>
+
+    <lightning-layout
+        multiple-rows
+        vertical-align="end"
+        class="header-layout">
+
+        <lightning-layout-item
+            size="12"
+            large-device-size="8"
+            medium-device-size="8"
+            small-device-size="12">
+            <h1 class="slds-text-heading_medium page-title">{title}</h1>
+            <template if:true={subtitle}>
+                <p class="slds-text-body_regular slds-text-color_weak slds-m-top_x-small">
+                    {subtitle}
+                </p>
+            </template>
+        </lightning-layout-item>
+
+        <lightning-layout-item
+            size="12"
+            large-device-size="4"
+            medium-device-size="4"
+            small-device-size="12">
+            <div class="actions-slot">
+                <template if:true={showActions}>
+                    <lightning-button
+                        label="Export Data"
+                        onclick={handleExportData}>
+                    </lightning-button>
+                    <lightning-button
+                        variant="brand"
+                        label="Generate Report"
+                        onclick={handleGenerateReport}>
+                    </lightning-button>
+                </template>
+                <template if:false={showActions}>
+                    <slot name="actions"></slot>
+                </template>
+            </div>
+        </lightning-layout-item>
+
+    </lightning-layout>
+
+    <lightning-layout
+        multiple-rows
+        vertical-align="end"
+        class="filters-layout">
+
+        <template if:true={showPartnerSearch}>
+            <lightning-layout-item
+                flexibility="auto"
+                size="12"
+                large-device-size="8"
+                medium-device-size="12"
+                small-device-size="12"
+                class="filter-item">
+                <lightning-record-picker
+                    object-api-name="PartnerClientMap__c"
+                    label="Search partners"
+                    variant="label-hidden"
+                    placeholder={searchPlaceholder}
+                    value={selectedPartnerId}
+                    onchange={handlePartnerChange}>
+                </lightning-record-picker>
+            </lightning-layout-item>
+        </template>
+
+        <template if:true={showDateRange}>
+            <lightning-layout-item
+                size="12"
+                large-device-size={dateRangeColumnSize}
+                medium-device-size="6"
+                small-device-size="12"
+                class="filter-item compact-item">
+                <lightning-combobox
+                    name="dateRange"
+                    label="Date range"
+                    variant="label-hidden"
+                    value={selectedDateRange}
+                    options={dateRangeOptions}
+                    onchange={handleDateRangeChange}>
+                </lightning-combobox>
+            </lightning-layout-item>
+        </template>
+
+        <template if:true={showCategoryFilter}>
+            <lightning-layout-item
+                size="12"
+                large-device-size={categoryColumnSize}
+                medium-device-size="6"
+                small-device-size="12"
+                class="filter-item compact-item">
+                <lightning-combobox
+                    name="category"
+                    label="Category"
+                    variant="label-hidden"
+                    value="ALL"
+                    options={categoryOptions}
+                    disabled>
+                </lightning-combobox>
+            </lightning-layout-item>
+        </template>
+
+    </lightning-layout>
+
+    <template if:true={showCustomDateSection}>
+        <div class="custom-date-section slds-m-top_small">
+            <lightning-layout multiple-rows vertical-align="end" class="filters-layout">
+                <lightning-layout-item
+                    size="12"
+                    large-device-size="3"
+                    medium-device-size="4"
+                    small-device-size="12"
+                    class="filter-item compact-item">
+                    <label class="custom-date-label" for="customStartDate">From</label>
+                    <input
+                        id="customStartDate"
+                        class="slds-input"
+                        type="date"
+                        value={selectedCustomStartDate}
+                        onchange={handleCustomStartDateChange} />
+                </lightning-layout-item>
+
+                <lightning-layout-item
+                    size="12"
+                    large-device-size="3"
+                    medium-device-size="4"
+                    small-device-size="12"
+                    class="filter-item compact-item">
+                    <label class="custom-date-label" for="customEndDate">To</label>
+                    <input
+                        id="customEndDate"
+                        class="slds-input"
+                        type="date"
+                        value={selectedCustomEndDate}
+                        onchange={handleCustomEndDateChange} />
+                </lightning-layout-item>
+
+                <lightning-layout-item
+                    size="12"
+                    large-device-size="2"
+                    medium-device-size="4"
+                    small-device-size="12"
+                    class="filter-item">
+                    <lightning-button
+                        class="slds-m-right_x-small"
+                        variant="neutral"
+                        label="Clear"
+                        onclick={handleClearCustomDates}>
+                    </lightning-button>
+                    <lightning-button
+                        variant="brand"
+                        label="Apply"
+                        onclick={handleApplyCustomDates}
+                        disabled={disableApplyCustomDates}>
+                    </lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </template>
+
+</section>
+
+</template>

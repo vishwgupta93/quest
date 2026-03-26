@@ -1,0 +1,76 @@
+<template>
+
+<div class="container">
+
+    <template if:true={isLoadingPartners}>
+        <div class="spinner-shell">
+            <div class="loading-card subtle">
+            <lightning-spinner
+                alternative-text="Loading partner directory"
+                size="small"
+                variant="brand">
+            </lightning-spinner>
+            <div class="loading-title">Loading partner directory</div>
+            </div>
+        </div>
+    </template>
+
+    <template if:true={isLoadingDetails}>
+        <div class="spinner-shell detail-loading">
+            <div class="loading-card detail-card subtle">
+            <lightning-spinner
+                alternative-text="Loading partner details"
+                size="small"
+                variant="brand">
+            </lightning-spinner>
+            <div class="loading-title">Loading partner details</div>
+            </div>
+        </div>
+    </template>
+
+    <template if:true={showPartnerDetails}>
+        <c-partner-dashboard-partner-details
+            partner={selectedPartner}
+            date-range={selectedDateRange}
+            custom-start-date={selectedCustomStartDate}
+            custom-end-date={selectedCustomEndDate}
+            onback={handleBackToDirectory}>
+        </c-partner-dashboard-partner-details>
+    </template>
+
+    <template if:true={showDirectoryGrid}>
+
+        <div class="add-partner-container">
+            <lightning-button
+                variant="brand"
+                label="+ Add New Partner"
+                title="+ Add New Partner"
+                onclick={handleAddPartner}>
+            </lightning-button>
+        </div>
+
+        <div class="partner-grid">
+
+            <template for:each={partners} for:item="partner">
+
+                <c-partner-dashboard-partner-directory-tile
+                            key={partner.partnerId}
+                    partner={partner}
+                    onpartnerselect={handlePartnerSelect}>
+                </c-partner-dashboard-partner-directory-tile>
+
+            </template>
+
+        </div>
+
+    </template>
+
+    <template if:true={loadError}>
+        <div class="state-card error">
+            Unable to load partner dashboard data.
+        </div>
+    </template>
+
+</div>
+
+</template>

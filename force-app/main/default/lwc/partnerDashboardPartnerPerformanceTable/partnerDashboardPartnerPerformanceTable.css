@@ -1,0 +1,115 @@
+.table-card{
+    background:#fff;
+    border-radius:12px;
+    padding:20px;
+}
+
+.table-header{
+    font-size:20px;
+    font-weight:600;
+    margin-bottom:15px;
+}
+
+.spinner-shell{
+    min-height:180px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.loading-card{
+    min-width:240px;
+    max-width:320px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:18px 16px;
+    background:#f8fbff;
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+}
+
+.loading-title{
+    color:#334155;
+    font-size:14px;
+    font-weight:600;
+}
+
+.loading-card.subtle{
+    background:#f8fafc;
+    border-color:#e5e7eb;
+}
+
+.performance-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.performance-table th{
+    text-align:left;
+    padding:14px;
+    font-weight:600;
+    color:#555;
+}
+
+.performance-table td{
+    padding:16px;
+    border-top:1px solid #eee;
+    font-size:14px;
+}
+
+.partner-name-link {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-weight: 600;
+    font-size: inherit;
+    color: #0176d3;
+    cursor: pointer;
+    text-align: left;
+    text-decoration: none;
+}
+
+.partner-name-link:hover {
+    color: #014486;
+}
+
+/* Badge */
+
+.badge{
+    padding:6px 10px;
+    border-radius:6px;
+    font-weight:600;
+}
+
+.badge.green{
+    background:#e6f6ec;
+    color:#1f9d55;
+}
+
+.badge.red{
+    background:#fdecea;
+    color:#d93025;
+}
+
+.badge.yellow{
+    background:#fff7e6;
+    color:#d9822b;
+}
+
+/* Revenue colors */
+
+.positive{
+    color:#1f9d55;
+}
+
+.negative{
+    color:#d93025;
+}
+
+.warning{
+    color:#d9822b;
+}

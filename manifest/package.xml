@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>PartnerDashboardController</members>
+        <members>PartnerDashboardControllerTest</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>overviewDashboard</members>
+        <members>partnerDashboardKpiCard</members>
+        <members>partnerDashboardRevenueSplit</members>
+        <members>partnerDashboardSidebarNavigation</members>
+        <members>partnerDashboardThemeLayout</members>
+        <members>partnerDashboardPageFilters</members>
+        <members>partnerDashboardPartnerDirectory</members>
+        <members>partnerDashboardPartnerDirectoryTile</members>
+        <members>partnerDashboardPartnerDetails</members>
+        <members>partnerDashboardPartnerOrdersList</members>
+        <members>partnerDashboardPartnerPerformanceTable</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>QuestLogo</members>
+        <name>StaticResource</name>
+    </types>
+    <version>65.0</version>
+</Package>

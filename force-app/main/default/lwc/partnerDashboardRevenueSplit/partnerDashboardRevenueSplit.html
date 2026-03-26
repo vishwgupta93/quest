@@ -1,0 +1,52 @@
+<template>
+
+<div class="revenue-grid">
+
+    <template if:true={isLoading}>
+        <div class="revenue-card loading-card">
+            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+        </div>
+        <div class="revenue-card loading-card">
+            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+        </div>
+    </template>
+
+    <template if:false={isLoading}>
+
+        <!-- QMoR -->
+        <div class="revenue-card">
+            <div class="card-header">
+                <lightning-icon icon-name="utility:moneybag" size="small"></lightning-icon>
+                <div>
+                    <div class="title">QMoR Revenue</div>
+                    <div class="subtitle">Quest as Merchant of Record</div>
+                </div>
+            </div>
+            <div class="revenue-value">{qmorFormatted}</div>
+            <div class="progress-bar">
+                <div class="progress qmor-progress" style={qmorProgressStyle}></div>
+            </div>
+            <div class="percentage">{qmorPercentLabel}</div>
+        </div>
+
+        <!-- PMoR -->
+        <div class="revenue-card">
+            <div class="card-header">
+                <lightning-icon icon-name="utility:user" size="small"></lightning-icon>
+                <div>
+                    <div class="title">PMoR Revenue</div>
+                    <div class="subtitle">Partner as Merchant of Record</div>
+                </div>
+            </div>
+            <div class="revenue-value">{pmorFormatted}</div>
+            <div class="progress-bar">
+                <div class="progress pmor-progress" style={pmorProgressStyle}></div>
+            </div>
+            <div class="percentage">{pmorPercentLabel}</div>
+        </div>
+
+    </template>
+
+</div>
+
+</template>

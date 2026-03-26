@@ -1,0 +1,82 @@
+<template>
+
+<div class="table-card">
+
+    <div class="table-header">
+        Partner Performance
+    </div>
+
+    <div class="table-container">
+
+        <template if:true={isLoading}>
+            <div class="spinner-shell">
+                <div class="loading-card subtle">
+                <lightning-spinner
+                    alternative-text="Loading partner performance"
+                    size="small"
+                    variant="brand">
+                </lightning-spinner>
+                <div class="loading-title">Loading partner performance</div>
+                </div>
+            </div>
+        </template>
+
+        <template if:false={isLoading}>
+        <table class="performance-table">
+
+            <thead>
+                <tr>
+                    <th>Partner Name</th>
+                    <th>Total Orders</th>
+                    <th>Sales</th>
+                    <th>AOV</th>
+                    <th>Realized Revenue</th>
+                    <th>Lost Revenue</th>
+                    <th>Revenue at Risk</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <template for:each={rows} for:item="row">
+
+                    <tr key={row.partnerId}>
+
+                        <td>
+                            <button class="partner-name-link" data-id={row.partnerId} onclick={handlePartnerClick}>
+                                {row.partnerName}
+                            </button>
+                        </td>
+
+                        <td>{row.totalOrders}</td>
+
+                        <td>{row.grossRevenue}</td>
+
+                        <td>{row.aov}</td>
+
+                        <td class="positive">
+                            {row.realizedRevenue}
+                        </td>
+
+                        <td class="negative">
+                            {row.lostRevenue}
+                        </td>
+
+                        <td class={row.riskClass}>
+                            {row.revenueAtRisk}
+                        </td>
+
+                    </tr>
+
+                </template>
+
+            </tbody>
+
+        </table>
+        </template>
+
+    </div>
+
+</div>
+
+</template>

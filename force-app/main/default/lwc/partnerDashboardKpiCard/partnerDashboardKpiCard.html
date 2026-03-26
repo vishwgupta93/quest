@@ -1,0 +1,53 @@
+<template>
+
+<lightning-card title={title} icon-name={icon}>
+    <!-- Flex layout so KPI footer aligns across cards -->
+    <div class="slds-p-around_medium slds-h-full slds-grid slds-grid_vertical slds-grid_align-spread">
+        <div class="slds-grow">
+            <div class="slds-text-heading_medium slds-m-bottom_x-small">
+                {value}
+            </div>
+
+            <template if:true={subtitle}>
+                <div class="slds-text-body_small slds-text-color_weak">
+                    {subtitle}
+                </div>
+            </template>
+        </div>
+
+        <div>
+            <template if:true={progress}>
+                <div class="slds-m-top_small">
+                    <div class="slds-grid slds-grid_align-spread slds-text-body_small slds-text-color_weak slds-m-bottom_x-small">
+                        <span>{progressLabel}</span>
+                        <span class="slds-text-color_default">{progressValue}</span>
+                    </div>
+                    <lightning-progress-bar
+                        value={progress}
+                        size="small">
+                    </lightning-progress-bar>
+                </div>
+            </template>
+
+            <template if:true={trendValue}>
+                <div class="slds-m-top_small slds-text-body_small">
+                    <span class={trendColorClass}>{trendValue}</span>
+
+                    <template if:true={trendCompareLine}>
+                        <span class="slds-m-left_x-small slds-text-color_weak">
+                            {trendCompareLine}
+                        </span>
+                    </template>
+                </div>
+            </template>
+
+            <template if:true={highlightText}>
+                <div class="slds-m-top_small slds-text-body_small slds-text-color_error slds-font-weight_semibold">
+                    {highlightText}
+                </div>
+            </template>
+        </div>
+    </div>
+</lightning-card>
+
+</template>

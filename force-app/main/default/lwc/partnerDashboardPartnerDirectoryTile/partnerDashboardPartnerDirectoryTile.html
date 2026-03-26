@@ -1,0 +1,103 @@
+<template>
+
+<div class="partner-card" onclick={handleClick}>
+
+    <!-- Header -->
+
+    <div class="tile-header">
+
+        <div class="partner-icon">
+            <lightning-icon icon-name="standard:account" size="small"></lightning-icon>
+        </div>
+        <lightning-badge label={categoryLabel}></lightning-badge>
+
+    </div>
+
+
+    <!-- Partner Name -->
+
+    <div class="partner-name">
+        {partner.partnerName}
+    </div>
+
+    <div class="partner-id">
+        ID: {partner.clientId}
+    </div>
+
+
+    <!-- Details -->
+
+   <!-- <div class="partner-details">
+
+        <div class="detail">
+            <lightning-icon icon-name="utility:checkin" size="x-small"></lightning-icon>
+            {regionLabel}
+        </div>
+
+        <div class="detail">
+            <lightning-icon icon-name="utility:call" size="x-small"></lightning-icon>
+            {phoneLabel}
+        </div>
+
+        <div class="detail">
+            <lightning-icon icon-name="utility:email" size="x-small"></lightning-icon>
+            {emailLabel}
+        </div>
+
+    </div>-->
+
+
+    <div class="divider"></div>
+
+
+    <!-- Metrics -->
+
+    <div class="metrics">
+
+        <div>
+            <div class="metric-label">Orders</div>
+            <div class="metric-value">{partner.totalOrders}</div>
+        </div>
+
+        <div>
+            <div class="metric-label">Revenue</div>
+            <div class="metric-value">{grossRevenueLabel}</div>
+        </div>
+
+    </div>
+
+
+    <!-- Risk Section -->
+    <template if:true={showCancellationRisk}>
+        <div class="risk-box">
+
+        <div class="risk-title">
+
+            <lightning-icon
+                icon-name="utility:warning"
+                size="x-small"
+                class="risk-icon">
+            </lightning-icon>
+
+            60-Day Cancellation Risk
+
+        </div>
+
+        <div class="risk-footer">
+
+            <div class="risk-orders">
+                {riskOrdersLabel} orders
+            </div>
+
+            <div class="risk-amount">
+                {riskRevenueLabel}
+            </div>
+
+        </div>
+
+        </div>
+    </template>
+
+</div>
+
+</template>
