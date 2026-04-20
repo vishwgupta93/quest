@@ -53,8 +53,6 @@ export default class OverviewDashboard extends LightningElement {
             });
     }
 
-    // KPI card computed values
-
     get salesLabel() {
         return this.formatMillions(this.summary.grossRevenue);
     }
@@ -70,7 +68,7 @@ export default class OverviewDashboard extends LightningElement {
     get realizedSameMonthTrendValue() {
         const pct = Number(this.summary.realizedSameMonthPercentOfRealized || 0);
         const pctStr = pct.toLocaleString(undefined, { maximumFractionDigits: 1, minimumFractionDigits: 0 });
-        return `↑ ${pctStr}% of realized`;
+        return `Up ${pctStr}% of realized`;
     }
 
     get cancellationRiskLabel() {
@@ -87,9 +85,6 @@ export default class OverviewDashboard extends LightningElement {
 
     formatMillions(value) {
         const n = Number(value || 0);
-        if (n >= 1e9) return `$${(n / 1e9).toFixed(1)}B`;
-        if (n >= 1e6) return `$${(n / 1e6).toFixed(1)}M`;
-        if (n >= 1e3) return `$${(n / 1e3).toFixed(1)}K`;
-        return `$${n.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+        return `$${n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     }
 }

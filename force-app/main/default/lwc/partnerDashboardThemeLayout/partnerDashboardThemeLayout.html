@@ -1,26 +1,26 @@
 <template>
 
 <template if:true={isAuthPage}>
-<div class="auth-layout">
+<div class="auth-layout slds-grid slds-wrap slds-theme_default">
 
-    <section class="auth-brand-panel">
+    <section class="auth-brand-panel slds-col slds-size_1-of-1 slds-large-size_3-of-12 slds-p-around_large">
 
         <div class="auth-brand-inner">
             <img src={logoUrl} class="auth-logo"/>
 
-            <div class="auth-title">
+            <div class="slds-text-heading_large slds-m-bottom_x-small">
                 HealthTech Portal
             </div>
 
-            <div class="auth-subtitle">
+            <div class="slds-text-body_regular slds-text-color_weak">
                 Partner Analytics
             </div>
         </div>
 
     </section>
 
-    <section class="auth-content">
-        <div class="auth-card-shell">
+    <section class="auth-content slds-col slds-size_1-of-1 slds-large-size_9-of-12 slds-p-around_large">
+        <div class="auth-card-shell slds-card slds-p-around_large">
             <slot></slot>
         </div>
     </section>
@@ -29,10 +29,10 @@
 </template>
 
 <template if:false={isAuthPage}>
-<div class="layout">
+<div class="layout slds-grid">
 
     <!-- MOBILE HEADER -->
-    <div class="header">
+    <div class="header slds-grid slds-grid_vertical-align-center slds-p-horizontal_small">
 
         <lightning-button-icon
             icon-name="utility:rows"
@@ -41,7 +41,7 @@
             class="hamburger">
         </lightning-button-icon>
 
-        <div class="header-title">
+        <div class="header-title slds-text-title_bold slds-m-left_small">
             Quest HealthTech Portal
         </div>
 
@@ -58,7 +58,7 @@
     <!-- CONTENT -->
     <div class="content">
         <template if:true={showPageHeader}>
-            <div class="page-header-region">
+            <div class="page-header-region slds-p-around_medium">
                 <slot name="page-header">
                     <c-partner-dashboard-page-filters
                         embedded
@@ -78,7 +78,7 @@
             </div>
         </template>
 
-        <div class="page-body">
+        <div class="page-body slds-p-around_medium">
             <slot></slot>
         </div>
     </div>

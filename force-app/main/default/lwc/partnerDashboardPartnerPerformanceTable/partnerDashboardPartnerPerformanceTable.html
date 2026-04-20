@@ -1,82 +1,38 @@
 <template>
 
-<div class="table-card">
-
-    <div class="table-header">
-        Partner Performance
-    </div>
-
-    <div class="table-container">
-
+<lightning-card title="Partner Performance">
+    <div class="slds-p-horizontal_medium slds-p-bottom_medium">
         <template if:true={isLoading}>
-            <div class="spinner-shell">
-                <div class="loading-card subtle">
+            <div class="slds-is-relative loading-region">
                 <lightning-spinner
                     alternative-text="Loading partner performance"
-                    size="small"
-                    variant="brand">
+                    size="small">
                 </lightning-spinner>
-                <div class="loading-title">Loading partner performance</div>
-                </div>
             </div>
         </template>
 
         <template if:false={isLoading}>
-        <table class="performance-table">
+            <template if:true={hasRows}>
+                <lightning-datatable
+                    key-field="partnerId"
+                    data={rows}
+                    columns={columns}
+                    hide-checkbox-column
+                    resize-column-disabled
+                    sorted-by={sortedBy}
+                    sorted-direction={sortDirection}
+                    onsort={handleSort}
+                    onrowaction={handleRowAction}>
+                </lightning-datatable>
+            </template>
 
-            <thead>
-                <tr>
-                    <th>Partner Name</th>
-                    <th>Total Orders</th>
-                    <th>Sales</th>
-                    <th>AOV</th>
-                    <th>Realized Revenue</th>
-                    <th>Lost Revenue</th>
-                    <th>Revenue at Risk</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                <template for:each={rows} for:item="row">
-
-                    <tr key={row.partnerId}>
-
-                        <td>
-                            <button class="partner-name-link" data-id={row.partnerId} onclick={handlePartnerClick}>
-                                {row.partnerName}
-                            </button>
-                        </td>
-
-                        <td>{row.totalOrders}</td>
-
-                        <td>{row.grossRevenue}</td>
-
-                        <td>{row.aov}</td>
-
-                        <td class="positive">
-                            {row.realizedRevenue}
-                        </td>
-
-                        <td class="negative">
-                            {row.lostRevenue}
-                        </td>
-
-                        <td class={row.riskClass}>
-                            {row.revenueAtRisk}
-                        </td>
-
-                    </tr>
-
-                </template>
-
-            </tbody>
-
-        </table>
+            <template if:false={hasRows}>
+                <div class="slds-align_absolute-center slds-text-body_regular slds-text-color_weak empty-state">
+                    No partner performance data is available for the selected filters.
+                </div>
+            </template>
         </template>
-
     </div>
-
-</div>
+</lightning-card>
 
 </template>

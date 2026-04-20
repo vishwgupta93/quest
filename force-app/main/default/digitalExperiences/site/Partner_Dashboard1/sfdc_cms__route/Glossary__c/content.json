@@ -1,0 +1,12 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Glossary",
+  "contentBody" : {
+    "activeViewId" : "Glossary",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "custom-glossary",
+    "urlPrefix" : "glossary"
+  },
+  "urlName" : "glossary"
+}

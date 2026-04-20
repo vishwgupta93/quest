@@ -15,12 +15,6 @@ export default class PartnerDashboardKpiCard extends LightningElement {
     @api progressValue;
     @api highlightText
 
-    get progressStyle(){
-
-    return `width:${this.progress}%`;
-
-    }
-
     get trendCompareLine() {
         if (this.trendCompareText === '') {
             return null;

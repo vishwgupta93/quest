@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LO_Panel_Case_Created__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>A nightly job runs looking for LOs with &quot;LO Panels Require Case&quot; checked. Once the case has been created for that LO, this box gets checked, suppressing the LO from having another case auto-created in future runs.</description>
+    <label>LO Panel Case Created</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

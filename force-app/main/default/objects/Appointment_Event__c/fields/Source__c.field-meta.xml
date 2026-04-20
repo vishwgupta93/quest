@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source__c</fullName>
+    <label>Source</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Scheduling API</fullName>
+                <default>false</default>
+                <label>Scheduling API</label>
+            </value>
+            <value>
+                <fullName>Customer</fullName>
+                <default>false</default>
+                <label>Customer</label>
+            </value>
+            <value>
+                <fullName>Agent</fullName>
+                <default>false</default>
+                <label>Agent</label>
+            </value>
+            <value>
+                <fullName>System (Flow/Trigger)</fullName>
+                <default>false</default>
+                <label>System (Flow/Trigger)</label>
+            </value>
+            <value>
+                <fullName>Location Event</fullName>
+                <default>false</default>
+                <label>Location Event</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,30 +1,22 @@
 <template>
 
-<div class="container">
+<div class="directory-shell">
 
     <template if:true={isLoadingPartners}>
-        <div class="spinner-shell">
-            <div class="loading-card subtle">
+        <div class="slds-is-relative loading-region">
             <lightning-spinner
                 alternative-text="Loading partner directory"
-                size="small"
-                variant="brand">
+                size="small">
             </lightning-spinner>
-            <div class="loading-title">Loading partner directory</div>
-            </div>
         </div>
     </template>
 
     <template if:true={isLoadingDetails}>
-        <div class="spinner-shell detail-loading">
-            <div class="loading-card detail-card subtle">
+        <div class="slds-is-relative loading-region details-loading">
             <lightning-spinner
                 alternative-text="Loading partner details"
-                size="small"
-                variant="brand">
+                size="small">
             </lightning-spinner>
-            <div class="loading-title">Loading partner details</div>
-            </div>
         </div>
     </template>
 
@@ -39,36 +31,25 @@
     </template>
 
     <template if:true={showDirectoryGrid}>
-
-        <div class="add-partner-container">
-            <lightning-button
-                variant="brand"
-                label="+ Add New Partner"
-                title="+ Add New Partner"
-                onclick={handleAddPartner}>
-            </lightning-button>
-        </div>
-
-        <div class="partner-grid">
-
+        <div class="slds-grid slds-wrap slds-gutters directory-grid">
             <template for:each={partners} for:item="partner">
-
-                <c-partner-dashboard-partner-directory-tile
-                            key={partner.partnerId}
-                    partner={partner}
-                    onpartnerselect={handlePartnerSelect}>
-                </c-partner-dashboard-partner-directory-tile>
-
+                <div key={partner.partnerId} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 directory-col">
+                    <c-partner-dashboard-partner-directory-tile
+                        partner={partner}
+                        onpartnerselect={handlePartnerSelect}
+                        onpartneredit={handlePartnerEdit}>
+                    </c-partner-dashboard-partner-directory-tile>
+                </div>
             </template>
-
         </div>
-
     </template>
 
     <template if:true={loadError}>
-        <div class="state-card error">
-            Unable to load partner dashboard data.
-        </div>
+        <lightning-card title="Partner Directory">
+            <div class="slds-p-around_medium slds-text-color_error">
+                Unable to load partner dashboard data.
+            </div>
+        </lightning-card>
     </template>
 
 </div>

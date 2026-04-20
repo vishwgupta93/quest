@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_GSS_Case_Eligible__c</fullName>
+    <formula>AND( Is_Kit__c , Kit_Detail__r.Type__c = &apos;GSS&apos;, TEXT(Status__c)= &apos;PA Acknowledged&apos;, DATEVALUE(LastModifiedDate ) = TODAY() - 2)</formula>
+    <label>Is GSS Case Eligible</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

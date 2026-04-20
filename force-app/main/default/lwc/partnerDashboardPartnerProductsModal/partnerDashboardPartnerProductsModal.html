@@ -1,0 +1,35 @@
+<template>
+    <lightning-modal-header label={headerLabel}></lightning-modal-header>
+    <lightning-modal-body>
+        <template if:true={isLoading}>
+            <div class="slds-is-relative loading-region">
+                <lightning-spinner alternative-text="Loading partner products" size="small"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:true={errorMessage}>
+            <div class="slds-text-color_error slds-p-around_small">{errorMessage}</div>
+        </template>
+
+        <template if:true={hasRows}>
+            <lightning-datatable
+                key-field="id"
+                data={rows}
+                columns={columns}
+                hide-checkbox-column
+                wrap-text-max-lines="3">
+            </lightning-datatable>
+        </template>
+
+        <template if:false={hasRows}>
+            <template if:false={isLoading}>
+                <div class="slds-text-align_center slds-text-color_weak slds-p-around_medium">
+                    No partner products found.
+                </div>
+            </template>
+        </template>
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button label="Close" onclick={handleClose}></lightning-button>
+    </lightning-modal-footer>
+</template>

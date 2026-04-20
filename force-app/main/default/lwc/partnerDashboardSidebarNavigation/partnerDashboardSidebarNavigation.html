@@ -1,50 +1,26 @@
 <template>
 
-<div class="sidebar">
-
-    <!-- LOGO AREA -->
-
-    <div class="sidebar-header">
-
-        <img src={logoUrl} class="logo"/>
-
-        <div class="portal-title">
-            HealthTech Portal
-        </div>
-
-        <div class="portal-subtitle">
-            Partner Analytics
-        </div>
-
+<aside class="sidebar-shell">
+    <div class="slds-p-around_medium sidebar-header">
+        <img src={logoUrl} alt="Quest" class="logo" />
+        <h2 class="slds-text-heading_medium slds-m-top_small">HealthTech Portal</h2>
+        <p class="slds-text-body_regular slds-text-color_weak slds-m-top_x-small">Partner Analytics</p>
     </div>
 
-
-    <!-- NAVIGATION -->
-
-    <div class="nav-container">
-
-        <template for:each={menuItems} for:item="item">
-
-            <div
-                key={item.page}
-                class={item.class}
-                data-page={item.page}
-                onclick={navigate}
-            >
-
-                <lightning-icon
-                    icon-name={item.icon}
-                    size="x-small"
-                ></lightning-icon>
-
-                <span>{item.label}</span>
-
-            </div>
-
-        </template>
-
+    <div class="slds-p-horizontal_small slds-p-bottom_medium">
+        <lightning-vertical-navigation selected-item={currentPage} onselect={handleSelect}>
+            <lightning-vertical-navigation-section label="Navigation">
+                <template for:each={menuItems} for:item="item">
+                    <lightning-vertical-navigation-item-icon
+                        key={item.page}
+                        name={item.page}
+                        label={item.label}
+                        icon-name={item.icon}>
+                    </lightning-vertical-navigation-item-icon>
+                </template>
+            </lightning-vertical-navigation-section>
+        </lightning-vertical-navigation>
     </div>
-
-</div>
+</aside>
 
 </template>

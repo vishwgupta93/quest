@@ -1,16 +1,29 @@
 <template>
-    <div class="orders-view slds-card">
-        <div class="orders-header slds-p-top_medium slds-p-horizontal_medium slds-p-bottom_large">
-            <div class="header-top-row">
-                <lightning-button
-                    variant="base"
-                    label="Back to Partner Detail"
-                    icon-name="utility:back"
-                    icon-position="left"
-                    onclick={handleBack}>
-                </lightning-button>
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid slds-grid_vertical-align-center slds-grid_align-spread slds-wrap slds-p-around_medium">
+            <div class="slds-grid slds-wrap slds-grid_align-spread slds-grid_vertical-align-center slds-size_1-of-1 slds-m-bottom_small">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_auto">
+                    <lightning-button
+                        variant="base"
+                        label="Back to Partner Detail"
+                        icon-name="utility:back"
+                        icon-position="left"
+                        onclick={handleBack}>
+                    </lightning-button>
+                </div>
 
-                <div class="export-row">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_auto slds-m-top_small slds-medium-m-top_none slds-grid slds-grid_align-end slds-grid_vertical-align-center slds-wrap">
+                    <template if:true={showConsolidatedExportButton}>
+                        <lightning-button
+                            class="slds-m-right_x-small slds-m-bottom_xx-small"
+                            variant="neutral"
+                            label={consolidatedExportButtonLabel}
+                            icon-name="utility:download"
+                            icon-position="left"
+                            onclick={handleExportConsolidated}
+                            disabled={disableExport}>
+                        </lightning-button>
+                    </template>
                     <lightning-button
                         variant="brand"
                         label={exportButtonLabel}
@@ -22,43 +35,118 @@
                 </div>
             </div>
 
-            <div class="title-row">
-                <div class="title-left">
+            <div class="slds-grid slds-wrap slds-grid_align-spread slds-grid_vertical-align-center slds-size_1-of-1">
+                <div class="slds-media slds-media_center slds-wrap">
                     <template if:true={partnerLabel}>
-                        <div class="partner-label">{partnerLabel}</div>
+                        <p class="slds-text-title_caps slds-text-color_weak slds-size_1-of-1 slds-m-bottom_x-small">
+                            {partnerLabel}
+                        </p>
                     </template>
-                    <div class="title-line">
-                        <lightning-icon icon-name="utility:table" size="small" class="title-icon"></lightning-icon>
-                        <h2 class="orders-title">{cardTitle}</h2>
+                    <div class="slds-media__figure">
+                        <lightning-icon icon-name="utility:table" size="small"></lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title">
+                            <span>{cardTitle}</span>
+                        </h2>
                     </div>
                 </div>
-                <span class="orders-count">{ordersCountLabel}</span>
+                <lightning-badge label={ordersCountLabel}></lightning-badge>
             </div>
         </div>
 
-        <div class="slds-p-horizontal_medium slds-p-bottom_medium">
+        <div class="slds-card__body slds-card__body_inner">
             <template if:true={isLoading}>
                 <lightning-spinner alternative-text="Loading orders" size="medium"></lightning-spinner>
             </template>
 
             <template if:false={isLoading}>
-                <template if:true={hasData}>
-                    <lightning-datatable
-                        key-field="id"
-                        data={data}
-                        columns={columns}
-                        hide-checkbox-column
-                        sorted-by={sortedBy}
-                        sorted-direction={sortedDirection}
-                        onsort={handleSort}
-                        onrowaction={handleRowAction}
-                        class="orders-table">
-                    </lightning-datatable>
+                <template if:true={showRealizedTabs}>
+                    <lightning-tabset active-tab-value={realizedActiveTab} onactive={handleRealizedTabsetActive}>
+                        <lightning-tab label="Resulted Orders" value="orders">
+                            <template if:true={showRealizedOrdersEmpty}>
+                                <div class="slds-p-around_medium slds-text-color_weak">No orders found for this metric.</div>
+                            </template>
+                            <template if:false={showRealizedOrdersEmpty}>
+                                <div class="slds-scrollable_x">
+                                    <lightning-datatable
+                                        key-field="id"
+                                        data={data}
+                                        columns={realizedOrderColumns}
+                                        column-widths-mode="fixed"
+                                        hide-checkbox-column
+                                        sorted-by={sortedBy}
+                                        sorted-direction={sortedDirection}
+                                        onsort={handleSort}
+                                        onrowaction={handleRowAction}>
+                                    </lightning-datatable>
+                                </div>
+                            </template>
+                        </lightning-tab>
+                        <lightning-tab label="Resulted Tests" value="tests">
+                            <template if:true={showRealizedTestsEmpty}>
+                                <div class="slds-p-around_medium slds-text-color_weak">No test lines found for this metric.</div>
+                            </template>
+                            <template if:false={showRealizedTestsEmpty}>
+                                <div class="slds-scrollable_x">
+                                    <lightning-datatable
+                                        key-field="id"
+                                        data={testsData}
+                                        columns={realizedTestsColumns}
+                                        column-widths-mode="fixed"
+                                        hide-checkbox-column
+                                        sorted-by={testsSortedBy}
+                                        sorted-direction={testsSortedDirection}
+                                        onsort={handleTestsSort}
+                                        onrowaction={handleRowAction}>
+                                    </lightning-datatable>
+                                </div>
+                            </template>
+                        </lightning-tab>
+                        <lightning-tab label="Resulted Test Summary" value="summary">
+                            <template if:true={showRealizedSummaryEmpty}>
+                                <div class="slds-p-around_medium slds-text-color_weak">No panel summary found for this metric.</div>
+                            </template>
+                            <template if:false={showRealizedSummaryEmpty}>
+                                <div class="slds-scrollable_x">
+                                    <lightning-datatable
+                                        key-field="id"
+                                        data={summaryData}
+                                        columns={realizedSummaryColumns}
+                                        column-widths-mode="fixed"
+                                        hide-checkbox-column
+                                        sorted-by={summarySortedBy}
+                                        sorted-direction={summarySortedDirection}
+                                        onsort={handleSummarySort}>
+                                    </lightning-datatable>
+                                </div>
+                                <div class="slds-p-top_small slds-text-body_small slds-text-color_weak">{summaryTotalsLabel}</div>
+                            </template>
+                        </lightning-tab>
+                    </lightning-tabset>
+                </template>
 
-                    <div class="pagination-bar">
-                        <span class="page-info">{pageInfoLabel}</span>
+                <template if:false={showRealizedTabs}>
+                    <template if:true={hasData}>
+                        <lightning-datatable
+                            key-field="id"
+                            data={data}
+                            columns={columns}
+                            hide-checkbox-column
+                            sorted-by={sortedBy}
+                            sorted-direction={sortedDirection}
+                            onsort={handleSort}
+                            onrowaction={handleRowAction}
+                            class="orders-table">
+                        </lightning-datatable>
+                    </template>
+                </template>
 
-                        <div class="pagination-controls">
+                <template if:true={showPaginationBar}>
+                    <div class="slds-grid slds-wrap slds-grid_vertical-align-center slds-grid_align-spread slds-gutters_small slds-border_top slds-p-top_small slds-m-top_small">
+                        <span class="slds-text-body_small slds-text-color_weak">{pageInfoLabel}</span>
+
+                        <div class="slds-grid slds-wrap slds-grid_vertical-align-center slds-gutters_small">
                             <lightning-button-group>
                                 <lightning-button label="First" onclick={handleFirst} disabled={disableFirstOrPrevious}></lightning-button>
                                 <lightning-button label="Previous" onclick={handlePrevious} disabled={disableFirstOrPrevious}></lightning-button>
@@ -66,8 +154,8 @@
                                 <lightning-button label="Last" onclick={handleLast} disabled={disableNextOrLast}></lightning-button>
                             </lightning-button-group>
 
-                            <div class="jump-shell">
-                                <span class="jump-label">Page</span>
+                            <div class="slds-grid slds-grid_vertical-align-center slds-gutters_x-small">
+                                <span class="slds-text-body_small slds-text-color_weak">Page</span>
                                 <input
                                     class="slds-input jump-input"
                                     type="number"
@@ -76,16 +164,18 @@
                                     onchange={handlePageInputChange}
                                     onblur={handlePageInputBlur}
                                     onkeydown={handlePageInputKeydown} />
-                                <span class="jump-label">of {totalPages}</span>
+                                <span class="slds-text-body_small slds-text-color_weak">of {totalPages}</span>
                             </div>
                         </div>
                     </div>
                 </template>
 
                 <template if:false={hasData}>
-                    <div class="slds-p-around_medium slds-text-color_weak">No orders found for this metric.</div>
+                    <template if:false={showRealizedTabs}>
+                        <div class="slds-p-around_medium slds-text-color_weak">No orders found for this metric.</div>
+                    </template>
                 </template>
             </template>
         </div>
-    </div>
+    </article>
 </template>

@@ -1,0 +1,7 @@
+:host {
+    display: block;
+}
+
+.loading-region {
+    min-height: 4rem;
+}

@@ -1,227 +1,27 @@
-:host{
-    display:block;
-    height:100%;
+:host {
+    display: block;
+    height: 100%;
 }
 
-lightning-card{
-    display:block;
-    height:100%;
+lightning-card {
+    display: block;
+    height: 100%;
 }
 
-/* ===============================
-   KPI CARD CONTAINER
-================================ */
-
-.kpi-card {
-
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
-
-    padding: 20px;
-
-    height: 190px;
-
-    display: flex;
-    flex-direction: column;
-
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-
-    transition: all 0.2s ease;
-
+.card-header {
+    min-height: 2.25rem;
 }
 
-/* Hover */
-
-.kpi-card:hover {
-
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
-
-}
-
-
-/* ===============================
-   HEADER
-================================ */
-
-.kpi-header {
-
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-
-}
-
-
-/* TITLE */
-
-.kpi-title {
-
-    font-size: 15px;
-    font-weight: 500;
-    color: #374151;
-
-}
-
-
-/* ===============================
-   ICON
-================================ */
-
-.icon-container {
-
-    width: 38px;
-    height: 38px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 10px;
-
-    background: #eef2f7;
-
-}
-
-
-/* ===============================
-   VALUE
-================================ */
-
-.kpi-body {
-
-    margin-top: 8px;
-    flex-grow: 1;
-
-}
-
-.kpi-value {
-
-    font-size: 20px;
+.card-title {
+    margin: 0;
+    color: var(--lwc-colorTextDefault, #181818);
+    font-size: 0.95rem;
     font-weight: 700;
-    line-height: 1.1;
-
-    color: #111827;
-
+    line-height: 1.2;
+    white-space: normal;
+    word-break: break-word;
 }
 
-
-/* ===============================
-   SUBTITLE
-================================ */
-
-.kpi-subtitle {
-
-    font-size: 11px;
-    color: #6b7280;
-
-    margin-top: 4px;
-
-}
-
-
-/* ===============================
-   FOOTER
-================================ */
-
-.kpi-footer {
-
-    margin-top: auto;
-
-}
-
-
-/* ===============================
-   PROGRESS BAR
-================================ */
-
-.progress-bar {
-
-    height: 6px;
-    background: #e5e7eb;
-    border-radius: 6px;
-
-}
-
-.progress {
-    height: 6px;
-    border-radius: 6px;
-    background: #2f4bb3;
-}
-
-.progress-label-row {
-
-    display:flex;
-    justify-content:space-between;
-
-    margin-top:8px;
-    margin-bottom:6px;
-
-}
-
-.progress-label {
-
-    font-size:11px;
-    color:#6b7280;
-
-}
-
-.progress-value {
-
-    font-size:14px;
-    font-weight:600;
-    color:#111827;
-
-}
-
-
-/* ===============================
-   TREND
-================================ */
-
-.trend-container {
-
-    display: flex;
-    align-items: center;
-    gap: 6px;
-
-    white-space: nowrap;
-
-}
-
-.trend-up {
-
-    font-size: 12px;
-    font-weight: 600;
-    color: #16a34a;
-
-}
-
-.trend-down {
-
-    font-size: 12px;
-    font-weight: 600;
-    color: #dc2626;
-
-}
-
-.trend-text {
-
-    font-size: 10px;
-    color: #6b7280;
-
-}
-
-
-/* ===============================
-   HIGHLIGHT TEXT
-================================ */
-
-.highlight-text {
-
-    font-size: 12px;
-    font-weight: 600;
-    color: #dc2626;
-
+.card-body {
+    min-height: 8.5rem;
 }

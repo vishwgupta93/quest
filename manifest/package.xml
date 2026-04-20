@@ -23,5 +23,9 @@
         <members>QuestLogo</members>
         <name>StaticResource</name>
     </types>
+    <types>
+        <members>Partner_Dashboard_Internal_Community_User</members>
+        <name>PermissionSet</name>
+    </types>
     <version>65.0</version>
 </Package>

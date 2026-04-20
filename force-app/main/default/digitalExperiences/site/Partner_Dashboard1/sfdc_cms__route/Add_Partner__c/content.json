@@ -1,0 +1,12 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Add Partner",
+  "contentBody" : {
+    "activeViewId" : "Add_Partner",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "custom-add-partner",
+    "urlPrefix" : "add-partner"
+  },
+  "urlName" : "add-partner"
+}

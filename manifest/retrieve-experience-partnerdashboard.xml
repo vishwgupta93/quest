@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <!--
+      Partner Dashboard Experience Cloud — names from preprod (sf org list metadata).
+
+      URL path "partnerdashboard" is NOT the Network or bundle API name.
+
+      Retrieve:
+        sf project retrieve start -x manifest/retrieve-experience-partnerdashboard.xml --target-org preprod
+
+      To re-discover names on any org:
+        sf org list metadata --metadata-type Network --target-org preprod
+        sf org list metadata --metadata-type DigitalExperienceBundle --target-org preprod
+        sf org list metadata --metadata-type ExperienceBundle --target-org preprod
+
+      Enhanced LWR (Digital Experience) sites use DigitalExperienceBundle only; retrieve does not
+      deploy a separate ExperienceBundle for Partner Dashboard — omit ExperienceBundle here to
+      avoid "cannot be found" errors even if list metadata still shows a row for it.
+
+      CustomSite.serverIsDown points at an LWR CDN StaticResource (SNA_*); list/retrieve if the name differs.
+    -->
+    <types>
+        <members>SNA_t9zf0_sf_default_cdn_Partner_Dashboard1</members>
+        <name>StaticResource</name>
+    </types>
+    <types>
+        <members>Partner_Dashboard</members>
+        <name>CustomSite</name>
+    </types>
+    <types>
+        <members>Partner_Dashboard1</members>
+        <name>DigitalExperienceConfig</name>
+    </types>
+    <types>
+        <members>Partner Dashboard</members>
+        <name>Network</name>
+    </types>
+    <types>
+        <members>site/Partner_Dashboard1</members>
+        <name>DigitalExperienceBundle</name>
+    </types>
+    <version>66.0</version>
+</Package>

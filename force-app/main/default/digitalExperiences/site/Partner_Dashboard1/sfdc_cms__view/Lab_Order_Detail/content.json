@@ -1,0 +1,120 @@
+{
+  "type" : "sfdc_cms__view",
+  "title" : "Lab Order Detail",
+  "contentBody" : {
+    "component" : {
+      "children" : [ {
+        "children" : [ {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "layoutDirectionDesktop" : "row",
+            "layoutDirectionMobile" : "column",
+            "layoutDirectionTablet" : "column",
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"356d145b-8e7a-47c8-a0f7-3083f5801e66\",\"columns\":[{\"UUID\":\"ecdf8bc4-12b0-4d74-8fff-a18b0a8302e1\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}",
+            "sectionMinHeight" : "",
+            "sectionVerticalAlign" : "flex-start"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : {
+                "columnGutterWidth" : "",
+                "columnMinHeight" : "",
+                "columnVerticalAlign" : "flex-start",
+                "layoutDirectionDesktop" : "column",
+                "layoutDirectionMobile" : "column",
+                "layoutDirectionTablet" : "column",
+                "sectionConfig" : "{\"UUID\":\"eb44e616-65c4-481e-a522-6aef864ce854\",\"columns\":[{\"UUID\":\"dbb91a7c-773b-4c4a-8488-4db615c3fbe3\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"6\",\"seedComponents\":[]},{\"UUID\":\"9a78afb3-81f5-4ade-aed2-ed02f0e7abe4\",\"columnName\":\"Column 2\",\"columnKey\":\"col2\",\"columnWidth\":\"6\",\"seedComponents\":[]}]}"
+              },
+              "children" : [ {
+                "children" : [ {
+                  "attributes" : { },
+                  "definition" : "c:partnerDashboardLabOrderBackToOrders",
+                  "id" : "f7ff208c-95a8-40b1-aa37-b709a0ee8f64",
+                  "type" : "component"
+                } ],
+                "id" : "dbb91a7c-773b-4c4a-8488-4db615c3fbe3",
+                "name" : "col1",
+                "title" : "Column 1",
+                "type" : "region"
+              }, {
+                "children" : [ {
+                  "attributes" : {
+                    "backgroundColor" : "",
+                    "layout" : "{!Item._layout}",
+                    "mainTitlePaddingHorizontal" : "none",
+                    "mainTitlePaddingVertical" : "none",
+                    "mainTitleText" : "Your text",
+                    "mainTitleTextDisplayInfo" : "{}",
+                    "metadata" : "{!Item._metadata._context}",
+                    "recordIdFromDataProvider" : "{!Item.Id}",
+                    "showTitle" : true
+                  },
+                  "children" : [ {
+                    "children" : [ {
+                      "attributes" : { },
+                      "definition" : "dxp_page_layout:placeHolder",
+                      "id" : "0b9fea9b-0b4b-4f0e-9a57-e9829bb99a58",
+                      "type" : "component"
+                    } ],
+                    "id" : "7729ac3d-7fea-4719-b15e-9cc3dcc7d1dd",
+                    "name" : "placeholder",
+                    "title" : "placeholder",
+                    "type" : "region"
+                  } ],
+                  "definition" : "dxp_records:detailPanel",
+                  "id" : "e4e21fb9-7268-4719-8fdd-1dee64632b66",
+                  "type" : "component"
+                } ],
+                "id" : "9a78afb3-81f5-4ade-aed2-ed02f0e7abe4",
+                "name" : "col2",
+                "title" : "Column 2",
+                "type" : "region"
+              } ],
+              "definition" : "dxp_layout:columns",
+              "id" : "eb44e616-65c4-481e-a522-6aef864ce854",
+              "type" : "component"
+            } ],
+            "id" : "ecdf8bc4-12b0-4d74-8fff-a18b0a8302e1",
+            "name" : "col1",
+            "title" : "Column 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "356d145b-8e7a-47c8-a0f7-3083f5801e66",
+          "type" : "component"
+        } ],
+        "id" : "a7bd1586-c86c-4bc3-9de9-16335d243e99",
+        "name" : "content",
+        "title" : "Content",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "customHeadTags" : "",
+            "description" : "",
+            "pageTitle" : "{!Record._Object}: {!Record._Title}",
+            "recordId" : "{!recordId}"
+          },
+          "definition" : "community_builder:seoAssistant",
+          "id" : "3549799d-0d74-48ec-a4d3-346ad03e300d",
+          "type" : "component"
+        } ],
+        "id" : "83c4218d-bba4-4250-a9bb-056b10a7ab3f",
+        "name" : "sfdcHiddenRegion",
+        "title" : "sfdcHiddenRegion",
+        "type" : "region"
+      } ],
+      "definition" : "community_layout:sldsFlexibleLayout",
+      "id" : "7a185047-c2b0-4036-9090-04f53dde4794",
+      "type" : "component"
+    },
+    "dataProviders" : [ ],
+    "themeLayoutType" : "Inner",
+    "viewType" : "detail-Lab_Order__c"
+  },
+  "urlName" : "lab-order-detail"
+}

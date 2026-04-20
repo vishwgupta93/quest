@@ -1,23 +1,34 @@
 <template>
 
-<lightning-card title={title} icon-name={icon}>
-    <!-- Flex layout so KPI footer aligns across cards -->
-    <div class="slds-p-around_medium slds-h-full slds-grid slds-grid_vertical slds-grid_align-spread">
+<lightning-card>
+    <div class="card-header slds-media slds-media_center slds-p-horizontal_medium slds-p-top_small slds-p-bottom_x-small">
+        <template if:true={icon}>
+            <div class="slds-media__figure">
+                <lightning-icon icon-name={icon} size="x-small"></lightning-icon>
+            </div>
+        </template>
+        <div class="slds-media__body">
+            <h2 class="card-title">
+                {title}
+            </h2>
+        </div>
+    </div>
+    <div class="slds-p-around_medium slds-grid slds-grid_vertical slds-grid_align-spread card-body">
         <div class="slds-grow">
             <div class="slds-text-heading_medium slds-m-bottom_x-small">
                 {value}
             </div>
 
             <template if:true={subtitle}>
-                <div class="slds-text-body_small slds-text-color_weak">
+                <p class="slds-text-body_small slds-text-color_weak">
                     {subtitle}
-                </div>
+                </p>
             </template>
         </div>
 
-        <div>
+        <div class="slds-m-top_medium">
             <template if:true={progress}>
-                <div class="slds-m-top_small">
+                <div>
                     <div class="slds-grid slds-grid_align-spread slds-text-body_small slds-text-color_weak slds-m-bottom_x-small">
                         <span>{progressLabel}</span>
                         <span class="slds-text-color_default">{progressValue}</span>
@@ -42,9 +53,9 @@
             </template>
 
             <template if:true={highlightText}>
-                <div class="slds-m-top_small slds-text-body_small slds-text-color_error slds-font-weight_semibold">
+                <p class="slds-m-top_small slds-text-body_small slds-text-color_error slds-font-weight_semibold">
                     {highlightText}
-                </div>
+                </p>
             </template>
         </div>
     </div>

@@ -1,0 +1,19 @@
+{
+  "folders": [
+    {
+      "path": "c:/Users/VG/Documents/Quest/quest"
+    }
+  ],
+  "settings": {
+    "eslint.workingDirectories": [
+      "c:/Users/VG/Documents/Quest/quest"
+    ],
+    "eslint.validate": [
+      "javascript",
+      "typescript"
+    ],
+    "eslint.options": {
+      "overrideConfigFile": "c:\\Users\\VG\\Documents\\Quest\\quest\\.eslintrc.json"
+    }
+  }
+}

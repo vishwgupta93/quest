@@ -11,16 +11,19 @@ export default class PartnerDashboardThemeLayout extends LightningElement {
     selectedPartnerId = null;
     selectedCustomStartDate = null;
     selectedCustomEndDate = null;
+    communityBasePath = '/partnerdashboard';
 
     connectedCallback() {
-        const path = window.location.pathname.toLowerCase();
+        const path = window.location.pathname;
+        const normalizedPath = path.toLowerCase();
+        this.communityBasePath = this.resolveCommunityBasePath(path);
         this.isAuthPage = [
             '/login',
             '/forgotpassword',
             '/forgot-password',
             '/selfregister',
             '/self-registration'
-        ].some(segment => path.includes(segment));
+        ].some(segment => normalizedPath.includes(segment));
 
         this.currentPage = this.resolveCurrentPage(path);
 
@@ -148,11 +151,24 @@ export default class PartnerDashboardThemeLayout extends LightningElement {
     }
 
     resolveCurrentPage(path) {
-        if (path === '/partnerdashboard/' || path === '/partnerdashboard') {
+        const normalizedPath = (path || '').toLowerCase();
+        const normalizedBasePath = (this.communityBasePath || '').toLowerCase();
+
+        if (normalizedPath === `${normalizedBasePath}/` || normalizedPath === normalizedBasePath) {
             return 'overview';
         }
 
-        return path.split('/').pop();
+        return (path || '').split('/').pop().toLowerCase();
+    }
+
+    resolveCommunityBasePath(path) {
+        const segments = (path || '/').split('/').filter(Boolean);
+
+        if (!segments.length) {
+            return '';
+        }
+
+        return `/${segments[0]}`;
     }
 
     handleFilterChange(event) {
@@ -205,7 +221,8 @@ export default class PartnerDashboardThemeLayout extends LightningElement {
             query.set('customEnd', this.selectedCustomEndDate);
         }
 
-        window.location.href = `/partnerdashboard/partner-directory?${query.toString()}`;
+        const targetUrl = `${this.communityBasePath}/partner-directory?${query.toString()}`;
+        window.location.href = targetUrl;
     }
 
 }

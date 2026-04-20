@@ -1,0 +1,186 @@
+<template>
+    <lightning-card title={cardTitle} icon-name="utility:adduser">
+        <div class="slds-p-around_medium">
+            <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_medium">
+                {introText}
+            </p>
+
+            <template if:true={errorMessage}>
+                <div class="slds-notify slds-notify_alert slds-alert_error slds-m-bottom_medium" role="alert">
+                    <span class="slds-assistive-text">error</span>
+                    <span>{errorMessage}</span>
+                </div>
+            </template>
+
+            <template if:true={successMessage}>
+                <div class="success-message slds-m-bottom_medium" role="status">
+                    <span>{successMessage}</span>
+                </div>
+            </template>
+
+            <template if:false={showPartnerProductsStep}>
+                <lightning-record-edit-form
+                    object-api-name="PartnerClientMap__c"
+                    record-id={partnerFormRecordId}
+                    onsuccess={handlePartnerSuccess}
+                    onsubmit={handlePartnerSubmit}
+                    onerror={handlePartnerError}>
+
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                            <lightning-input-field field-name="Name" required></lightning-input-field>
+                            <lightning-input-field field-name="Sales_Channel__c"></lightning-input-field>
+                            <lightning-input-field field-name="Client_ID__c" required></lightning-input-field>
+                            <lightning-input-field field-name="Bill_type__c"></lightning-input-field>
+                            <lightning-input-field field-name="Partner_Name__c" required></lightning-input-field>
+                            <lightning-input-field field-name="Fulfillment_Location_API_Key__c"></lightning-input-field>
+                            <lightning-input-field field-name="Is_Registration_Email_Sent__c"></lightning-input-field>
+                            <lightning-input-field field-name="Trigger_HUB_For_Partner__c"></lightning-input-field>
+                            <lightning-input-field field-name="Trigger_Appointment_Confirmaiton_Event__c"></lightning-input-field>
+                            <lightning-input-field field-name="Suppress_Reminder_Email__c"></lightning-input-field>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                            <lightning-input-field field-name="OwnerId"></lightning-input-field>
+                            <lightning-input-field field-name="Short_Code__c"></lightning-input-field>
+                            <lightning-input-field field-name="Named_credential_Name__c"></lightning-input-field>
+                            <lightning-input-field field-name="Payment_Key__c"></lightning-input-field>
+                            <lightning-input-field field-name="Publish_external_Status_Notification__c"></lightning-input-field>
+                            <lightning-input-field field-name="Send_kit_Shipped_Notification__c"></lightning-input-field>
+                            <lightning-input-field field-name="Send_Results_Email__c"></lightning-input-field>
+                            <lightning-input-field field-name="Suppress_Expiry_Email__c"></lightning-input-field>
+                            <lightning-input-field field-name="Send_Order_Confirmation__c"></lightning-input-field>
+                        </div>
+                    </div>
+
+                    <div class="form-actions slds-m-top_large slds-grid slds-grid_align-end slds-wrap">
+                        <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+                        <lightning-button type="submit" variant="brand" label={partnerSubmitLabel}></lightning-button>
+                    </div>
+                </lightning-record-edit-form>
+            </template>
+
+            <template if:true={showPartnerProductsStep}>
+                <div class="slds-grid slds-wrap slds-grid_align-spread slds-grid_vertical-align-center slds-m-bottom_medium">
+                    <div>
+                        <h2 class="slds-text-heading_small">Partner Products</h2>
+                        <p class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">
+                            Add one or more products for {createdPartnerName}.
+                        </p>
+                    </div>
+
+                    <div class="slds-m-top_small slds-m-top_none_large">
+                        <lightning-button
+                            label="Add Product"
+                            icon-name="utility:add"
+                            onclick={handleAddProductRow}>
+                        </lightning-button>
+                    </div>
+                </div>
+
+                <template if:true={hasProductRows}>
+                    <div class="product-rows">
+                        <template for:each={productRows} for:item="row">
+                            <section key={row.rowId} class="slds-box slds-theme_default slds-m-bottom_small product-row-card">
+                                <div class="slds-grid slds-wrap slds-gutters_small">
+                                    <div class="slds-col slds-size_1-of-1 slds-large-size_5-of-12">
+                                        <label class="slds-form-element__label" for={row.searchInputId}>
+                                            Product
+                                        </label>
+                                        <div class="slds-form-element lookup-shell">
+                                            <lightning-input
+                                                data-row-id={row.rowId}
+                                                data-field="searchTerm"
+                                                variant="label-hidden"
+                                                type="search"
+                                                placeholder="Search by product name, code, SKU, or ecomm id"
+                                                value={row.searchTerm}
+                                                onchange={handleProductSearchChange}>
+                                            </lightning-input>
+
+                                            <template if:true={row.selectedProductId}>
+                                                <p class="slds-text-body_small slds-text-color_weak slds-m-top_x-small selected-product-details">
+                                                    {row.selectedProductSubtitle}
+                                                </p>
+                                            </template>
+
+                                            <template if:true={row.showResults}>
+                                                <div class="slds-box slds-theme_default slds-m-top_x-small product-results">
+                                                    <template for:each={row.results} for:item="result">
+                                                        <button
+                                                            key={result.id}
+                                                            type="button"
+                                                            class="slds-button slds-button_reset product-result-item"
+                                                            data-row-id={row.rowId}
+                                                            data-product-id={result.id}
+                                                            onclick={handleSelectProduct}>
+                                                            <span class="slds-text-title_bold">{result.name}</span>
+                                                            <span class="slds-text-body_small slds-text-color_weak">{result.subtitle}</span>
+                                                        </button>
+                                                    </template>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+
+                                    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-4">
+                                        <lightning-input
+                                            type="number"
+                                            step="0.01"
+                                            label="Product Price"
+                                            data-row-id={row.rowId}
+                                            data-field="productPrice"
+                                            value={row.productPrice}
+                                            onchange={handleRowValueChange}>
+                                        </lightning-input>
+                                    </div>
+
+                                    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-4">
+                                        <lightning-input
+                                            type="number"
+                                            step="0.01"
+                                            label="Cancellation Fee"
+                                            data-row-id={row.rowId}
+                                            data-field="cancellationFee"
+                                            value={row.cancellationFee}
+                                            onchange={handleRowValueChange}>
+                                        </lightning-input>
+                                    </div>
+
+                                    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-12">
+                                        <div class="row-delete-action">
+                                            <lightning-button-icon
+                                                icon-name="utility:delete"
+                                                alternative-text="Remove product row"
+                                                title="Remove product row"
+                                                data-row-id={row.rowId}
+                                                onclick={handleRemoveProductRow}>
+                                            </lightning-button-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </template>
+                    </div>
+                </template>
+
+                <template if:false={hasProductRows}>
+                    <div class="slds-box slds-theme_default slds-text-align_center slds-text-color_weak slds-m-bottom_medium">
+                        No partner products added yet.
+                    </div>
+                </template>
+
+                <div class="form-actions slds-grid slds-grid_align-end slds-wrap slds-m-top_large">
+                    <lightning-button label="Back" onclick={handleBackToPartnerForm}></lightning-button>
+                    <lightning-button label={finishLabel} onclick={handleFinishWithoutProducts}></lightning-button>
+                    <lightning-button
+                        variant="brand"
+                        label={saveProductsLabel}
+                        onclick={handleSaveProducts}
+                        disabled={disableSaveProducts}>
+                    </lightning-button>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

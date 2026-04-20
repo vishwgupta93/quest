@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DOB_and_Gender_are_required_unless_Minor</fullName>
+    <active>true</active>
+    <description>DOB and Gender are required unless this is a Minor Lab Order.</description>
+    <errorConditionFormula>AND( 
+				NOT(ISNEW()),
+				NOT(Person_Record__r.Is_Minor_Order_Registered__c),
+				OR(
+        ISBLANK(Person_Record__r.Date_of_Birth__c),
+        ISPICKVAL(Person_Record__r.Gender__c, &quot;&quot;)
+				)
+			)</errorConditionFormula>
+    <errorMessage>DOB and Gender are required unless Minor Registered is checked</errorMessage>
+</ValidationRule>

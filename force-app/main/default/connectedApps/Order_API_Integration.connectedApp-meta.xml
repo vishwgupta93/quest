@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Order API Integration</label>
+    <contactEmail>vishwas.gupta@highlanddigital.co</contactEmail>
+
+    <oauthConfig>
+        <callbackUrl>http://localhost</callbackUrl>
+
+        <scopes>Api</scopes>
+        <scopes>RefreshToken</scopes>
+
+        <isAdminApproved>true</isAdminApproved>
+    </oauthConfig>
+</ConnectedApp>

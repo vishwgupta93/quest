@@ -31,14 +31,6 @@ export default class PartnerDashboardRevenueSplit extends LightningElement {
         return `${this.pmorPercent.toFixed(1)}% of Sales`;
     }
 
-    get qmorProgressStyle() {
-        return `width: ${this.qmorPercent}%`;
-    }
-
-    get pmorProgressStyle() {
-        return `width: ${this.pmorPercent}%`;
-    }
-
     calcPercent(value) {
         const gross = Number(this.grossRevenue || 0);
         if (!gross) return 0;
@@ -47,9 +39,6 @@ export default class PartnerDashboardRevenueSplit extends LightningElement {
 
     formatMillions(value) {
         const n = Number(value || 0);
-        if (n >= 1e9) return `$${(n / 1e9).toFixed(1)}B`;
-        if (n >= 1e6) return `$${(n / 1e6).toFixed(1)}M`;
-        if (n >= 1e3) return `$${(n / 1e3).toFixed(1)}K`;
-        return `$${n.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+        return `$${n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     }
 }

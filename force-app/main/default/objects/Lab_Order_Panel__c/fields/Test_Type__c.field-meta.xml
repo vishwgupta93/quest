@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Test_Type__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( Lab_Order__r.Is_Kit__c , Lab_Order__r.Kit_Detail__r.Type__c ,IF( Lab_Order__r.Is_Partner__c , IF(ISBLANK(Panel__r.Product__r.testType__c) ,&apos;PSC&apos;,Panel__r.Product__r.testType__c),Fulfillment_Order_Product__r.Test_Type__c))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Test Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

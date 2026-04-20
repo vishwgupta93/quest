@@ -1,0 +1,10 @@
+:host {
+    display: block;
+}
+
+lightning-card.dashboard-tight-card {
+    --slds-c-card-header-spacing-block-start: var(--lwc-spacingXxSmall, 0.25rem);
+    --slds-c-card-header-spacing-block-end: var(--lwc-spacingXxSmall, 0.25rem);
+    --slds-c-card-body-spacing-block-start: 0;
+    --slds-c-card-body-spacing-block-end: 0;
+}

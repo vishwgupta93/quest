@@ -5,22 +5,6 @@ export default class PartnerDashboardPartnerDirectoryTile extends LightningEleme
     @api partner;
 
     naLabel = 'NA';
-    hasLoggedRisk = false;
-
-    renderedCallback() {
-        if (this.hasLoggedRisk || !this.partner) return;
-
-        // Helps confirm that the updated conditional rendering logic is executing.
-        // Remove once validated.
-        // eslint-disable-next-line no-console
-        console.log('Partner risk debug', {
-            partnerId: this.partner.partnerId,
-            cancellationRiskOrders: this.partner.cancellationRiskOrders,
-            showCancellationRisk: this.showCancellationRisk
-        });
-
-        this.hasLoggedRisk = true;
-    }
 
     get categoryLabel() {
         return this.formatText(this.partner?.category);
@@ -63,21 +47,29 @@ export default class PartnerDashboardPartnerDirectoryTile extends LightningEleme
         );
     }
 
+    handleEditClick(event) {
+        event.stopPropagation();
+        this.dispatchEvent(
+            new CustomEvent('partneredit', {
+                detail: this.partner
+            })
+        );
+    }
+
+    handleKeydown(event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            this.handleClick();
+        }
+    }
+
     formatMillions(value) {
 
         const numericValue = Number(value || 0);
 
-        if (numericValue >= 1000000000) {
-            return `$${(numericValue / 1000000000).toFixed(1)}B`;
-        }
-
-        if (numericValue >= 1000000) {
-            return `$${(numericValue / 1000000).toFixed(1)}M`;
-        }
-
         return `$${numericValue.toLocaleString(undefined, {
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
         })}`;
     }
 

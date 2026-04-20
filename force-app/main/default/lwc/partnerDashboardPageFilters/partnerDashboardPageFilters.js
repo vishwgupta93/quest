@@ -82,24 +82,8 @@ export default class PartnerDashboardPageFilters extends LightningElement {
 
     get containerClass() {
         return this.embedded
-            ? 'filters-card embedded'
-            : 'filters-card';
-    }
-
-    get filtersGridClass() {
-        const filterCount = [this.showPartnerSearch, this.showDateRange, this.showCategoryFilter]
-            .filter(Boolean)
-            .length;
-
-        if (filterCount <= 1) {
-            return 'filters-grid single-filter';
-        }
-
-        if (filterCount === 2) {
-            return 'filters-grid two-filters';
-        }
-
-        return 'filters-grid';
+            ? 'slds-p-around_none'
+            : 'slds-box slds-theme_default slds-p-around_large';
     }
 
     get dateRangeColumnSize() {
@@ -108,6 +92,16 @@ export default class PartnerDashboardPageFilters extends LightningElement {
 
     get categoryColumnSize() {
         return this.showPartnerSearch ? '2' : '3';
+    }
+
+    get dateRangeClass() {
+        const largeSize = this.dateRangeColumnSize;
+        return `slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_${largeSize}-of-12 filter-item`;
+    }
+
+    get categoryClass() {
+        const largeSize = this.categoryColumnSize;
+        return `slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_${largeSize}-of-12 filter-item`;
     }
 
     get showCustomDateSection() {

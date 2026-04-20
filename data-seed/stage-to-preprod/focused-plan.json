@@ -1,0 +1,18 @@
+[
+    {
+        "sobject": "PartnerClientMap__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "PartnerClientMap__c.focused.json"
+        ]
+    },
+    {
+        "sobject": "Lab_Order__c",
+        "saveRefs": false,
+        "resolveRefs": true,
+        "files": [
+            "Lab_Order__c.focused.json"
+        ]
+    }
+]

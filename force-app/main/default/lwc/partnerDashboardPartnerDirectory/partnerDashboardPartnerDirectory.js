@@ -28,6 +28,11 @@ export default class PartnerDashboardPartnerDirectory extends LightningElement {
         window.removeEventListener('partnerdashboardfilterschange', this.handleGlobalDateChange);
     }
 
+    get communityBasePath() {
+        const segments = (window.location.pathname || '/').split('/').filter(Boolean);
+        return segments.length ? `/${segments[0]}` : '';
+    }
+
     get showPartnerDetails() {
         return this.selectedPartner !== null;
     }
@@ -105,6 +110,15 @@ export default class PartnerDashboardPartnerDirectory extends LightningElement {
         await this.loadPartnerDetails(partnerId);
     }
 
+    handlePartnerEdit(event) {
+        const detail = event.detail;
+        const partnerId = detail?.partnerId ?? detail?.partnerMapId;
+        if (!partnerId) {
+            return;
+        }
+        window.location.href = `${this.communityBasePath}/add-partner?partnerId=${partnerId}`;
+    }
+
     async handleGlobalDateChangeEvent(event) {
         const nextDateRange = event.detail.dateRange || DEFAULT_DATE_RANGE;
         const nextCustomStartDate = event.detail.customStartDate || null;
@@ -139,10 +153,6 @@ export default class PartnerDashboardPartnerDirectory extends LightningElement {
         this.selectedPartnerId = null;
         this.loadError = undefined;
         this.syncUrlState();
-    }
-
-    handleAddPartner() {
-        // Placeholder until add-partner workflow is designed.
     }
 
     syncUrlState() {

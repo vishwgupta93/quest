@@ -1,0 +1,95 @@
+<template>
+    <lightning-card class="dashboard-tight-card" title="Open Orders - Aging Analysis" icon-name="utility:date_input">
+        <div class="slds-p-around_small">
+            <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_small">
+                All-time view (not affected by date filters)
+            </p>
+
+            <template if:true={isLoading}>
+                <div class="slds-is-relative slds-m-bottom_small">
+                    <lightning-spinner alternative-text="Loading open order ageing analysis" size="small"></lightning-spinner>
+                </div>
+            </template>
+
+            <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_small">
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                    <div
+                        role="button"
+                        tabindex="0"
+                        class="slds-box slds-theme_default slds-text-align_center slds-p-around_small"
+                        onclick={handleOpenOrdersSummaryDrill}
+                        onkeydown={handleOpenSummaryTileKeydown}
+                        data-summary-kind="open">
+                        <div class="slds-text-heading_small">Open Orders</div>
+                        <div class="slds-text-heading_small slds-m-top_xx-small">{openOrdersSummary.countLabel}</div>
+                        <div class="slds-text-body_small slds-text-title_bold slds-m-top_xx-small">{openOrdersSummary.revenueLabel}</div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                    <div
+                        role="button"
+                        tabindex="0"
+                        class="slds-box slds-theme_shade slds-text-align_center slds-p-around_small"
+                        onclick={handleAtRiskSummaryDrill}
+                        onkeydown={handleOpenSummaryTileKeydown}
+                        data-summary-kind="atrisk">
+                        <div class="slds-text-heading_small">At Risk Orders (&gt;6 days)</div>
+                        <div class="slds-text-heading_small slds-m-top_xx-small">{atRiskOrdersSummary.countLabel}</div>
+                        <div class="slds-text-body_small slds-text-title_bold slds-m-top_xx-small">{atRiskOrdersSummary.revenueLabel}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-scrollable_x">
+                <table class="slds-table slds-table_bordered slds-table_fixed-layout">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th scope="col">
+                                <div class="slds-truncate slds-text-title_caps" title="Status">Status</div>
+                            </th>
+                            <template for:each={columnHeaders} for:item="col">
+                                <th key={col.bucketKey} scope="col">
+                                    <div class="slds-truncate slds-text-title_caps" title={col.label}>{col.label}</div>
+                                </th>
+                            </template>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={analysisTableRows} for:item="row">
+                            <tr key={row.id} class={row.rowClass}>
+                                <th scope="row">
+                                    <div class="slds-truncate" title={row.statusLabel}>{row.statusLabel}</div>
+                                </th>
+                                <template for:each={row.cells} for:item="cell">
+                                    <td key={cell.cellDomKey}>
+                                        <button
+                                            type="button"
+                                            class="slds-button slds-button_reset slds-size_full slds-text-align_center slds-p-vertical_xx-small slds-p-horizontal_x-small"
+                                            data-stage={row.stageKey}
+                                            data-bucket={cell.bucketKey}
+                                            data-title={cell.drillTitle}
+                                            onclick={handleCellDrill}
+                                            onkeydown={handleCellKeydown}>
+                                            <span class="slds-line-height_heading">
+                                                <span class="slds-show slds-text-title_bold">{cell.line1}</span>
+                                                <span class="slds-show slds-text-body_small">{cell.line2}</span>
+                                                <span class="slds-show slds-text-body_small slds-text-color_weak">{cell.line3}</span>
+                                            </span>
+                                        </button>
+                                    </td>
+                                </template>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="slds-m-top_small slds-text-body_small slds-text-color_weak">
+                <p>Age is calculated as current date minus the order created date.</p>
+                <p class="slds-m-top_x-small">Pre sample collection: Registered, Confirmed, PA Approved</p>
+                <p class="slds-m-top_x-small">Post sample collection: In Progress, Partial Results</p>
+                <p class="slds-m-top_x-small">Excluded: Results Ready, Expired, Cancelled, PA Rejected</p>
+            </div>
+        </div>
+    </lightning-card>
+</template>

@@ -1,52 +1,65 @@
 <template>
 
 <div class="revenue-grid">
+    <div class="revenue-cell">
+        <lightning-card title="QMoR Revenue" icon-name="utility:moneybag">
+            <div class="slds-p-around_medium card-body">
+                <template if:true={isLoading}>
+                    <div class="slds-is-relative loading-region">
+                        <lightning-spinner alternative-text="Loading QMoR revenue" size="small"></lightning-spinner>
+                    </div>
+                </template>
 
-    <template if:true={isLoading}>
-        <div class="revenue-card loading-card">
-            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
-        </div>
-        <div class="revenue-card loading-card">
-            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
-        </div>
-    </template>
-
-    <template if:false={isLoading}>
-
-        <!-- QMoR -->
-        <div class="revenue-card">
-            <div class="card-header">
-                <lightning-icon icon-name="utility:moneybag" size="small"></lightning-icon>
-                <div>
-                    <div class="title">QMoR Revenue</div>
-                    <div class="subtitle">Quest as Merchant of Record</div>
-                </div>
+                <template if:false={isLoading}>
+                    <p class="slds-text-body_small slds-text-color_weak">
+                        Quest as Merchant of Record
+                    </p>
+                    <div class="slds-text-heading_large value-row">
+                        {qmorFormatted}
+                    </div>
+                    <div class="progress-row">
+                        <lightning-progress-bar
+                            value={qmorPercent}
+                            size="small">
+                        </lightning-progress-bar>
+                    </div>
+                    <p class="slds-text-body_small slds-text-color_weak percent-row">
+                        {qmorPercentLabel}
+                    </p>
+                </template>
             </div>
-            <div class="revenue-value">{qmorFormatted}</div>
-            <div class="progress-bar">
-                <div class="progress qmor-progress" style={qmorProgressStyle}></div>
-            </div>
-            <div class="percentage">{qmorPercentLabel}</div>
-        </div>
+        </lightning-card>
+    </div>
 
-        <!-- PMoR -->
-        <div class="revenue-card">
-            <div class="card-header">
-                <lightning-icon icon-name="utility:user" size="small"></lightning-icon>
-                <div>
-                    <div class="title">PMoR Revenue</div>
-                    <div class="subtitle">Partner as Merchant of Record</div>
-                </div>
-            </div>
-            <div class="revenue-value">{pmorFormatted}</div>
-            <div class="progress-bar">
-                <div class="progress pmor-progress" style={pmorProgressStyle}></div>
-            </div>
-            <div class="percentage">{pmorPercentLabel}</div>
-        </div>
+    <div class="revenue-cell">
+        <lightning-card title="PMoR Revenue" icon-name="utility:user">
+            <div class="slds-p-around_medium card-body">
+                <template if:true={isLoading}>
+                    <div class="slds-is-relative loading-region">
+                        <lightning-spinner alternative-text="Loading PMoR revenue" size="small"></lightning-spinner>
+                    </div>
+                </template>
 
-    </template>
-
+                <template if:false={isLoading}>
+                    <p class="slds-text-body_small slds-text-color_weak">
+                        Partner as Merchant of Record
+                    </p>
+                    <div class="slds-text-heading_large value-row">
+                        {pmorFormatted}
+                    </div>
+                    <div class="progress-row">
+                        <lightning-progress-bar
+                            value={pmorPercent}
+                            size="small">
+                        </lightning-progress-bar>
+                    </div>
+                    <p class="slds-text-body_small slds-text-color_weak percent-row">
+                        {pmorPercentLabel}
+                    </p>
+                </template>
+            </div>
+        </lightning-card>
+    </div>
 </div>
 
 </template>

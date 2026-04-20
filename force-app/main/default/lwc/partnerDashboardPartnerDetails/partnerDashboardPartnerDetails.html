@@ -2,7 +2,7 @@
 
 <template if:true={partner}>
 
-    <div class="details-page">
+    <div class="details-shell">
 
         <template if:true={showOrdersList}>
             <c-partner-dashboard-partner-orders-list
@@ -10,6 +10,8 @@
                 partner-name={partner.partnerName}
                 partner-metrics={partner}
                 filter-type={ordersFilterType}
+                ageing-drill-stage={ordersAgeingDrillStage}
+                ageing-drill-bucket={ordersAgeingDrillBucket}
                 partner-id={partner.partnerId}
                 date-range={dateRange}
                 custom-start-date={customStartDate}
@@ -19,241 +21,285 @@
         </template>
 
         <template if:true={showDetailContent}>
-        <button class="back-link" onclick={handleBack}>
-            <lightning-icon icon-name="utility:back" size="x-small"></lightning-icon>
-            <span>Back to Partner Directory</span>
-        </button>
+            <button class="slds-button slds-button_reset back-link" onclick={handleBack}>
+                <lightning-icon icon-name="utility:back" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                <span>Back to Partner Directory</span>
+            </button>
 
-        <section class="hero-card">
-
-            <div class="hero-icon">
-                <lightning-icon icon-name="standard:account" size="large"></lightning-icon>
-            </div>
-
-            <div class="hero-copy">
-                <h1 class="hero-title">{partner.partnerName}</h1>
-
-                <div class="hero-meta">
-                   <!-- <span>{regionLabel}</span>
-                    <span class="pill pending-pill">{categoryLabel}</span>-->
-                    <span>ID: {partner.clientId}</span>
+            <lightning-card class="dashboard-tight-card">
+                <div class="slds-p-around_small">
+                    <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                        <div class="slds-media slds-media_center">
+                            <div class="slds-media__figure">
+                                <lightning-icon icon-name="standard:account" size="small"></lightning-icon>
+                            </div>
+                            <div class="slds-media__body">
+                                <h1 class="slds-text-heading_small">{partner.partnerName}</h1>
+                                <p class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">
+                                    ID: {partner.clientId}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="header-actions">
+                            <lightning-button
+                                label="View Products"
+                                onclick={handleViewProducts}>
+                            </lightning-button>
+                            <lightning-button-icon
+                                icon-name="utility:edit"
+                                alternative-text="Edit partner"
+                                title="Edit partner"
+                                onclick={handleEditPartner}>
+                            </lightning-button-icon>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </lightning-card>
 
-        </section>
-
-        <!-- 3 stat cards: Sales removed, now lives in the Sales Breakdown panel -->
-        <section class="stats-grid">
-
-            <article class="stat-card stat-card-clickable" role="button" tabindex="0" data-filter="ALL" data-title="Total Orders" onclick={handleStatCardClick} onkeydown={handleStatCardKeydown}>
-                <div class="stat-icon orders">
-                    <lightning-icon icon-name="utility:cart" size="small"></lightning-icon>
+            <section class="slds-grid slds-wrap slds-gutters stats-grid row-section">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <div
+                        class="card-action"
+                        role="button"
+                        tabindex="0"
+                        data-filter="ALL"
+                        data-title="New Orders"
+                        onclick={handleStatCardClick}
+                        onkeydown={handleStatCardKeydown}>
+                        <lightning-card class="dashboard-tight-card" title="New Orders" icon-name="utility:cart">
+                            <div class="slds-p-around_small stat-card-body">
+                                <div class="slds-text-heading_small">{newOrdersLabel}</div>
+                                <p class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">{newOrdersRevenueLabel}</p>
+                            </div>
+                        </lightning-card>
+                    </div>
                 </div>
-                <div class="stat-title">Total Orders</div>
-                <div class="stat-value">{purchasesLabel}</div>
-                <div class="stat-subtitle">{completionRateLabel} completion rate</div>
-            </article>
 
-            <article class="stat-card stat-card-clickable" role="button" tabindex="0" data-filter="REALIZED" data-title="Realized Revenue" onclick={handleStatCardClick} onkeydown={handleStatCardKeydown}>
-                <div class="stat-icon realized">
-                    <lightning-icon icon-name="utility:success" size="small"></lightning-icon>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <div
+                        class="card-action"
+                        role="button"
+                        tabindex="0"
+                        data-filter="REALIZED"
+                        data-title="Resulted Orders"
+                        onclick={handleStatCardClick}
+                        onkeydown={handleStatCardKeydown}>
+                        <lightning-card class="dashboard-tight-card" title="Resulted Orders" icon-name="utility:success">
+                            <div class="slds-p-around_small stat-card-body">
+                                <div class="slds-text-heading_small">{resultedOrdersLabel}</div>
+                                <p class="slds-text-body_small slds-text-color_success slds-m-top_xx-small">{resultedRevenueLabel}</p>
+                            </div>
+                        </lightning-card>
+                    </div>
                 </div>
-                <div class="stat-title">Realized Revenue</div>
-                <div class="stat-value">{realizedRevenueLabel}</div>
-                <div class="stat-subtitle positive">{realizedPercentLabel}</div>
-            </article>
 
-            <article class="stat-card stat-card-clickable" role="button" tabindex="0" data-filter="AT_RISK" data-title="Revenue at Risk" onclick={handleStatCardClick} onkeydown={handleStatCardKeydown}>
-                <div class="stat-icon risk">
-                    <lightning-icon icon-name="utility:warning" size="small"></lightning-icon>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                    <div
+                        class="card-action"
+                        role="button"
+                        tabindex="0"
+                        data-filter="CANCELLED"
+                        data-title="Cancelled Orders"
+                        onclick={handleStatCardClick}
+                        onkeydown={handleStatCardKeydown}>
+                        <lightning-card class="dashboard-tight-card" title="Cancelled Orders" icon-name="utility:warning">
+                            <div class="slds-p-around_small stat-card-body">
+                                <div class="slds-text-heading_small">{cancelledOrdersLabel}</div>
+                                <p class="slds-text-body_small slds-text-color_error slds-m-top_xx-small">{cancelledRevenueLabel}</p>
+                            </div>
+                        </lightning-card>
+                    </div>
                 </div>
-                <div class="stat-title">Revenue at Risk</div>
-                <div class="stat-value">{revenueAtRiskLabel}</div>
-                <div class="stat-subtitle negative">{revenueAtRiskPercentLabel}</div>
-            </article>
+            </section>
 
-        </section>
-
-        <section class="details-columns slds-grid slds-wrap slds-gutters_small">
-            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
-                <div class="column-stack">
-                    <div class="sales-revenue-pair">
-                        <article class="panel-card panel-card-clickable sales-panel-side"
-                            role="button" tabindex="0"
-                            data-filter="ALL" data-title="Sales"
+            <div class="detail-stack">
+                <section class="slds-grid slds-wrap slds-gutters detail-grid row-section">
+                    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                        <div
+                            class="card-action"
+                            role="button"
+                            tabindex="0"
+                            data-filter="ALL"
+                            data-title="Sales"
                             onclick={handleStatCardClick}
                             onkeydown={handleStatCardKeydown}>
+                            <lightning-card class="dashboard-tight-card" title="Sales" icon-name="utility:moneybag">
+                                <div class="slds-p-around_small content-card-body">
+                                    <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                                        <div class="slds-text-heading_small">{grossRevenueLabel}</div>
+                                    </div>
 
-                            <div class="panel-header">
-                                <h2>Sales</h2>
-                                <span class="sales-aov-badge">{aovLabel} AOV</span>
-                            </div>
+                                    <template if:true={showMorRevenueSplit}>
+                                        <div class="slds-m-top_small metric-group">
+                                            <div class="slds-grid slds-grid_align-spread slds-text-body_regular">
+                                                <span>QMoR</span>
+                                                <span class="slds-text-title_bold">{qmorRevenueLabel}</span>
+                                            </div>
+                                            <div class="slds-m-top_x-small">
+                                                <lightning-progress-bar value={qmorProgressValue} size="small"></lightning-progress-bar>
+                                            </div>
+                                            <p class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">
+                                                {qmorPercentLabel} - Quest as Merchant of Record
+                                            </p>
+                                        </div>
 
-                            <div class="sales-total">{grossRevenueLabel}</div>
-
-                            <div class="panel-divider"></div>
-
-                            <div class="metric-row">
-                                <span>QMoR Revenue</span>
-                                <span class="metric-value-strong">{qmorRevenueLabel}</span>
-                            </div>
-                            <div class="breakdown-track">
-                                <div class="breakdown-fill green" style={qmorProgressWidth}></div>
-                            </div>
-                            <div class="breakdown-caption">{qmorPercentLabel} &middot; Quest as Merchant of Record</div>
-
-                            <div class="breakdown-row-spacer"></div>
-
-                            <div class="metric-row">
-                                <span>PMoR Revenue</span>
-                                <span class="metric-value-strong">{pmorRevenueLabel}</span>
-                            </div>
-                            <div class="breakdown-track">
-                                <div class="breakdown-fill blue" style={pmorProgressWidth}></div>
-                            </div>
-                            <div class="breakdown-caption">{pmorPercentLabel} &middot; Partner as Merchant of Record</div>
-
-                        </article>
-
-                        <article class="panel-card revenue-breakdown-side">
-
-                            <div class="panel-header">
-                                <h2>Revenue Breakdown</h2>
-                            </div>
-
-                            <div class="breakdown-row">
-                                <div class="breakdown-top">
-                                    <span>Realized Revenue</span>
-                                    <strong class="positive">{realizedRevenueLabel}</strong>
+                                        <div class="slds-m-top_small metric-group">
+                                            <div class="slds-grid slds-grid_align-spread slds-text-body_regular">
+                                                <span>PMoR</span>
+                                                <span class="slds-text-title_bold">{pmorRevenueLabel}</span>
+                                            </div>
+                                            <div class="slds-m-top_x-small">
+                                                <lightning-progress-bar value={pmorProgressValue} size="small"></lightning-progress-bar>
+                                            </div>
+                                            <p class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">
+                                                {pmorPercentLabel} - Partner as Merchant of Record
+                                            </p>
+                                        </div>
+                                    </template>
                                 </div>
-                                <div class="breakdown-track">
-                                    <div class="breakdown-fill green" style={realizedWidth}></div>
-                                </div>
-                            </div>
-
-                            <div class="breakdown-row">
-                                <div class="breakdown-top">
-                                    <span>Lost Revenue</span>
-                                    <strong class="negative">{lostRevenueLabel}</strong>
-                                </div>
-                                <div class="breakdown-track">
-                                    <div class="breakdown-fill red" style={lostRevenueWidth}></div>
-                                </div>
-                            </div>
-
-                            <div class="breakdown-row">
-                                <div class="breakdown-top">
-                                    <span>Revenue at Risk</span>
-                                    <strong class="warning">{revenueAtRiskLabel}</strong>
-                                </div>
-                                <div class="breakdown-track">
-                                    <div class="breakdown-fill gold" style={riskRevenueWidth}></div>
-                                </div>
-                            </div>
-
-                        </article>
+                            </lightning-card>
+                        </div>
                     </div>
 
-                    <article class="panel-card">
+                    <template if:true={showPostPurchaseFunnelTile}>
+                        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                            <div class="row-card">
+                                <lightning-card class="dashboard-tight-card" title="Post-Purchase Funnel" icon-name="utility:graph">
+                                    <div class="slds-p-around_small content-card-body">
+                                    <div class="slds-grid slds-grid_align-spread slds-text-body_regular">
+                                        <span>Purchases</span>
+                                        <span class="slds-text-title_bold">{purchasesLabel}</span>
+                                    </div>
+                                    <div class="slds-m-top_x-small">
+                                        <lightning-progress-bar value={purchasesProgressValue} size="small"></lightning-progress-bar>
+                                    </div>
+                                    <p class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">100.0%</p>
 
-                        <div class="panel-header">
-                            <h2>Geographic Performance</h2>
-                        </div>
+                                    <div class="slds-grid slds-grid_align-spread slds-text-body_regular slds-m-top_small">
+                                        <span>Completed</span>
+                                        <span class="slds-text-title_bold">{completedOrdersLabel}</span>
+                                    </div>
+                                    <div class="slds-m-top_x-small">
+                                        <lightning-progress-bar value={completedProgressValue} size="small"></lightning-progress-bar>
+                                    </div>
+                                    <p class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">{completedPercentLabel}</p>
 
-                        <div class="data-pill-row">
-                            <span>Region</span>
-                            <strong class="pending-value">{regionLabel}</strong>
-                        </div>
-
-                        <div class="data-pill-row">
-                            <span>Avg distance to PSC</span>
-                            <strong class="pending-value">{avgDistanceLabel}</strong>
-                        </div>
-
-                        <div class="data-pill-row">
-                            <span>Lab Completion Rate</span>
-                            <strong class="pending-value">{labCompletionRateLabel}</strong>
-                        </div>
-
-                    </article>
-                </div>
-            </div>
-
-            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
-                <div class="column-stack">
-                    <article class="panel-card">
-
-                        <div class="panel-header">
-                            <h2>Post-Purchase Funnel</h2>
-                            <span class="panel-link">View All -></span>
-                        </div>
-
-                        <div class="metric-row">
-                            <span>Purchases</span>
-                            <span>{purchasesLabel}</span>
-                        </div>
-                        <div class="progress-track blue">
-                            <div class="progress-fill blue" style={purchasesWidth}></div>
-                            <span class="progress-label">100.0%</span>
-                        </div>
-
-                        <div class="metric-row completed">
-                            <span>Completed</span>
-                            <span>{completedOrdersLabel}</span>
-                        </div>
-                        <div class="progress-track green">
-                            <div class="progress-fill green" style={completedWidth}></div>
-                            <span class="progress-label">{completedPercentLabel}</span>
-                        </div>
-
-                        <div class="panel-divider"></div>
-
-                        <div class="mini-metrics">
-                            <div>
-                                <div class="mini-label">Completion Rate</div>
-                                <div class="mini-value">{completionRateLabel}</div>
-                            </div>
-                            <div>
-                                <div class="mini-label">Within 5 Days</div>
-                                <div class="mini-value">{completionWithinFiveDaysLabel}</div>
+                                    <div class="slds-grid slds-gutters slds-m-top_small summary-grid">
+                                        <div class="slds-col">
+                                            <div class="slds-text-title">Completion Rate</div>
+                                            <div class="slds-text-heading_small slds-m-top_x-small">{completionRateLabel}</div>
+                                        </div>
+                                        <div class="slds-col">
+                                            <div class="slds-text-title">Within 5 Days</div>
+                                            <div class="slds-text-heading_small slds-m-top_x-small">{completionWithinFiveDaysLabel}</div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </lightning-card>
                             </div>
                         </div>
+                    </template>
+                </section>
 
-                    </article>
+                <section class="row-section">
+                    <c-partner-dashboard-open-order-ageing-analysis
+                        partner-id={partner.partnerId}
+                        onopenageingdrill={handleOpenAgeingDrill}>
+                    </c-partner-dashboard-open-order-ageing-analysis>
+                </section>
 
-                    <template if:true={showCancellationRiskCard}>
-                        <article class="panel-card risk-card panel-card-clickable"
-                            role="button" tabindex="0"
-                            data-filter="AT_RISK" data-title="60-Day Cancellation Risk"
+                <section class="slds-grid slds-wrap slds-gutters detail-grid row-section">
+                    <template if:true={showRevenueBreakdownTile}>
+                        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                            <div class="row-card">
+                                <lightning-card class="dashboard-tight-card" title="Revenue Breakdown" icon-name="utility:chart">
+                                    <div class="slds-p-around_small content-card-body">
+                                    <div class="metric-group">
+                                        <div class="slds-grid slds-grid_align-spread slds-text-body_regular">
+                                            <span>Realized Revenue</span>
+                                            <span class="slds-text-color_success slds-text-title_bold">{realizedRevenueLabel}</span>
+                                        </div>
+                                        <div class="slds-m-top_x-small">
+                                            <lightning-progress-bar value={realizedProgressValue} size="small"></lightning-progress-bar>
+                                        </div>
+                                    </div>
+
+                                    <div class="slds-m-top_small metric-group">
+                                        <div class="slds-grid slds-grid_align-spread slds-text-body_regular">
+                                            <span>Lost Revenue</span>
+                                            <span class="slds-text-color_error slds-text-title_bold">{lostRevenueLabel}</span>
+                                        </div>
+                                        <div class="slds-m-top_x-small">
+                                            <lightning-progress-bar value={lostRevenueProgressValue} size="small"></lightning-progress-bar>
+                                        </div>
+                                    </div>
+
+                                    <div class="slds-m-top_small metric-group">
+                                        <div class="slds-grid slds-grid_align-spread slds-text-body_regular">
+                                            <span>Revenue at Risk</span>
+                                            <span class="slds-text-color_warning slds-text-title_bold">{revenueAtRiskLabel}</span>
+                                        </div>
+                                        <div class="slds-m-top_x-small">
+                                            <lightning-progress-bar value={riskRevenueProgressValue} size="small"></lightning-progress-bar>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </lightning-card>
+                            </div>
+                        </div>
+                    </template>
+
+                    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                        <div class="row-card">
+                            <lightning-card class="dashboard-tight-card" title="Geographic Performance" icon-name="utility:location">
+                                <div class="slds-p-around_small content-card-body">
+                                <div class="data-row slds-grid slds-grid_align-spread">
+                                    <span>Region</span>
+                                    <span class="slds-text-title_bold">{regionLabel}</span>
+                                </div>
+                                <div class="data-row slds-grid slds-grid_align-spread slds-m-top_small">
+                                    <span>Avg distance to PSC</span>
+                                    <span class="slds-text-title_bold">{avgDistanceLabel}</span>
+                                </div>
+                                <div class="data-row slds-grid slds-grid_align-spread slds-m-top_small">
+                                    <span>Lab Completion Rate</span>
+                                    <span class="slds-text-title_bold">{labCompletionRateLabel}</span>
+                                </div>
+                                </div>
+                            </lightning-card>
+                        </div> 
+                    </div>
+                </section>
+
+                <template if:true={showCancellationRiskCard}>
+                    <section class="row-section">
+                        <div
+                            class="card-action"
+                            role="button"
+                            tabindex="0"
+                            data-filter="AT_RISK"
+                            data-title="60-Day Cancellation Risk"
                             onclick={handleStatCardClick}
                             onkeydown={handleStatCardKeydown}>
+                            <lightning-card class="dashboard-tight-card" title="60-Day Cancellation Risk" icon-name="utility:clock">
+                                <div class="slds-p-around_small">
+                                    <div class="slds-text-title">Orders Approaching Auto-Cancel</div>
+                                    <div class="slds-text-heading_medium slds-m-top_xx-small">{cancellationRiskOrdersLabel}</div>
+                                    <p class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">{cancellationRiskPercentLabel}</p>
 
-                            <div class="panel-header icon-header">
-                                <div class="stat-icon risk large">
-                                    <lightning-icon icon-name="utility:clock" size="small"></lightning-icon>
+                                    <div class="slds-m-top_small">
+                                        <div class="slds-text-title">Revenue at Risk of Cancellation</div>
+                                        <div class="slds-text-heading_small slds-text-color_error slds-m-top_xx-small">{cancellationRiskRevenueLabel}</div>
+                                        <p class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">
+                                            Orders at 45-60 days since purchase
+                                        </p>
+                                    </div>
                                 </div>
-                                <h2>60-Day Cancellation Risk</h2>
-                            </div>
-
-                            <div class="risk-section">
-                                <div class="risk-label">Orders Approaching Auto-Cancel</div>
-                                <div class="risk-value">{cancellationRiskOrdersLabel}</div>
-                                <div class="risk-caption">{cancellationRiskPercentLabel}</div>
-                            </div>
-
-                            <div class="panel-divider"></div>
-
-                            <div class="risk-section">
-                                <div class="risk-label">Revenue at Risk of Cancellation</div>
-                                <div class="risk-money">{cancellationRiskRevenueLabel}</div>
-                                <div class="risk-caption">Orders at 45-60 days since purchase</div>
-                            </div>
-
-                        </article>
-                    </template>
-                </div>
+                            </lightning-card>
+                        </div>
+                    </section>
+                </template>
             </div>
-        </section>
 
         </template>
 

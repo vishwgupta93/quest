@@ -1,0 +1,40 @@
+{
+    "records":  [
+                    {
+                        "attributes":  {
+                                           "type":  "PartnerClientMap__c",
+                                           "referenceId":  "PartnerRef_a0ZVD000005Naw42AC"
+                                       },
+                        "Name":  "APPLE_HEALTH",
+                        "Client_ID__c":  "73949611",
+                        "Partner_Name__c":  "APPLE_HEALTH"
+                    },
+                    {
+                        "attributes":  {
+                                           "type":  "PartnerClientMap__c",
+                                           "referenceId":  "PartnerRef_a0ZVD000005Naw92AC"
+                                       },
+                        "Name":  "GOOGLE_HEALTH_STUDY",
+                        "Client_ID__c":  "73949616",
+                        "Partner_Name__c":  "google"
+                    },
+                    {
+                        "attributes":  {
+                                           "type":  "PartnerClientMap__c",
+                                           "referenceId":  "PartnerRef_a0ZVD000005Naw52AC"
+                                       },
+                        "Name":  "saturn",
+                        "Client_ID__c":  "73942126",
+                        "Partner_Name__c":  "Saturn"
+                    },
+                    {
+                        "attributes":  {
+                                           "type":  "PartnerClientMap__c",
+                                           "referenceId":  "PartnerRef_a0ZVD000005Naw32AC"
+                                       },
+                        "Name":  "WEIGHT_WATCHERS",
+                        "Client_ID__c":  "73949620",
+                        "Partner_Name__c":  "WEIGHT_WATCHERS"
+                    }
+                ]
+}

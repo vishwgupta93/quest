@@ -1,0 +1,12 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Lab Order List",
+  "contentBody" : {
+    "activeViewId" : "Lab_Order_List",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "list-Lab_Order__c",
+    "urlPrefix" : "lab-order"
+  },
+  "urlName" : "lab-order-list"
+}
