@@ -1,0 +1,18 @@
+<!-- display the final confirmation page after a lab order is sucessfully registered -->
+<template>
+        <template if:false={isServiceValue}>
+            <div class="qd-card-primary qd-mb-lg">
+                <div class="qd-card-title">Your tests are registered</div>
+                <div class="qd-success-high-level qd-success-high-level-theme-complete qd-mb-lg" tabindex="-1" role="alert" aria-live="assertive"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.75 12C3.75 7.44365 7.44365 3.75 12 3.75C16.5563 3.75 20.25 7.44365 20.25 12C20.25 16.5563 16.5563 20.25 12 20.25C7.44365 20.25 3.75 16.5563 3.75 12ZM12 2.25C6.61522 2.25 2.25 6.61522 2.25 12C2.25 17.3848 6.61522 21.75 12 21.75C17.3848 21.75 21.75 17.3848 21.75 12C21.75 6.61522 17.3848 2.25 12 2.25ZM16.6429 10.2925C16.9425 10.0065 16.9535 9.53177 16.6675 9.23214C16.3815 8.93252 15.9068 8.92148 15.6071 9.20748L10.625 13.9632L8.39286 11.8325C8.09324 11.5465 7.61849 11.5575 7.33249 11.8571C7.04648 12.1568 7.05752 12.6315 7.35714 12.9175L10.1071 15.5425C10.3969 15.8192 10.853 15.8192 11.1428 15.5425L16.6429 10.2925Z" fill="black" /></svg><div class="qd-success-high-level-content"><ul class="success-list"><li class="success-item"><strong>You're now able to schedule your appointment.</strong></li></ul></div></div>
+                <p class="qd-text-base qd-mb-none"><strong>Confirmation #:<br /></strong> {labOrderNumber}</p>
+            </div>
+            <button type="button" onclick={redirectToScheduleAppointment} class="qd-button-primary qd-w-100">Schedule appointment</button>
+        </template>
+        <template if:true={isServiceValue}>
+            <div class="qd-card-primary">
+                <div class="qd-card-title">Your tests are registered</div>
+                <div class="qd-success-high-level qd-success-high-level-theme-complete qd-mb-lg" tabindex="-1" role="alert" aria-live="assertive"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.75 12C3.75 7.44365 7.44365 3.75 12 3.75C16.5563 3.75 20.25 7.44365 20.25 12C20.25 16.5563 16.5563 20.25 12 20.25C7.44365 20.25 3.75 16.5563 3.75 12ZM12 2.25C6.61522 2.25 2.25 6.61522 2.25 12C2.25 17.3848 6.61522 21.75 12 21.75C17.3848 21.75 21.75 17.3848 21.75 12C21.75 6.61522 17.3848 2.25 12 2.25ZM16.6429 10.2925C16.9425 10.0065 16.9535 9.53177 16.6675 9.23214C16.3815 8.93252 15.9068 8.92148 15.6071 9.20748L10.625 13.9632L8.39286 11.8325C8.09324 11.5465 7.61849 11.5575 7.33249 11.8571C7.04648 12.1568 7.05752 12.6315 7.35714 12.9175L10.1071 15.5425C10.3969 15.8192 10.853 15.8192 11.1428 15.5425L16.6429 10.2925Z" fill="black" /></svg><div class="qd-success-high-level-content"><ul class="success-list"><li class="success-item"><strong>An email and text message will be sent from Quest Mobile<sup>TM</sup> with a link to schedule in-home sample collection with a Quest Mobile<sup>TM</sup> phlebotomist.</strong></li></ul></div></div>
+                <p class="qd-text-base qd-mb-none"><strong>Confirmation #:<br /></strong> {labOrderNumber}</p>
+            </div>
+        </template>
+</template>

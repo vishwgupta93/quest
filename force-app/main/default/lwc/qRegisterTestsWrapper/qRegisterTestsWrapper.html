@@ -1,0 +1,23 @@
+<template>
+    <!-- Loading spinner -->
+    <template if:true={showSpinner}>
+        <div class="slds-is-relative">
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+    </template>
+
+    <!-- Always render registration component so progress indicator is visible -->
+    <!-- Minor registration flow -->
+    <template if:true={isMinor}>
+        <c-register-tests-minor onsearch={handleSearch} onback={handleBack} ordernumber={orderNumber}
+            isdirectlink={isDirectLink}>
+        </c-register-tests-minor>
+    </template>
+
+    <!-- Regular registration flow -->
+    <template if:false={isMinor}>
+        <c-register-tests onsearch={handleSearch} onback={handleBack} ordernumber={orderNumber}
+            isdirectlink={isDirectLink}>
+        </c-register-tests>
+    </template>
+</template>

@@ -1,0 +1,68 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="QuestSchedulingPageController">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; font-family: sans-serif; scrollbar-width: none; -ms-overflow-style: none; }
+        html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+        #psc-root { width: 100%; display: flex; justify-content: center; }
+        #error-msg { color: #c23934; padding: 1rem; }
+    </style>
+
+    <div id="psc-root"></div>
+    <div id="error-msg"></div>
+
+    <script src="https://d7rsquzn6r6k9.cloudfront.net/sdk/v1.0.0/quest-psc.min.js"></script>
+    <script>
+        (function () {
+            var params        = new URLSearchParams(window.location.search);
+            var token         = params.get('token');
+            var orderId       = params.get('orderId');
+            var baseUrl       = params.get('baseUrl');
+            var appointmentId = params.get('appointmentId');
+
+            function postToParent(data) {
+                window.parent.postMessage(data, '*');
+            }
+
+            if (!token || !orderId) {
+                document.getElementById('error-msg').textContent = 'Missing token or orderId.';
+                return;
+            }
+
+            new ResizeObserver(function() {
+                var h = document.documentElement.scrollHeight;
+                if (h > 0) postToParent({ type: 'QUEST_RESIZE', height: h });
+            }).observe(document.documentElement);
+
+            var sdkConfig = {
+                container:   '#psc-root',
+                baseUrl:     baseUrl,
+                accessToken: token,
+                orderId:     orderId,
+                cobranding:  { hideQuestLogo: true },
+                callbacks: {
+                    onSchedulingComplete: function (result) {
+                        postToParent({ type: 'QUEST_COMPLETE', result: result });
+                    },
+                    onError: function (err) {
+                        postToParent({ type: 'QUEST_ERROR', error: err });
+                    },
+                    onTokenExpired: function () {
+                        return new Promise(function (resolve) {
+                            postToParent({ type: 'QUEST_TOKEN_EXPIRED' });
+                            function handler(e) {
+                                if (e.data && e.data.type === 'QUEST_NEW_TOKEN') {
+                                    window.removeEventListener('message', handler);
+                                    resolve(e.data.token);
+                                }
+                            }
+                            window.addEventListener('message', handler);
+                        });
+                    }
+                }
+            };
+            if (appointmentId) sdkConfig.appointmentId = appointmentId;
+
+            QuestPSC.initialize(sdkConfig);
+        })();
+    </script>
+</apex:page>

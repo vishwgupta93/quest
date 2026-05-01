@@ -1,0 +1,54 @@
+<!--
+	Breadcrumb on the left hand side all lab order registration 
+-->
+<template>
+    <lightning-spinner if:true={showSpinner} alternative-text="Loading" size="large"></lightning-spinner>
+    <div class="qd-register-tests container qd-pb-xxl qd-pb-xxxl-xl qd-pt-xxl qd-pt-xxxl-xl">
+        <div class="row">
+            <div class="col-0 col-xl-2">
+            </div>
+            <div class="col-12 col-md-4 col-xl-3">
+                <div class="qd-text-h2 qd-green-700-text qd-mb-lg">Register</div>
+                <c-progress-indicator-vertical title="Register tests" active-step={activeStep}
+                    progress-steps={progressIndicatorSteps} show-collapse-btn={showCollapseBtn}>
+                </c-progress-indicator-vertical>
+                <template lwc:if={showScheduleAppointment}>
+                    <div class="schedule-path qd-mb-lg">
+                        <svg class="qd-mr-sm" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 4.5V8H11.5" stroke="#00854B" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M8 13.5C11.0376 13.5 13.5 11.0376 13.5 8C13.5 4.96243 11.0376 2.5 8 2.5C4.96243 2.5 2.5 4.96243 2.5 8C2.5 11.0376 4.96243 13.5 8 13.5Z"
+                                stroke="#00854B" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M12.2422 1.63574L14.3635 3.75706" stroke="#00854B" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M1.63672 3.75706L3.75804 1.63574" stroke="#00854B" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <span class="qd-text-xs qd-green-500-text">Immediate action needed</span>
+                    </div>
+                </template>
+            </div>
+            <div class="col-12 col-md-8 col-xl-5">
+                <template lwc:if={showOrderLookup}>
+                    <c-order-lookup order-number={orderNumber} isdirectlink={isDirectLink} errormsg={errormsg}
+                        onresulttests={navigateToRegister}></c-order-lookup>
+                </template>
+                <template lwc:elseif={showTesterDetails}>
+                    <c-customer-registration-form saved-tester-details={testerDetails} isdirectlink={isDirectLink}
+                        onbacktoselecttests={backToOrderLookup} ontesterdetails={navigateToConfirmRegistration}
+                        test-results={testResults}></c-customer-registration-form>
+                </template>
+                <template lwc:elseif={showConfirmRegistration}>
+                    <c-complete-registration tester-details={testerDetails}
+                        onscheduleappointment={navigateToScheduleAppointment} onbacktomydetails={backToMyDetails}
+                        selected-tests={testResults}></c-complete-registration>
+                </template>
+                <template lwc:elseif={showScheduleAppointment}>
+                    <c-schedule-appointment lab-order-panel-list={labOrderPanelList}></c-schedule-appointment>
+                </template>
+            </div>
+            <div class="col-0 col-lg-2">
+            </div>
+        </div>
+    </div>
+</template>

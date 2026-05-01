@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Grants access to Quest Scheduling External Credential principal for SDK token acquisition</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Quest Scheduling Access</label>
+    <externalCredentialPrincipalAccesses>
+        <enabled>true</enabled>
+        <externalCredentialPrincipal>QuestAuthEC-AWS_Token</externalCredentialPrincipal>
+    </externalCredentialPrincipalAccesses>
+</PermissionSet>

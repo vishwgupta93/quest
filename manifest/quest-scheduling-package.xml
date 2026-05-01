@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Quest PSC Scheduling SDK - POC Metadata Package
+    ================================================
+    Deployment manifest for all components required to run the Quest
+    scheduling widget in an Experience Cloud community.
+
+    Manual post-deploy steps:
+      1. Setup > Sites > [scheduleappointment] > Public Access Settings
+           - Enabled Visualforce Pages  : QuestSchedulingPage
+           - Enabled Apex Classes       : QuestSchedulingController
+      2. Experience Cloud > Builder > schedule-appointment page
+           - Add questSchedulingWidget LWC to the page
+      3. Assign QuestSchedulingAccess permission set to relevant profiles/users
+-->
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+
+    <!-- Apex: token acquisition + VF page controller -->
+    <types>
+        <members>QuestSchedulingController</members>
+        <members>QuestSchedulingControllerTest</members>
+        <members>QuestSchedulingPageController</members>
+        <name>ApexClass</name>
+    </types>
+
+    <!-- Visualforce: SDK host page, served from Force.com Site -->
+    <types>
+        <members>QuestSchedulingPage</members>
+        <name>ApexPage</name>
+    </types>
+
+    <!-- LWC: scheduling widget + trigger button -->
+    <types>
+        <members>questSchedulingWidget</members>
+        <members>scheduleAppointment</members>
+        <name>LightningComponentBundle</name>
+    </types>
+
+    <!-- Auth: OAuth2 client_credentials flow to AWS Cognito -->
+    <types>
+        <members>QuestAuthEC</members>
+        <name>ExternalCredential</name>
+    </types>
+    <types>
+        <members>Quest_Auth</members>
+        <name>NamedCredential</name>
+    </types>
+    <types>
+        <members>QuestAuthAPI</members>
+        <name>RemoteSiteSetting</name>
+    </types>
+
+    <!-- CSP: allow community to iframe Force.com Site + SDK CDN calls -->
+    <types>
+        <members>QuestSchedulingAPI</members>
+        <members>QuestSdkCdn</members>
+        <members>QuestSitesDomain</members>
+        <name>CspTrustedSite</name>
+    </types>
+
+    <!-- Permission Set: grants External Credential principal access -->
+    <types>
+        <members>QuestSchedulingAccess</members>
+        <name>PermissionSet</name>
+    </types>
+
+    <version>66.0</version>
+</Package>

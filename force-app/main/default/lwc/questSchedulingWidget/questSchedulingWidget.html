@@ -1,0 +1,33 @@
+<template>
+    <div class="quest-scheduling-widget">
+        <template lwc:if={showScheduleButton}>
+            <lightning-button
+                variant="brand"
+                label="Schedule Appointment"
+                onclick={handleScheduleClick}
+                disabled={isLoading}>
+            </lightning-button>
+        </template>
+
+        <template lwc:if={isLoading}>
+            <lightning-spinner alternative-text="Initializing scheduler..." size="medium"></lightning-spinner>
+        </template>
+
+        <template lwc:if={errorMessage}>
+            <div class="error-banner" role="alert">
+                <lightning-icon icon-name="utility:error" size="x-small"></lightning-icon>
+                <span class="error-text">{errorMessage}</span>
+            </div>
+        </template>
+
+        <template lwc:if={iframeUrl}>
+            <iframe
+                src={iframeUrl}
+                class="scheduling-frame"
+                title="Quest Appointment Scheduling"
+                frameborder="0"
+                scrolling="no">
+            </iframe>
+        </template>
+    </div>
+</template>
