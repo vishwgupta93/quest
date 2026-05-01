@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Expired</fullName>
+    <columns>Name</columns>
+    <columns>Id</columns>
+    <columns>OrderSummary</columns>
+    <columns>Status</columns>
+    <columns>FulfilledToName</columns>
+    <columns>FulfilledFromLocation</columns>
+    <columns>Invoice</columns>
+    <columns>OrderExpirationDate__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status</field>
+        <operation>equals</operation>
+        <value>Expired</value>
+    </filters>
+    <label>Expired</label>
+</ListView>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Tax_Recalculation_Required</name>
+        <label>Tax Recalculation Required?</label>
+        <locationX>786</locationX>
+        <locationY>99</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>NO</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Order.isTaxEstimated__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Status_To_Pending</targetReference>
+            </connector>
+            <label>NO</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Quest - Update Order Summary Status -Pending {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Quest - Update Order Summary Status -Pending</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Status_To_Pending</name>
+        <label>Update Status To Pending</label>
+        <locationX>1005</locationX>
+        <locationY>99</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.OrderSummaryId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Pending</stringValue>
+            </value>
+        </inputAssignments>
+        <object>OrderSummary</object>
+    </recordUpdates>
+    <start>
+        <locationX>393</locationX>
+        <locationY>63</locationY>
+        <connector>
+            <targetReference>Tax_Recalculation_Required</targetReference>
+        </connector>
+        <object>OrderSummaryCreatedEvent</object>
+        <triggerType>PlatformEvent</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>US16785 OMS  - Payment  Failures
+Modified Get Related Invoice - getting invoice based on the id</description>
+    <masterLabel>Quest - Create Process Exception</masterLabel>
+</FlowDefinition>

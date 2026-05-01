@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>all_order_summaries</fullName>
+    <columns>Name</columns>
+    <columns>Account</columns>
+    <columns>Id</columns>
+    <columns>Status</columns>
+    <columns>isTaxEstimated__c</columns>
+    <columns>TotalAdjDistAmount</columns>
+    <columns>TotalTaxAmount</columns>
+    <columns>GrandTotalAmount</columns>
+    <columns>RefundTotal__c</columns>
+    <columns>CreatedDate</columns>
+    <columns>LastModifiedDate</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Order Summaries</label>
+</ListView>

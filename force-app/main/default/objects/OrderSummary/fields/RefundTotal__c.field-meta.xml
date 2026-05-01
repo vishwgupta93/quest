@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RefundTotal__c</fullName>
+    <description>TotalAdjustedProductAmount+ TotalProductAdjDistAmount+ TotalAdjustedDeliveryAmount + TotalTaxAmount- Service_Fee__c
+IF( OR(TEXT(Status)==&apos;Cancelled&apos;, TEXT(Status)==&apos;Expired&apos;) ,
+OriginalOrder.TotalAdjustedProductAmount+ OriginalOrder.TotalProductAdjDistAmount+ OriginalOrder.TotalAdjustedDeliveryAmount + OriginalOrder.TotalTaxAmount- Service_Fee__c, 0)</description>
+    <formula>IF(OR(TEXT(Status)==&apos;Cancelled&apos;, TEXT(Status)==&apos;Expired&apos;),
+   IF(Cancellation_Refund__c&gt;0,Cancellation_Refund__c,OriginalOrder.TotalAdjustedProductAmount+ OriginalOrder.TotalProductAdjDistAmount+ OriginalOrder.TotalAdjustedDeliveryAmount + OriginalOrder.TotalTaxAmount)
+,0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Refund</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Currency</type>
+</CustomField>

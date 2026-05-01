@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>Send SF Core technical errors to Slack</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>Message</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.Lab_Order__r.Name} + &apos; : &apos; + TEXT({!$Record.Origin}) + &apos; : &apos; + &apos; Technical Error. Unable to reach endpoint&apos;</expression>
+    </formulas>
+    <interviewLabel>end Slack Notification for SF Errors {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Slack Notification for SF Errors</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Trigger_Platform_Event</name>
+        <label>Trigger Platform Event</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Notification_Message__c</field>
+            <value>
+                <elementReference>Message</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Slack_Notification__e</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Trigger_Platform_Event</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>1 AND (2 OR 3)</filterLogic>
+        <filters>
+            <field>Case_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Tech</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>New</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Open</stringValue>
+            </value>
+        </filters>
+        <object>Case</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

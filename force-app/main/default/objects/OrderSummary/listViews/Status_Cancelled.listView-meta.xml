@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status_Cancelled</fullName>
+    <columns>Name</columns>
+    <columns>Account</columns>
+    <columns>Status</columns>
+    <columns>OrderedDate</columns>
+    <columns>TotalAdjDistAmount</columns>
+    <columns>GrandTotalAmount</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status</field>
+        <operation>equals</operation>
+        <value>Cancelled</value>
+    </filters>
+    <label>Status - Cancelled</label>
+</ListView>

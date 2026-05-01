@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Eligible_to_Expire__c</fullName>
+    <formula>IF(RecordType.DeveloperName = &apos;InPerson&apos;,
+
+AND(  
+ISPICKVAL(Status, &apos;Pending Approval&apos;),
+TODAY()&gt; DATEVALUE(CreatedDate)+ 65
+),
+No_Of_Expired_Items__c = ItemCount
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Eligible to Expire?</label>
+    <type>Checkbox</type>
+</CustomField>

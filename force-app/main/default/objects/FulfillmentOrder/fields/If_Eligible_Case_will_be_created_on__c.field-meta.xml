@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>If_Eligible_Case_will_be_created_on__c</fullName>
+    <description>This field is used in  Flow - &quot;Create Case if FO Stuck in Order Acknowledged&quot;. This wfield will calculate time when case is should be created.This field is usefull when FO is of &apos;KIT&apos; record.</description>
+    <formula>IF( WEEKDAY(DATEVALUE(CreatedDate)) == 1, DATETIMEVALUE(DATEVALUE(CreatedDate) + 2)+(10/24),
+If(WEEKDAY(DATEVALUE(CreatedDate)) == 7, DATETIMEVALUE(DATEVALUE(CreatedDate) + 3)+(10/24),
+
+IF( WEEKDAY(DATEVALUE(CreatedDate + (30/24))) == 1 || WEEKDAY(DATEVALUE(CreatedDate + (30/24))) == 7, CreatedDate+ (78/24), CreatedDate + (30/24))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>If Eligible - Case will be created on</label>
+    <required>false</required>
+    <type>DateTime</type>
+</CustomField>

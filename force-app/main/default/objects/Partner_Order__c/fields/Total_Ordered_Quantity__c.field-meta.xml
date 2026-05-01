@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Ordered_Quantity__c</fullName>
+    <label>Total Ordered Quantity</label>
+    <summarizedField>Partner_Order_Line_Item__c.Quantity__c</summarizedField>
+    <summaryForeignKey>Partner_Order_Line_Item__c.Partner_Order__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Document_Date__c</fullName>
+    <formula>IF(PWN_Status_Date__c!=null , PWN_Status_Date__c, DATEVALUE(LastModifiedDate))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Document Date for Ava Tax</inlineHelpText>
+    <label>Document Date</label>
+    <required>false</required>
+    <type>Date</type>
+</CustomField>

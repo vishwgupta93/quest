@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>At_home_OTC_Cleared</fullName>
+    <active>true</active>
+    <label>At-home (OTC Cleared)</label>
+    <picklistValues>
+        <picklist>Cancel_Reason__c</picklist>
+        <values>
+            <fullName>Appease - Damaged</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Appease - Lost in Mail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Appease - Missing %2F defective parts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Appease - TNP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Appease - Unknown</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Appease - activated and not received %28kits only%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Appointment was not available</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancel %2F Appease - Appointment was not available</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancel %2F Appease - Duplicate test</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancel %2F Appease - Have a doctor%27s order for tests purchased</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancel %2F Appease - Misinformed by PSC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancel %2F Appease - Not interested in test%2Fpurchased wrong test</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancel %2F Appease - Order not in Quanum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancel %2F Appease - Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancel %2F Appease - Other %28add note for reason%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancel %2F Appease - Purchased for minor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancel %2F Appease - QA purpose</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancel - Credit Card Dispute</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancel - Payment Capture Failure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancelled and reorder the same test</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credit Card Dispute</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Damaged</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Duplicate test</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Expired</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Incorrect test ordered</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lost in Mail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Missing %2F defective parts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PWN Rejected</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Patient Unable to cancel themselves via account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment Capture Failure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment Failed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment Failed %28no refund%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Purchased under Incorrect  Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Purchased under Incorrect Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>QA purpose</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Refund</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Specific testing within the panel did not result</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>System Cancellation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TNP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unknown</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>User error</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status</picklist>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Draft</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Expired</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kit Activated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kit Delivered</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kit PA Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kit Shipped</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Acknowledged</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PA Rejected</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending Approval</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Results Ready</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting For Fulfillment</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Download</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Store Pickup</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retail Store</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Supplier</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Warehouse</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

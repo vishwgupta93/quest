@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Poll_PWN__c</fullName>
+    <description>IF(RecordTypeId = $Label.SFOM_In_Person_Record_Type_Id, 
+   AND(!Is_PWN_Approved__c,  ISBLANK(InvoiceId),
+       !ISPICKVAL( Status , &apos;Draft&apos;),!ISPICKVAL( Status , &apos;Expired&apos;),
+       !ISPICKVAL( Status , &apos;PA Rejected&apos;),!ISPICKVAL( Status , &apos;Cancelled&apos;)
+   ),
+
+  if(RecordTypeId=$Label.SFOM_At_Home_Self_Record_Type_ID||RecordTypeId=  $Label.SFOM_OTC_Cleared_Record_Type_Id,
+      !Is_PWN_Approved__c &amp;&amp; !ISBLANK(PWN_ID__c) ,
+  False)
+) || RecordType.DeveloperName=&apos;GSS&apos;</description>
+    <formula>IF( RecordType.DeveloperName = &apos;InPerson&apos;,
+AND(!Is_PWN_Approved__c,PWN_Success__c,!ISPICKVAL( Status , &apos;Draft&apos;),!ISPICKVAL( Status , &apos;Expired&apos;),
+!ISPICKVAL( Status , &apos;PA Rejected&apos;),!ISPICKVAL( Status , &apos;Cancelled&apos;)
+),
+
+IF(RecordType.DeveloperName=&apos;At_home_Self&apos;||RecordType.DeveloperName=&apos;At_home_OTC_Cleared&apos;||RecordType.DeveloperName=&apos;GSS&apos;,
+AND(!Is_PWN_Approved__c, ISPICKVAL( Status , &apos;Kit Activated&apos;)),
+False)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Poll PA?</label>
+    <type>Checkbox</type>
+</CustomField>

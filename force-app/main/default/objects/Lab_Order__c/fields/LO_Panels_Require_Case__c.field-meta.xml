@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LO_Panels_Require_Case__c</fullName>
+    <description>If total LO Panels are &gt;1, but total LO Panels registered is 1, this is a sign that the lingering registered panel requires some sort of intervention. This formula field helps to flag these LOs for the NCS team &amp; is used in a nightly case creation flow.</description>
+    <formula>AND( 
+ Total_Panels__c &gt; 1,
+ Total_Registered_Panels__c = 1,
+ Date_of_Collection__c+2 &lt; TODAY()
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>LO Panels Require Case</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

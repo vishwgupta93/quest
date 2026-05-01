@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>get_order_number</name>
+        <label>get order number</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <actionName>EmailToCaseUtil</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Get_Order_Summary</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>$Record.Subject</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>EmailToCaseUtil</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>60.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Was_Order_Found</name>
+        <label>Was Order Found?</label>
+        <locationX>182</locationX>
+        <locationY>539</locationY>
+        <defaultConnector>
+            <targetReference>Update_Case</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Order_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Order_Summary</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Cancel_Fulfillment_Order</targetReference>
+            </connector>
+            <label>Order Found</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <description>Isolate the order summary number from the case subject.</description>
+        <name>isolateOrderSummeryNumber</name>
+        <dataType>String</dataType>
+        <expression>RIGHT({!$Record.Subject}, 25)</expression>
+    </formulas>
+    <interviewLabel>Quest - Auto-Cancel Google Order {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Quest - Auto-Cancel Google Health Study Order</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Event_Log_Success</name>
+        <label>Create Event Log - Success</label>
+        <locationX>50</locationX>
+        <locationY>755</locationY>
+        <connector>
+            <targetReference>Update_Case_Cancelled</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Event_Type__c</field>
+            <value>
+                <stringValue>Health Study Cancellation</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Order_Summary__c</field>
+            <value>
+                <elementReference>Get_Order_Summary.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Event_Log__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <name>Get_Order_Summary</name>
+        <label>Get Order Summary</label>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Was_Order_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>OrderNumber</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>get_order_number.orderNumber</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>OrderSummary</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Cancel_Fulfillment_Order</name>
+        <label>Cancel Fulfillment Order</label>
+        <locationX>50</locationX>
+        <locationY>647</locationY>
+        <connector>
+            <targetReference>Create_Event_Log_Success</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>OrderSummaryId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Order_Summary.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Record_Type__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>PWN Service</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Cancel_Reason__c</field>
+            <value>
+                <stringValue>Other</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Cancelled</stringValue>
+            </value>
+        </inputAssignments>
+        <object>FulfillmentOrder</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Case</name>
+        <label>Update Case</label>
+        <locationX>314</locationX>
+        <locationY>647</locationY>
+        <inputAssignments>
+            <field>Description</field>
+            <value>
+                <stringValue>Unable to find Order Summary</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Closed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Case_Cancelled</name>
+        <label>Update Case Cancelled</label>
+        <locationX>50</locationX>
+        <locationY>863</locationY>
+        <inputAssignments>
+            <field>Description</field>
+            <value>
+                <stringValue>Cancelled order</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Closed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>get_order_number</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Subject</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>Health Study Cancel Order</stringValue>
+            </value>
+        </filters>
+        <object>Case</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

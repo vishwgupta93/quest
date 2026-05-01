@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Amount_Refunded__c</fullName>
+    <description>Sums up refunds from child order payment summaries</description>
+    <label>Amount Refunded</label>
+    <summarizedField>OrderPaymentSummary.RefundedAmount</summarizedField>
+    <summaryFilterItems>
+        <field>OrderPaymentSummary.RefundedAmount</field>
+        <operation>greaterThan</operation>
+        <value>0</value>
+    </summaryFilterItems>
+    <summaryForeignKey>OrderPaymentSummary.OrderSummaryId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <type>Summary</type>
+</CustomField>

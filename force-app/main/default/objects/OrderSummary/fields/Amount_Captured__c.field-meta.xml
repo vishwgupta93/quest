@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Amount_Captured__c</fullName>
+    <description>Rolls up captured field from all order payment summaries tied to this order summary.</description>
+    <label>Amount Captured</label>
+    <summarizedField>OrderPaymentSummary.CapturedAmount</summarizedField>
+    <summaryFilterItems>
+        <field>OrderPaymentSummary.CapturedAmount</field>
+        <operation>greaterThan</operation>
+        <value>0</value>
+    </summaryFilterItems>
+    <summaryForeignKey>OrderPaymentSummary.OrderSummaryId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <type>Summary</type>
+</CustomField>

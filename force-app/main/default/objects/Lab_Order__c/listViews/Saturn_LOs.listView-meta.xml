@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Saturn_LOs</fullName>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Order_Summary__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>HUB_Success__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Partner_Client_Map__c</field>
+        <operation>equals</operation>
+        <value>Saturn</value>
+    </filters>
+    <label>Saturn LOs</label>
+</ListView>

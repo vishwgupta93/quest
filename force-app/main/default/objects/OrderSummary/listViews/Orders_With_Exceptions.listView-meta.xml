@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Orders_With_Exceptions</fullName>
+    <columns>Name</columns>
+    <columns>Account</columns>
+    <columns>GrandTotalAmount</columns>
+    <columns>OrderedDate</columns>
+    <columns>Status</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ActiveProcessExceptionCount</field>
+        <operation>greaterThan</operation>
+        <value>0</value>
+    </filters>
+    <label>Orders With Exceptions</label>
+</ListView>

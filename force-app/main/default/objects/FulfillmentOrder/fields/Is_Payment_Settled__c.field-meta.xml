@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Payment_Settled__c</fullName>
+    <formula>ISPICKVAL(StatusCategory, &apos;Closed&apos;)
+||
+ISPICKVAL(StatusCategory, &apos;Canceled&apos;)
+||
+ISPICKVAL(StatusCategory, &apos;Rejected&apos;)
+||
+(!ISBLANK(InvoiceId)&amp;&amp;Invoice.Balance =0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Is Payment Settled?</label>
+    <type>Checkbox</type>
+</CustomField>

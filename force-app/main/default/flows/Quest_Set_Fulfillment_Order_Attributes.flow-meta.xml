@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Set_Fulfillment_Order_Attributes</name>
+        <label>Set Fulfillment Order Attributes</label>
+        <locationX>714</locationX>
+        <locationY>130</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.CustomerId__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.OrderSummary.CustomerId__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <environments>Default</environments>
+    <interviewLabel>Quest - Set Fulfillment Order Attributes {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Quest - Set Fulfillment Order Attributes</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>266</locationX>
+        <locationY>58</locationY>
+        <connector>
+            <targetReference>Set_Fulfillment_Order_Attributes</targetReference>
+        </connector>
+        <object>FulfillmentOrder</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

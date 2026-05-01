@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Update_Shipment_Attributes</name>
+        <label>Update Shipment Attributes</label>
+        <locationX>769</locationX>
+        <locationY>125</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.ShipToName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.FulfillmentOrder.FulfilledToName</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.OrderSummaryId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.FulfillmentOrder.OrderSummaryId</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <environments>Default</environments>
+    <interviewLabel>Quest - Update Shipping Attributes {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Quest - Update Shipping Attributes</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>328</locationX>
+        <locationY>52</locationY>
+        <connector>
+            <targetReference>Update_Shipment_Attributes</targetReference>
+        </connector>
+        <object>Shipment</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

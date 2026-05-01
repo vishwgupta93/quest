@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Check_Status</name>
+        <label>Check Status</label>
+        <locationX>957</locationX>
+        <locationY>130</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Intermittent</name>
+            <conditionLogic>(1 AND 3) OR (2 AND 4) OR (5 AND 6) OR (7 AND 8)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Lab_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Sample Received</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Lab_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Kit Activated</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.Lab_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Kit PA Approved</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.Lab_Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Kit Activated</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Lab_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>DNA Analyzed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.Lab_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>DNA Extracted</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Lab_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>DNA Extracted</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.Lab_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Sample Received</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Raise_SFMC_Event_For_Intermittent</targetReference>
+            </connector>
+            <label>Intermittent</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>EventDefinition</name>
+        <dataType>String</dataType>
+        <expression>IF(ISPICKVAL({!$Record.Lab_Status__c}, &apos;Kit Activated&apos;), {!$Label.SFMC_Kit_Activation_Event_Definition},
+   IF(ISPICKVAL({!$Record.Lab_Status__c}, &apos;Sample Received&apos;), {!$Label.SFMC_Kit_Sample_Received_Event_Definition_Key},
+       IF(ISPICKVAL({!$Record.Lab_Status__c}, &apos;DNA Analyzed&apos;),{!$Label.SFMC_Kit_DNA_Sample_Analyzed_Event_Defn_Key},IF(ISPICKVAL({!$Record.Lab_Status__c}, &apos;DNA Extracted&apos;),{!$Label.SFMC_Kit_DNA_Extracted_Event_Defn_Key},IF(ISPICKVAL({!$Record.Lab_Status__c}, &apos;PA Rejected&apos;),{!$Label.SFMC_Kit_WN_Rejected_Event_Def},&apos;N/A&apos;)))))</expression>
+    </formulas>
+    <formulas>
+        <name>ID</name>
+        <dataType>String</dataType>
+        <expression>IF({!$Record.Partner_Name__c}=&apos;Quest&apos;, {!$Record.Order_Summary__c}, {!$Record.Id})</expression>
+    </formulas>
+    <formulas>
+        <name>Partner</name>
+        <dataType>Boolean</dataType>
+        <expression>IF({!$Record.Partner_Name__c}=&apos;Quest&apos;, false, true)</expression>
+    </formulas>
+    <interviewLabel>Create SFMC Event For Kits {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Create SFMC Event For Kits</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Raise_SFMC_Event_For_Intermittent</name>
+        <label>Raise SFMC Event For Intermittent</label>
+        <locationX>978</locationX>
+        <locationY>358</locationY>
+        <inputAssignments>
+            <field>EventDefinitionKey__c</field>
+            <value>
+                <elementReference>EventDefinition</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Event_Type__c</field>
+            <value>
+                <elementReference>$Label.SFMC_Kit_Events</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Is_Partner_Order__c</field>
+            <value>
+                <elementReference>Partner</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Kit_Detail_ID__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>SFMC_Email_Event__e</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <start>
+        <locationX>485</locationX>
+        <locationY>49</locationY>
+        <connector>
+            <targetReference>Check_Status</targetReference>
+        </connector>
+        <object>Kit_Details__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

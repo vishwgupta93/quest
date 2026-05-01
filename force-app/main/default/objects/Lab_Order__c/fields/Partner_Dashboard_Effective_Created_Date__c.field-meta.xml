@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partner_Dashboard_Effective_Created_Date__c</fullName>
+    <description>Formula datetime used by the partner dashboard to fall back to CreatedDate when no seed datetime is provided.</description>
+    <formula>IF(
+  ISBLANK(Partner_Dashboard_Seed_Created_Date__c),
+  CreatedDate,
+  Partner_Dashboard_Seed_Created_Date__c
+)</formula>
+    <inlineHelpText>Formula datetime used by the partner dashboard to fall back to CreatedDate when no seed datetime is provided.</inlineHelpText>
+    <label>Partner Dashboard Effective Created Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>
