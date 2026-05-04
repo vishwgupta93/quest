@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sync_To_PWN__c</fullName>
+    <formula>TEXT(Type) !=&apos;Delivery Charge&apos; &amp;&amp; OrderItemSummary.TestType__c!=&apos;PA&apos; &amp;&amp;  Quantity &gt;0</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Sync To PWN?</label>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <label>Status</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pending Approval</fullName>
+                <default>true</default>
+                <label>Pending Approval</label>
+            </value>
+            <value>
+                <fullName>PA Acknowledged</fullName>
+                <default>false</default>
+                <label>PA Acknowledged</label>
+            </value>
+            <value>
+                <fullName>Waiting For Fulfillment</fullName>
+                <default>false</default>
+                <label>Waiting For Fulfillment</label>
+            </value>
+            <value>
+                <fullName>Order Acknowledged</fullName>
+                <default>false</default>
+                <label>Order Acknowledged</label>
+            </value>
+            <value>
+                <fullName>Kit Shipped</fullName>
+                <default>false</default>
+                <label>Kit Shipped</label>
+            </value>
+            <value>
+                <fullName>Kit Delivered</fullName>
+                <default>false</default>
+                <label>Kit Delivered</label>
+            </value>
+            <value>
+                <fullName>Kit Activated</fullName>
+                <default>false</default>
+                <label>Kit Activated</label>
+            </value>
+            <value>
+                <fullName>PA Approved</fullName>
+                <default>false</default>
+                <label>PA Approved</label>
+            </value>
+            <value>
+                <fullName>PA Rejected</fullName>
+                <default>false</default>
+                <label>PA Rejected</label>
+            </value>
+            <value>
+                <fullName>Kit PA Approved</fullName>
+                <default>false</default>
+                <label>Kit PA Approved</label>
+            </value>
+            <value>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+                <label>In Progress</label>
+            </value>
+            <value>
+                <fullName>Sample Received</fullName>
+                <default>false</default>
+                <label>Sample Received</label>
+            </value>
+            <value>
+                <fullName>DNA Extracted</fullName>
+                <default>false</default>
+                <label>DNA Extracted</label>
+            </value>
+            <value>
+                <fullName>DNA Analyzed</fullName>
+                <default>false</default>
+                <label>DNA Analyzed</label>
+            </value>
+            <value>
+                <fullName>Pending Results</fullName>
+                <default>false</default>
+                <label>Pending Results</label>
+            </value>
+            <value>
+                <fullName>Results Ready</fullName>
+                <default>false</default>
+                <label>Results Ready</label>
+            </value>
+            <value>
+                <fullName>Order Complete</fullName>
+                <default>false</default>
+                <label>Order Complete</label>
+            </value>
+            <value>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+                <label>Cancelled</label>
+            </value>
+            <value>
+                <fullName>Expired</fullName>
+                <default>false</default>
+                <label>Expired</label>
+            </value>
+            <value>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <label>Completed</label>
+            </value>
+            <value>
+                <fullName>TNP</fullName>
+                <default>false</default>
+                <label>TNP</label>
+            </value>
+            <value>
+                <fullName>DNA Extraction Failed</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>DNA Extraction Failed</label>
+            </value>
+            <value>
+                <fullName>Kit PWN Approved</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Kit PWN Approved</label>
+            </value>
+            <value>
+                <fullName>PWN Acknowledged</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>PWN Acknowledged</label>
+            </value>
+            <value>
+                <fullName>PWN Approved</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>PWN Approved</label>
+            </value>
+            <value>
+                <fullName>PWN Rejected</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>PWN Rejected</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

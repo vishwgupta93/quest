@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Kit_Expiration_Date__c</fullName>
+    <description>Mule soft update the kit expiration date at the Shipment level, once it is updated at the shipment level OMS internal logic will update at the Fulfillment line level.
+
+Note: Temporarily created as text field and down the line this field is change to formula field</description>
+    <label>Kit Expiration Date</label>
+    <required>false</required>
+    <type>Date</type>
+</CustomField>

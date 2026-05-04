@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Test_Taker_Customer_Id__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(Test_Type__c = &apos;PSC&apos;, OrderItemSummary.customerID__c, IF(!ISBLANK(Customer_Id__c) , Customer_Id__c, OrderItemSummary.customerID__c) )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Test Taker Customer Id</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

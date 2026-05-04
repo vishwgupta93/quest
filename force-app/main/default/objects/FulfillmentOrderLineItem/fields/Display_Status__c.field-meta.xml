@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Display_Status__c</fullName>
+    <externalId>false</externalId>
+    <formula>if( ((TEXT(Status__c) = &apos;Results Ready&apos; || TEXT(Status__c) = &apos;TNP&apos;)) &amp;&amp; FulfillmentOrder.Record_Type_Name__c =&apos;InPerson&apos; &amp;&amp; TEXT(FulfillmentOrder.Status)=&apos;Results Ready&apos;, &apos;Results Ready&apos; ,&apos;In Progress&apos;
+    )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Display Status</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

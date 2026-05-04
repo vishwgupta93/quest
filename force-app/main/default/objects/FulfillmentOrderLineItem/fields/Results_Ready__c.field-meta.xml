@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Results_Ready__c</fullName>
+    <formula>OR(
+    AND(
+        TEXT(Status__c) = &apos;Results Ready&apos;,
+        Test_Type__c != &apos;PA&apos;,
+        Test_Type__c != &apos;N/A&apos;,
+        NOT(ISBLANK(Test_Type__c))
+    ),
+    AND(
+        TEXT(FulfillmentOrder.Status) = &apos;Results Ready&apos;,
+        TEXT(Status__c) = &apos;TNP&apos;
+    )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Results Ready?</label>
+    <type>Checkbox</type>
+</CustomField>

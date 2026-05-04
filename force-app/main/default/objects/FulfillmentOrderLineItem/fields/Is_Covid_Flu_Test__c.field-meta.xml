@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Covid_Flu_Test__c</fullName>
+    <formula>OrderItem.Product2.Is_Covid_Flu_Test__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Is Covid &amp; Flu Test?</label>
+    <type>Checkbox</type>
+</CustomField>

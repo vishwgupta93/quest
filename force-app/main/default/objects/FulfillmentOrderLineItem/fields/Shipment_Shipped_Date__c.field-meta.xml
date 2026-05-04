@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Shipment_Shipped_Date__c</fullName>
+    <description>Once the Shipment is Shipped, this Date is updates. This field is used to calculate the kit expiration date if MuleSoft not update the kit expiration date.
+Note: Temporarily created as text , down the line it is formula field</description>
+    <label>Shipment Shipped Date</label>
+    <required>false</required>
+    <type>Date</type>
+</CustomField>

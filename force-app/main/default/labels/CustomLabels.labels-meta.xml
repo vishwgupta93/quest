@@ -1,0 +1,1655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>AOEQuestion_Placeholder_Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AOEQuestion Placeholder Text</shortDescription>
+        <value>In order to complete your registration we need to ask some follow up questions that are necessary.</value>
+    </labels>
+    <labels>
+        <fullName>AOE_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AOE Error - Invalid Response</shortDescription>
+        <value>Unfortunately this test is not right for you based on your responses. Please call the customer support team at 1-844-738-3787 to cancel your order.</value>
+    </labels>
+    <labels>
+        <fullName>AOE_Error_Seek_Care</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AOE Error - Seek Care</shortDescription>
+        <value>Please seek immediate care from your primary care physician.</value>
+    </labels>
+    <labels>
+        <fullName>AOE_No_response_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AOE No response error</shortDescription>
+        <value>Please select a checkbox in order to proceed.</value>
+    </labels>
+    <labels>
+        <fullName>Atena_Details_ErrorMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Atena_Details ErrorMsg</shortDescription>
+        <value>Please enter all inputs.</value>
+    </labels>
+    <labels>
+        <fullName>Ava_Tax_Calculated_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Ava Tax Calculated Msg</shortDescription>
+        <value>Sales Tax is updated</value>
+    </labels>
+    <labels>
+        <fullName>Avalara_Tax_Calculation_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Avalara Tax Calculation Error</shortDescription>
+        <value>Avalara Tax Calculation Error</value>
+    </labels>
+    <labels>
+        <fullName>Customer_Care_Number</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Care url</shortDescription>
+        <value>https://www.questhealth.com/faqs.html</value>
+    </labels>
+    <labels>
+        <fullName>Customer_care_Home</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer care Home</shortDescription>
+        <value>https://myquest.questdiagnostics.com/web/home</value>
+    </labels>
+    <labels>
+        <fullName>EOST_OMS_Payload_Process</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EOST_OMS_Payload_Process</shortDescription>
+        <value>EOST OMS Payload Process</value>
+    </labels>
+    <labels>
+        <fullName>EOST_PID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EOST PID</shortDescription>
+        <value>A0W</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMg_Expired_Order</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMg Expired Order</shortDescription>
+        <value>Unfortunately, you are attempting to register an expired order. For assistance with the expiration policy, please visit our customer service page for helpful resources, including Q&amp;A.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsgOrderNumberNotFound</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsgOrderNumberNotFound</shortDescription>
+        <value>Unfortunately, we are facing challenges in locating your order. Please check back later as we work on this issue. For assistance, visit our customer service page for helpful resources, including Q&amp;A.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsgWhenOrderCantReg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsgWhenOrderCantReg</shortDescription>
+        <value>Unfortunately, you are trying to register an order that has already been registered. For assistance, please visit our customer service page for valuable resources, including a section for frequently asked questions.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_AgeValidation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg AgeValidation</shortDescription>
+        <value>Age should be at least 18.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_Age_Validation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg Age Validation</shortDescription>
+        <value>Age should be at least 18.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_CallCustomerCare</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg CallCustomerCare</shortDescription>
+        <value>Please call 555-555-5555 to cancel this order.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_Cancelled_Order</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg Cancelled Order</shortDescription>
+        <value>Unfortunately, you are attempting to register a canceled order. For assistance, please visit our customer service page for valuable resources, including a section for frequently asked questions.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_DateOfActivation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg DateOfActivation</shortDescription>
+        <value>Activation date cannot be accepted.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_Email_Verification</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg Email Verification</shortDescription>
+        <value>A verification link was sent to your email address. Please click that link to verify email address.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_ForTimeOut</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg ForTimeOut</shortDescription>
+        <value>You have been inactive for 30 minutes. Please start the process again.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_HomeKit_Order</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg HomeKit Order</shortDescription>
+        <value>Unfortunately, you are trying to register a home collection kit. Please follow the instructions on the kit to activate your test.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_Kit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg Kit</shortDescription>
+        <value>Unfortunately, there is an error activating the kit at this time, please call Quest at (844) 738-3787.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_KitActivated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg KitActivated</shortDescription>
+        <value>We’re sorry, the code you entered has already been activated.  Please check the code and try again or contact Quest Customer Service at (844) 738-3787 for next steps.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_KitExpired</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg KitExpired</shortDescription>
+        <value>The kit you are trying to activate has been expired. Please check the code and try again or contact Quest Customer Service at (844) 738-3787 for next steps.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_Kit_InvalidCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg Kit InvalidCode</shortDescription>
+        <value>Invalid code. Please check the code and try again.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_MixedCart_Validation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg MixedCart Validation</shortDescription>
+        <value>Only in-person tests will be registered.  Please follow the instructions provided in the email for the subsequent steps of home collection kit or health coaching.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_ResulPage_LinkValidation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg_ResulPage_LinkValidation</shortDescription>
+        <value>Unfortunately the link expired. Please Click here to re-generate the link.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_Result_Invalid_Input</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg Result Invalid Input</shortDescription>
+        <value>Unfortunately, the information you entered does not match our records. The Last name and Date of birth must match what was used to register. Please verify and try again, or call 844-738-3787 for assistance.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_Result_Minor_Age</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg Result Minor Age</shortDescription>
+        <value>Unfortunately, the minor associated with this order is now an adult. Please contact customer service at 844-738-3787 for assistance.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_Result_Status_NotReady</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg Result Status NotReady</shortDescription>
+        <value>We are working on your results. You will receive an email notification once they are ready for your review.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_TestValidation_Failed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg TestValidation Failed</shortDescription>
+        <value>Unfortunately, this test may not be suitable for you based on your gender, location or age. You have the option to revise your personal details. If you require help with canceling, kindly visit our customer service page for helpful resources, which includes a section for frequently asked questions.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorMsg_TimeOut</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMsg TimeOut</shortDescription>
+        <value>You have been inactive for 30 minutes. Please start the process again.</value>
+    </labels>
+    <labels>
+        <fullName>Error_Msg_AgeValidation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Msg AgeValidation</shortDescription>
+        <value>You do not meet the age requirements for a test you are trying to register</value>
+    </labels>
+    <labels>
+        <fullName>Error_Msg_AtenaGSS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Msg AtenaGSS</shortDescription>
+        <value>Please note: If you register during the activation process, it may take up to 30 minutes for your Quest Diagnostics account to become active and available for use.</value>
+    </labels>
+    <labels>
+        <fullName>Error_Msg_Result_Lookup_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Msg Result Lookup Page</shortDescription>
+        <value>Unfortunately, the information you provided does not match our records, or the results may not yet be available for your review. Please try again, or call 844-738-3787 for assistance.</value>
+    </labels>
+    <labels>
+        <fullName>Errormsg_PackHealth</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Errormsg PackHealth</shortDescription>
+        <value>Registration for health coaching is not required. Please refer to your order confirmation email for the next steps.</value>
+    </labels>
+    <labels>
+        <fullName>Experience_Cloud_Registration_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Experience_Cloud_Registration_URL</shortDescription>
+        <value>https://experience.questdiagnostics.com/customerportal/registration</value>
+    </labels>
+    <labels>
+        <fullName>GBF_API_Key</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBF_API_Key</shortDescription>
+        <value>MjZkMDEzOTktM2JhMC00ZDZjLTlkMWQtOGNiM2FiNzcyYTY3</value>
+    </labels>
+    <labels>
+        <fullName>GBF_Cancel_API_Endpoint</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBF_Cancel_API_Endpoint</shortDescription>
+        <value>https://www.gbfmedical.com/oap/api/cancelorder</value>
+    </labels>
+    <labels>
+        <fullName>GBF_Confirm_API_Endpoint</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBF_Confirm_API_Endpoint</shortDescription>
+        <value>https://www.gbfmedical.com/oap/api/confirm2</value>
+    </labels>
+    <labels>
+        <fullName>GBF_ECOM_Order_API_Key</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBF ECOM Order API Key</shortDescription>
+        <value>ZjgwZDQ4YjgtZTkzNS00ODYxLWIxMzQtYWEyZTc3MjgxMjc5</value>
+    </labels>
+    <labels>
+        <fullName>GBF_Order_API_Endpoint</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBF_Order_API_Endpoint</shortDescription>
+        <value>https://www.gbfmedical.com/oap/api/order</value>
+    </labels>
+    <labels>
+        <fullName>GBF_Status_API_Endpoint</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBF_Status_API_Endpoint</shortDescription>
+        <value>https://www.gbfmedical.com/oap/api/status</value>
+    </labels>
+    <labels>
+        <fullName>GBF_Test_Confirm_API</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBF_Test_Confirm_API</shortDescription>
+        <value>https://test</value>
+    </labels>
+    <labels>
+        <fullName>GSS_PWN_API_Key</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GSS PWN API Key</shortDescription>
+        <value>7b4f71c6106e6737340d936d13c9eb0d</value>
+    </labels>
+    <labels>
+        <fullName>GSS_PWN_API_Secret</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GSS PWN API Secret</shortDescription>
+        <value>f8fc102ae5f3f5147aac46405512f591</value>
+    </labels>
+    <labels>
+        <fullName>GSS_Redirect_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GSS Redirect URL</shortDescription>
+        <value>https://myquest.questdiagnostics.com/mq-service/login-request?myquest-app-target=/web/qpredirect?params=</value>
+    </labels>
+    <labels>
+        <fullName>Genetics_Portal_Proxy_Order_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Genetics Portal Proxy Order Status</shortDescription>
+        <value>pending_genetic_review</value>
+    </labels>
+    <labels>
+        <fullName>HRAEmailEventDefinitionKey</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HRAEmailEventDefinitionKey</shortDescription>
+        <value>hra-email-trigger</value>
+    </labels>
+    <labels>
+        <fullName>HRAEmailURL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HRAEmailURL</shortDescription>
+        <value>https://experience.questdiagnostics.com/customerportal/health-risk-assessment?reference_order_id=</value>
+    </labels>
+    <labels>
+        <fullName>HRA_invalid_response</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HRA_invalid_response</shortDescription>
+        <value>No other value may be selected if &quot;None of the above&quot; is selected. Please fix the response to proceed.</value>
+    </labels>
+    <labels>
+        <fullName>HRA_no_response_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HRA_no_response_error</shortDescription>
+        <value>Please select a checkbox in order to proceed.</value>
+    </labels>
+    <labels>
+        <fullName>KitAOEQuestion_Placeholder_Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Kit_AOEQuestion_Placeholder_Text</shortDescription>
+        <value>In order to complete your activation we need to ask some follow up questions that are necessary.</value>
+    </labels>
+    <labels>
+        <fullName>KitActivation_PWN_Term_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>KitActivation PWN Term URL</shortDescription>
+        <value>https://s3.amazonaws.com/public-static-website/quest-cit/Quest+CIT+Terms+and+Conditions.pdf</value>
+    </labels>
+    <labels>
+        <fullName>KitActivation_Text1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>KitActivation Text1</shortDescription>
+        <value>Welcome! It is time to activate your self-collection materials.</value>
+    </labels>
+    <labels>
+        <fullName>KitActivation_Text2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>KitActivation Text2</shortDescription>
+        <value>Please do not activate your materials until you are ready to complete the collection. You must activate your kit to receive your results.</value>
+    </labels>
+    <labels>
+        <fullName>KitActivation_Text3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>KitActivation Text3</shortDescription>
+        <value>Enter the 11-character activation code located above the bar code on the inner lid of your kit box.</value>
+    </labels>
+    <labels>
+        <fullName>KitActivation_Text4</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>KitActivation Text4</shortDescription>
+        <value>If your kit does not include a bar code, please contact customer support at the phone number listed in your collection instructions.</value>
+    </labels>
+    <labels>
+        <fullName>Kit_Generic_ErrorMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Kit Generic ErrorMsg</shortDescription>
+        <value>Unfortunately, there is an error activating the kit at this time, please try again later. If the issue persists, please call Quest at (844) 738-3787 for next steps</value>
+    </labels>
+    <labels>
+        <fullName>Kit_Success_Placeholder</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Kit Success Placeholder</shortDescription>
+        <value>Your kit is now activated!</value>
+    </labels>
+    <labels>
+        <fullName>Kit_Success_Placeholder1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Kit Success Placeholder1</shortDescription>
+        <value>If you have any questions, please contact the Quest Service Center at 1-844-738-3787.</value>
+    </labels>
+    <labels>
+        <fullName>Kit_Success_Step1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Kit Success Step1</shortDescription>
+        <value>1. Follow instructions included in your kit to collect your sample.</value>
+    </labels>
+    <labels>
+        <fullName>Kit_Success_Step2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Kit Success Step2</shortDescription>
+        <value>2. Send your sample back to Quest using the pre-printed label.</value>
+    </labels>
+    <labels>
+        <fullName>Kit_Success_Step3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Kit Success Step3</shortDescription>
+        <value>3. You will receive an email when your results are available.</value>
+    </labels>
+    <labels>
+        <fullName>Kit_What_s_next</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Kit What&apos;s next</shortDescription>
+        <value>What&apos;s next?</value>
+    </labels>
+    <labels>
+        <fullName>LabRefOverride_Prefix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>LabRefIdOverridePrefix</shortDescription>
+        <value>SF000000000000</value>
+    </labels>
+    <labels>
+        <fullName>Lab_Order_Cancellation_Days</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Lab Order Cancellation Days</shortDescription>
+        <value>3</value>
+    </labels>
+    <labels>
+        <fullName>Lab_Order_Results_Email_Attempts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Lab_Order_Results_Email_Attempts</shortDescription>
+        <value>1</value>
+    </labels>
+    <labels>
+        <fullName>Lab_Order_Results_Email_Delay_Mins</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Lab Order Results Email Delay Mins</shortDescription>
+        <value>6</value>
+    </labels>
+    <labels>
+        <fullName>Lab_Order_Results_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Lab_Order_Results_URL</shortDescription>
+        <value>https://experience.questdiagnostics.com/customerportal/result</value>
+    </labels>
+    <labels>
+        <fullName>Lab_Order_Results_URL_Expiry</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Lab_Order_Results_URL_Expiry</shortDescription>
+        <value>15</value>
+    </labels>
+    <labels>
+        <fullName>Lab_Order_Results_URL_Passphrase</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Lab_Order_Results_URL_Passphrase</shortDescription>
+        <value>(_Xp-&gt;ByP8Kju\9a3t}f</value>
+    </labels>
+    <labels>
+        <fullName>Legacy_Lab_Order_Results_Email_Delay_Mins</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Legacy Lab Order Results Email Delay Mins</shortDescription>
+        <value>3</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Avalara_Case_Owner</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Avalara_Case_Owner</shortDescription>
+        <value>00G8b000006juUnEAI</value>
+    </labels>
+    <labels>
+        <fullName>OMS_EOST_Batchsize</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_EOST_Batchsize</shortDescription>
+        <value>10</value>
+    </labels>
+    <labels>
+        <fullName>OMS_EOST_Queue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_EOST_Queue</shortDescription>
+        <value>00G8b000006jthgEAA</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Manual_Event_Max_Batch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Manual_Event_Max_Batch</shortDescription>
+        <value>10</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Mule_COS_Data_Queue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Mule_COS_Data_Queue</shortDescription>
+        <value>00G8b000006R1IAEA0</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Mule_COS_Tech_Queue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Mule_COS_Tech_Queue</shortDescription>
+        <value>00G8b000006R1IBEA0</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Mule_Endpoint</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Mule_Endpoint</shortDescription>
+        <value>https://mq-us-east-1.anypoint.mulesoft.com/api/v1/organizations/2790e501-6a21-4dc5-8e0f-cc1ac48cfa01/environments/1f3d3dc2-3c4b-434a-82ed-12dec1cfabfb/destinations/</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Mule_HUB_Data_Queue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Mule_HUB_Data_Queue</shortDescription>
+        <value>00G8b000006R1ICEA0</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Mule_HUB_Tech_Queue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Mule_HUB_Tech_Queue</shortDescription>
+        <value>00G8b000006R1IDEA0</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Mule_MQ_Auth_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Mule_MQ_Auth_URL</shortDescription>
+        <value>https://mq-us-east-1.anypoint.mulesoft.com/api/v1/authorize</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Mule_MQ_Client_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Mule_MQ_Client_Id</shortDescription>
+        <value>ce05d7d509834c3d8fbb580abc30d8fa</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Mule_MQ_Client_Secret</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Mule_MQ_Client_Secret</shortDescription>
+        <value>0cE5ebAED5f5408A88C288Cad1fCC002</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Mule_PWN_Data_Queue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Mule_PWN_Data_Queue</shortDescription>
+        <value>00G8b000006R1IEEA0</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Mule_PWN_Tech_Queue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Mule_PWN_Tech_Queue</shortDescription>
+        <value>00G8b000006R1IFEA0</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Mule_Proxy_Ednpoint</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Mule_Proxy_Ednpoint</shortDescription>
+        <value>https://qeag.questdiagnostics.com/</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Mule_Token</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Mule_Token</shortDescription>
+        <value>a236d902-c18e-48cb-ad66-a03ba5bf6801</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Pingfed_Client_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Pingfed_Client_Id</shortDescription>
+        <value>cit_sfcc</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Pingfed_Client_Secret</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Pingfed_Client_Secret</shortDescription>
+        <value>VPdItYeppQ5cj7b01DpnJW1mGelNiGeirQ9AXKr3Jl284xwWhJVt7nZUE9Ghg4Jw</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Pingfed_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Pingfed_URL</shortDescription>
+        <value>https://pingfedsso.questdiagnostics.com/as/token.oauth2</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Tech_Error_Email_Receipients</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Tech_Error_Email_Receipients</shortDescription>
+        <value>blaire.p.moldenhauer@questdiagnostics.com,rupali.a.dikkar@questdiagnostics.com,soumya.x.ghosh@questdiagnostics.com</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Tech_Error_Email_Threshold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Tech_Error_Email_Threshold</shortDescription>
+        <value>100</value>
+    </labels>
+    <labels>
+        <fullName>OMS_Tech_Error_Retry_Limit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OMS_Tech_Error_Retry_Limit</shortDescription>
+        <value>3</value>
+    </labels>
+    <labels>
+        <fullName>OrderLookupPlaceHolderText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OrderLookupPlaceHolderText</shortDescription>
+        <value>You can look up your tests using your order number you received in your order confirmation mail.</value>
+    </labels>
+    <labels>
+        <fullName>PWN_API_Key</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PWN_API_Key</shortDescription>
+        <value>c57d0ec28e0ccd889dc43197f4aad70a</value>
+    </labels>
+    <labels>
+        <fullName>PWN_API_Secret</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PWN_API_Secret</shortDescription>
+        <value>6ce456ab89535bb8e09e313c46e41042</value>
+    </labels>
+    <labels>
+        <fullName>PWN_GSS_Account_Number</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PWN GSS Account Number</shortDescription>
+        <value>5000</value>
+    </labels>
+    <labels>
+        <fullName>PWN_GSS_Test_Code</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PWN GSS Test Code</shortDescription>
+        <value>1000</value>
+    </labels>
+    <labels>
+        <fullName>PWN_ORDER_STATUS_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PWN_ORDER_STATUS_URL</shortDescription>
+        <value>https://api.pwnhealth.com/v2/labs/orders/</value>
+    </labels>
+    <labels>
+        <fullName>Partner_Order_Error_Queue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Order Error Queue</shortDescription>
+        <value>00G8b000006R47lEAC</value>
+    </labels>
+    <labels>
+        <fullName>Payment_Failure_Retry_Cnt</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Failure Retry Cnt</shortDescription>
+        <value>3</value>
+    </labels>
+    <labels>
+        <fullName>PersonAccount_Record_Type_id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PersonAccount_Record_Type_id</shortDescription>
+        <value>0128b0000012FbIAAU</value>
+    </labels>
+    <labels>
+        <fullName>QHerit_Female_Product_code</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>QHerit Female Product code</shortDescription>
+        <value>14230</value>
+    </labels>
+    <labels>
+        <fullName>QHerit_Male_Product_code</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>QHerit Male Product code</shortDescription>
+        <value>14231</value>
+    </labels>
+    <labels>
+        <fullName>Qherit_Comprehensive_Hereditary_Cancer_Panel_Product_Code</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Qherit Comprehensive Hereditary Cancer Panel Product Code</shortDescription>
+        <value>38600</value>
+    </labels>
+    <labels>
+        <fullName>Quest_Cancel_Queue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quest_Cancel_Queue</shortDescription>
+        <value>00G8b000006R3s9EAC</value>
+    </labels>
+    <labels>
+        <fullName>Quest_Commerce_Flow_Attempts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quest_Commerce_Flow_Attempts</shortDescription>
+        <value>3</value>
+    </labels>
+    <labels>
+        <fullName>Quest_Legacy_Order_Prefix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quest Legacy Order Prefix</shortDescription>
+        <value>QST-</value>
+    </labels>
+    <labels>
+        <fullName>Quest_Legacy_Orders_Queue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quest Legacy Orders Queue</shortDescription>
+        <value>00G8b000006k3f6EAA</value>
+    </labels>
+    <labels>
+        <fullName>Quest_Orders_Queue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quest_Orders_Queue</shortDescription>
+        <value>00G8b000006R3sAEAS</value>
+    </labels>
+    <labels>
+        <fullName>Quest_Priority_Queue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quest Priority Queue</shortDescription>
+        <value>00GUf000002k6yvMAA</value>
+    </labels>
+    <labels>
+        <fullName>Question_Portal_Age</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Question Portal Age</shortDescription>
+        <value>unknown</value>
+    </labels>
+    <labels>
+        <fullName>Question_Portal_RelationShip</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Question Portal RelationShip</shortDescription>
+        <value>FAMMEMB</value>
+    </labels>
+    <labels>
+        <fullName>Question_Portal_deceased</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Question Portal deceased</shortDescription>
+        <value>false</value>
+    </labels>
+    <labels>
+        <fullName>RecordType_Id_Non_Self_Cancellation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RecordType Id Non-Self-Cancellation</shortDescription>
+        <value>0128b000001jQkfAAE</value>
+    </labels>
+    <labels>
+        <fullName>RegPageEmailPlaceHolderText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RegPageEmailPlaceHolderText</shortDescription>
+        <value>This address will receive an email with link to verify your identity. It will also be used to provide the status of your lab test order, including when test results are ready to review. For your security test results will not be shared via email.</value>
+    </labels>
+    <labels>
+        <fullName>RegPlaceHoldertext</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RegPlaceHoldertext</shortDescription>
+        <value>It’s absolutely important to provide a real email address and phone number. Otherwise you will not be able to access your test results.</value>
+    </labels>
+    <labels>
+        <fullName>RegPlaceHoldertext2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RegPlaceHoldertext2</shortDescription>
+        <value>To receive your test results automatically, your name and date of birth must match your information on file at your healthcare provider&apos;s office.</value>
+    </labels>
+    <labels>
+        <fullName>RegPrivacyPolicy</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RegPrivacyPolicy</shortDescription>
+        <value>https://www.pwnhealth.com/hipaa-notice</value>
+    </labels>
+    <labels>
+        <fullName>RegTnC</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RegTnC</shortDescription>
+        <value>https://pwnhealth.com/quest-terms-and-conditions</value>
+    </labels>
+    <labels>
+        <fullName>ResultLookup_Placeholder1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ResultLookup Placeholder1</shortDescription>
+        <value>To confirm your identity, please enter your date of birth and last name</value>
+    </labels>
+    <labels>
+        <fullName>ResultLookup_Placeholder2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ResultLookup Placeholder2</shortDescription>
+        <value>Please enter the OTP that we have sent to your email address</value>
+    </labels>
+    <labels>
+        <fullName>SFCC_Initializtion_Vector</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFCC_Initializtion_Vector</shortDescription>
+        <value>p4NDauVRmpjktCIVNA+3GA==</value>
+    </labels>
+    <labels>
+        <fullName>SFCC_Private_Key</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFCC_Private_Key</shortDescription>
+        <value>2f2uTCBe18u/V+bFesBu2wGCzLF7WWR4+G9EtqzgqSU=</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Appointment_Remainder_Event_Defnition</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Appointment_Remainder_Event_Defnition</shortDescription>
+        <value>OMS-SFMC-Event-Appt-Reminder-prod</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Auth_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Auth_URL</shortDescription>
+        <value>https://mcqxhx09j4-m7b7q60k7-qj93cjm.auth.marketingcloudapis.com/v2/token</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Common_Account_ID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Common_Account_ID</shortDescription>
+        <value>534002311</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Common_Client_ID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Common_Client_ID</shortDescription>
+        <value>d0fedfmuy6znkpup87bp7y1q</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Common_Client_Secret</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Common_Client_Secret</shortDescription>
+        <value>6z7bUJfHb3gMRnpkZkpWuubA</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_HRA_Email_Trigger_Event</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC HRA Email Trigger Event</shortDescription>
+        <value>HRA Email Trigger</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Kit_Activation_Event_Definition</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Kit_Activation_Event_Definition</shortDescription>
+        <value>kd-kit-activation-prod</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Kit_DNA_Extracted_Event_Defn_Key</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Kit_DNA_Extracted_Event_Defn_Key</shortDescription>
+        <value>kd-dna-extracted-prod</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Kit_DNA_Sample_Analyzed_Event_Defn_Key</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Kit_DNA_Sample_Analyzed_Event_Defn_Key</shortDescription>
+        <value>kd-sample-analyzed-prod</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Kit_Events</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Kit_Events</shortDescription>
+        <value>Kit Status Event</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Kit_GSS_Results_Ready_Event_Defn_Key</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Kit_GSS_Results_Ready_Event_Defn_Key</shortDescription>
+        <value>kd-results-ready-prod</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Kit_Sample_Received_Event_Definition_Key</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Kit_Sample_Received_Event_Definition_Key</shortDescription>
+        <value>kd-sample-received-prod</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Kit_WN_Rejected_Event_Def</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Kit_WN_Rejected_Event_Def</shortDescription>
+        <value>kit-rejected-prod</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Lab_Order_Register_Event</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Lab_Order_Register_Event</shortDescription>
+        <value>Register Lab Order</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Lab_Order_Register_Event_Definition</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Lab_Order_Register_Event_Definition</shortDescription>
+        <value>test_registration_confirmation_email_prod</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Lab_Order_Register_Event_Definition_Health_Study</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC Lab Order Register Event Definition Health Study</shortDescription>
+        <value>partner_test_registrations_prd</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Lab_Order_Results_Ready_Event_Definition</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Lab_Order_Results_Ready_Event_Definition</shortDescription>
+        <value>results_ready_shoprocket</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_OMS_Event_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC OMS Event Name</shortDescription>
+        <value>OMS-SFMC-Event-prod</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_OMS_Expiry_Event</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_OMS_Expiry_Event</shortDescription>
+        <value>OMS-SFMC-Event-Test-Expiring-prod</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Order_Cance_Event_Definition</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Order_Cance_Event_Definition</shortDescription>
+        <value>order_cancellation_prod</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Order_Cancel_Event</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Order_Cancel_Event</shortDescription>
+        <value>Order Cancel</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Order_Confirm_Event</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Order_Confirm_Event</shortDescription>
+        <value>Order Confirm</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Order_Expiry_Event_Definition</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Order_Expiry_Event_Definition</shortDescription>
+        <value>test-expired-prod</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Order_PWN_Reject_Event_Definition</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Order_PWN_Reject_Event_Definition</shortDescription>
+        <value>pwn-rejected-prod</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Partner_Lab_Order_Confirmation_Event</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC Partner Lab Order Confirmation Event</shortDescription>
+        <value>Partner Order Confirmation</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Partner_Lab_Order_Confirmation_Event_Defn_Key</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC Partner Lab Order Confirmation Event Defn Key</shortDescription>
+        <value>order_confirmation_partner</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Partner_Order_Purchase_Confirmation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Partner_Order_Purchase_Confirmation</shortDescription>
+        <value>aetna_prod</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Partner_Order_Shipment_Confirmation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Partner_Order_Shipment_Confirmation</shortDescription>
+        <value>kit-shipped-prod</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Payment_Capture_Event</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Payment_Capture_Event</shortDescription>
+        <value>Payment Capture</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Payment_capture_EventDefinition</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Payment_capture_EventDefinition</shortDescription>
+        <value>order_cancellation_payment_failure_prod</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Rest_Endpoint</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Rest_Endpoint</shortDescription>
+        <value>https://mcqxhx09j4-m7b7q60k7-qj93cjm.rest.marketingcloudapis.com</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Results_Ready_Event</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Results_Ready_Event</shortDescription>
+        <value>Results Ready</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Results_Ready_Event_Definition_Key</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Results_Ready_Event_Definition_Key</shortDescription>
+        <value>results_ready_events_prod</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Shipment_Event</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Shipment_Event</shortDescription>
+        <value>Shipment Event</value>
+    </labels>
+    <labels>
+        <fullName>SFMC_Shipment_Event_Definition_Key</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFMC_Shipment_Event_Definition_Key</shortDescription>
+        <value>kit-shipped-prod</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_At_Home_Self_Record_Type_ID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM At-Home Self Record Type ID</shortDescription>
+        <value>0128b000000RBXaAAO</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_CIT_Channel_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM_CIT_Channel_Name</shortDescription>
+        <value>QD-CIT</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Cancel_FO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM_Cancel_FO</shortDescription>
+        <value>Cancel FO</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Create_FO_Event</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Create FO Event</shortDescription>
+        <value>Create FO</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Create_FO_Integration_User_Event</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Create FO Integration User Event</shortDescription>
+        <value>CREATE_FO_INTEGRATION_USR</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Create_Invoice_And_Ensure_Funds_Event</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Create Invoice And Ensure Funds Event</shortDescription>
+        <value>Create Invoice And Ensure Funds</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Current_Payment_Gateway_ID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM_Current_Payment_Gateway_ID</shortDescription>
+        <value>0b08b000000x18ZAAQ</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Default_Location_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Default Location Id</shortDescription>
+        <value>1318b0000011kqYAAQ</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_EXP_VF_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM_EXP_VF_URL</shortDescription>
+        <value>https://experience.questdiagnostics.com/customerportalsite/LaborderResultPage</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_FO_Status_Cancelled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM FO Status - Cancelled</shortDescription>
+        <value>Cancelled</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_FO_Status_Draft</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM FO Status - Draft</shortDescription>
+        <value>Draft</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_FO_Status_Expired</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM FO Status - Expired</shortDescription>
+        <value>Expired</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_FO_Status_Order_Acknowledged</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM FO Status - Order Acknowledged</shortDescription>
+        <value>Order Acknowledged</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_FO_Status_Pending_Approval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM FO Status - Pending Approval</shortDescription>
+        <value>Pending Approval</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_FO_Status_Waiting_For_Fulfillment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM FO Status - Waiting For Fulfillment</shortDescription>
+        <value>Waiting For Fulfillment</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_GSS_Record_Type_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM GSS Record Type Id</shortDescription>
+        <value>0128b000000RBXbAAO</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Generate_Invoice_And_Capture_Funds</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Generate Invoice And Capture Funds</shortDescription>
+        <value>Generate Invoice And Capture Funds</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Google_Orders_Queue_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Google Orders Queue Id</shortDescription>
+        <value>00G8b000005t3OKEAY</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_In_Person_Record_Type_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM In-Person Record Type Id</shortDescription>
+        <value>0128b0000012FmLAAU</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Inperson_Test_Type</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Inperson Test Type</shortDescription>
+        <value>PSC</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Insurance_Channel_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM_Insurance_Channel_Name</shortDescription>
+        <value>QD-Insurance</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_MFA_Enabled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM_MFA_Enabled</shortDescription>
+        <value>true</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_OTC_Cleared_Record_Type_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM OTC Cleared Record Type Id</shortDescription>
+        <value>0128b000000RBXZAA4</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Order_Allocation_And_Release</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM_Order_Allocation_And_Release</shortDescription>
+        <value>SFOM_Order_Allocation_And_Release</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Order_Refund_Event</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Order Refund Event</shortDescription>
+        <value>SFOM Order Refund Event</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_PWN_Service_Record_Type_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM PWN Service Record Type Id</shortDescription>
+        <value>0128b000000RBXcAAO</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_PackHealth_Record_Type_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM PackHealth Record Type Id</shortDescription>
+        <value>0128b000001jQnFAAU</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Partner_Channel_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM_Partner_Channel_Name</shortDescription>
+        <value>QDCIT Partner</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Person_Account_RecordType_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM_Person_Account_RecordType_Id</shortDescription>
+        <value>0128b0000012FbIAAU</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Status_Kit_Expired</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Status Kit Expired</shortDescription>
+        <value>Kit Expired</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Stripe_Direct_Token</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM_Stripe_Direct_Token</shortDescription>
+        <value>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</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Stripe_Refund_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM_Stripe_Refund_URL</shortDescription>
+        <value>https://api.stripe.com/v1/refunds</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Stripe_Token_Prod</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Stripe Token Prod</shortDescription>
+        <value>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</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Stripe_Token_Sandbox</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Stripe Token Sandbox</shortDescription>
+        <value>sk_test_51KdEX2PkugbbGV3jnLpJN5SgokBXRe9EtD4sCQnuVSOupCJPoiZnccg7DpBdbR15fZIwxqrccoIcGPldYnavpL5a00c4SMifG5</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Stripe_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Stripe URL</shortDescription>
+        <value>https://api.stripe.com/v1/payment_intents/</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Tax_API_Invocation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Tax API Invocation</shortDescription>
+        <value>TAX_API_CALL</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Tax_Calc_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Tax Calc Message</shortDescription>
+        <value>Sales Tax is updated</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Tax_Recalc_Event</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM_Tax_Recalc_Event</shortDescription>
+        <value>TAX_RECALCULATION</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Test_Type_At_home</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Test Type - At-home</shortDescription>
+        <value>at_home</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Test_Type_GSS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Test Type - GSS</shortDescription>
+        <value>GSS</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Test_Type_PA</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Test Type - PA</shortDescription>
+        <value>PA</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Third_Party_Record_Type_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Third Party Record Type Id</shortDescription>
+        <value>0128b000000RBXdAAO</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Upd_PI_Wth_Prd_Code</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Upd PI Wth Prd Code</shortDescription>
+        <value>Stripe Products Update</value>
+    </labels>
+    <labels>
+        <fullName>SFOM_Update_Payment_Intent_Event</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SFOM Update Payment Intent Event</shortDescription>
+        <value>SFOM Update Payment Intent Event</value>
+    </labels>
+    <labels>
+        <fullName>SF_Lab_Order_Key_Prefix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SF_Lab_Order_Key_Prefix</shortDescription>
+        <value>A0S</value>
+    </labels>
+    <labels>
+        <fullName>SF_OM_Create_TX</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SF OM Create TX</shortDescription>
+        <value>TX From FO</value>
+    </labels>
+    <labels>
+        <fullName>SF_OM_Status_Pending</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SF OM Status - Pending</shortDescription>
+        <value>Pending</value>
+    </labels>
+    <labels>
+        <fullName>SS_API_Token</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SS_API_Token</shortDescription>
+        <value>MDMxNGIwOWY2YWUzNGMyMDlhOTcxMjEyZGUzOGRiMGU6MDJlMjFjNWU5NmNhNDAyM2ExOTUzZGYzYjM0OTBhNjA=</value>
+    </labels>
+    <labels>
+        <fullName>SS_Endpoint</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SS_Endpoint</shortDescription>
+        <value>https://ssapi.shipstation.com</value>
+    </labels>
+    <labels>
+        <fullName>Schedule_Appointment_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Schedule Appointment URL</shortDescription>
+        <value>https://appointment.questdiagnostics.com/schedule-appointment/as-personal-information?reason=PQD</value>
+    </labels>
+    <labels>
+        <fullName>Service_Fee_Test_Type</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Service Fee Test Type</shortDescription>
+        <value>PA</value>
+    </labels>
+    <labels>
+        <fullName>Slack_Webhook_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Slack_Webhook_URL</shortDescription>
+        <value>https://hooks.slack.com/services/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</value>
+    </labels>
+    <labels>
+        <fullName>foooter_Language_assistance_Non_discrimination</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>foooter Language assistance/Non-discrimination</shortDescription>
+        <value>Language assistance/Non-discrimination</value>
+    </labels>
+    <labels>
+        <fullName>footer_Accessibility</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>footer Accessibility</shortDescription>
+        <value>Accessibility</value>
+    </labels>
+    <labels>
+        <fullName>footer_Accessibility_url</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>footer Accessibility url</shortDescription>
+        <value>https://www.questdiagnostics.com/our-company/accessibility</value>
+    </labels>
+    <labels>
+        <fullName>footer_FAQs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>footer  FAQs</shortDescription>
+        <value>FAQs</value>
+    </labels>
+    <labels>
+        <fullName>footer_FAQs_url</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>footer  FAQs url</shortDescription>
+        <value>https://www.questhealth.com/faqs.html</value>
+    </labels>
+    <labels>
+        <fullName>footer_Japanese_Lang_Label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>footer Japanese Lang Label</shortDescription>
+        <value>語言協助 / 不歧視通知</value>
+    </labels>
+    <labels>
+        <fullName>footer_LA_url</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>footer LA url</shortDescription>
+        <value>https://www.questdiagnostics.com/our-company/nondiscrimination</value>
+    </labels>
+    <labels>
+        <fullName>footer_Privacy_Notice</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>footer Privacy Notice</shortDescription>
+        <value>Privacy notices</value>
+    </labels>
+    <labels>
+        <fullName>footer_Privacy_Notice_url</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>footer Privacy Notice url</shortDescription>
+        <value>https://www.questdiagnostics.com/our-company/privacy</value>
+    </labels>
+    <labels>
+        <fullName>footer_Terms_of_use</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>footer Terms of use</shortDescription>
+        <value>Terms</value>
+    </labels>
+    <labels>
+        <fullName>footer_Terms_of_use_url</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>footer Terms of use url</shortDescription>
+        <value>https://www.questdiagnostics.com/our-company/terms-conditions</value>
+    </labels>
+    <labels>
+        <fullName>footer_Your_Privacy_Choices</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>footer Your Privacy Choices</shortDescription>
+        <value>Your Privacy Choices</value>
+    </labels>
+    <labels>
+        <fullName>footer_french_language_label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>footer french language label</shortDescription>
+        <value>Asistencia de idiomas / aviso de no discriminación</value>
+    </labels>
+    <labels>
+        <fullName>footer_para1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>footer para1</shortDescription>
+        <value>Quest® is the brand name used for services offered by Quest Diagnostics Incorporated and its affiliated companies. Quest Diagnostics Incorporated and certain affiliates are CLIA-certified laboratories that provide HIPAA-covered services. Other affiliates operated under the Quest® brand, such as Quest Consumer Inc., do not provide HIPAA-covered services.</value>
+    </labels>
+    <labels>
+        <fullName>footer_para2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>footer para2</shortDescription>
+        <value>Quest®, Quest Diagnostics®, any associated logos, and all associated Quest Diagnostics registered or unregistered trademarks are the property of Quest Diagnostics. All third-party marks-® and ™-are the property of their respective owners. © 2025 Quest Diagnostics Incorporated. All rights reserved. Image content features models and is intended for illustrative purposes only.</value>
+    </labels>
+    <labels>
+        <fullName>footer_para3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>footer para3</shortDescription>
+        <value>Image content features models and is intended for illustrative purposes only.</value>
+    </labels>
+    <labels>
+        <fullName>footer_para4</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>footer para4</shortDescription>
+        <value>© 2025 Quest Diagnostics Incorporated. All rights reserved.</value>
+    </labels>
+    <labels>
+        <fullName>footer_para5</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>footer para5</shortDescription>
+        <value>Quest Diagnostics Inc., 500 Plaza Drive, Secaucus, New Jersey 07094</value>
+    </labels>
+    <labels>
+        <fullName>packHealthAPICaller</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>packHealthAPICaller</shortDescription>
+        <value>4AC668FF4B100AF23B</value>
+    </labels>
+    <labels>
+        <fullName>packHealthAPIEndPoint</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>packHealthAPIEndPoint</shortDescription>
+        <value>https://api.packhealth.com/v1/enrollment</value>
+    </labels>
+    <labels>
+        <fullName>packHealthAPIKey</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>packHealthAPIKey</shortDescription>
+        <value>xn7NtVau8WaadgTG9ukv69vN0SAHutWm24w2Z8Zu</value>
+    </labels>
+    <labels>
+        <fullName>quest_CS_phone_number</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer care place holder text</shortDescription>
+        <value>Give us a call (555) 555-5555</value>
+    </labels>
+</CustomLabels>

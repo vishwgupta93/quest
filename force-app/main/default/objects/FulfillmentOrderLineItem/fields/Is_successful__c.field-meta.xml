@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_successful__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When the api call semi successful,  to find unsuccessful record on FOline Item when executing retry mechanisum,  we use this check box. If check box is checked means this FO Line item API call is success.</description>
+    <label>Is PackHealth successful</label>
+    <type>Checkbox</type>
+</CustomField>
