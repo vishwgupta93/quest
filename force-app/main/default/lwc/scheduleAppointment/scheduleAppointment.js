@@ -1,5 +1,6 @@
 import { LightningElement, api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
+import encryptOrderId from '@salesforce/apex/QuestSchedulingController.encryptOrderId';
 
 export default class ScheduleAppointment extends NavigationMixin(LightningElement) {
 
@@ -18,15 +19,20 @@ export default class ScheduleAppointment extends NavigationMixin(LightningElemen
         this.isServiceValue = this._labOrderPanelList.isService ? true : false;
     }
 
-    redirectToScheduleAppointment() {
-        this[NavigationMixin.Navigate]({
-            type: 'comm__namedPage',
-            attributes: {
-                pageName: 'schedule-appointment'
-            },
-            state: {
-                orderId: this.labOrderNumber
-            }
-        });
+    async redirectToScheduleAppointment() {
+        try {
+            const encrypted = await encryptOrderId({ orderId: this.labOrderNumber });
+            this[NavigationMixin.Navigate]({
+                type: 'comm__namedPage',
+                attributes: {
+                    name: 'schedule_appointment__c'
+                },
+                state: {
+                    orderId: encrypted
+                }
+            });
+        } catch (error) {
+            console.error('[scheduleAppointment] navigation error:', error);
+        }
     }
 }

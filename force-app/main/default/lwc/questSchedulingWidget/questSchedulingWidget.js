@@ -1,10 +1,10 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { CurrentPageReference } from 'lightning/navigation';
 import getAccessToken from '@salesforce/apex/QuestSchedulingController.getAccessToken';
+import getConfig from '@salesforce/apex/QuestSchedulingController.getConfig';
+import decryptOrderId from '@salesforce/apex/QuestSchedulingController.decryptOrderId';
 
-const BASE_URL  = 'https://api-stage-experience.questdiagnostics.com';
-const VF_ORIGIN = 'https://questdiagnosticscitorg1--preprod.sandbox.my.salesforce-sites.com';
-const VF_PAGE   = `${VF_ORIGIN}/scheduleappointment/apex/QuestSchedulingPage`;
+const VF_PAGE_PATH = '/scheduleappointment/apex/QuestSchedulingPage';
 
 export default class QuestSchedulingWidget extends LightningElement {
     @api orderId;
@@ -14,6 +14,7 @@ export default class QuestSchedulingWidget extends LightningElement {
     @track errorMessage;
     @track iframeUrl;
 
+    _vfOrigin;
     _messageHandler;
 
     @wire(CurrentPageReference)
@@ -58,14 +59,22 @@ export default class QuestSchedulingWidget extends LightningElement {
         this.errorMessage = null;
 
         try {
-            const token = await getAccessToken();
+            const [plainOrderId, token, config] = await Promise.all([
+                decryptOrderId({ encryptedId: this.effectiveOrderId }),
+                getAccessToken(),
+                getConfig()
+            ]);
+
+            this._vfOrigin = config.vfOrigin;
+            const vfPage   = this._vfOrigin + VF_PAGE_PATH;
+
             const params = new URLSearchParams({
                 token,
-                orderId: this.effectiveOrderId,
-                baseUrl: BASE_URL,
+                orderId: plainOrderId,
+                baseUrl: config.apiBaseUrl,
                 ...(this.effectiveAppointmentId && { appointmentId: this.effectiveAppointmentId })
             });
-            this.iframeUrl     = `${VF_PAGE}?${params.toString()}`;
+            this.iframeUrl     = `${vfPage}?${params.toString()}`;
             this.isInitialized = true;
         } catch (error) {
             this.errorMessage = error.body?.message ?? error.message ?? 'An unexpected error occurred.';
@@ -74,8 +83,12 @@ export default class QuestSchedulingWidget extends LightningElement {
         }
     }
 
+    handleBack() {
+        window.history.back();
+    }
+
     async handlePostMessage(event) {
-        if (event.origin !== VF_ORIGIN || !event.data?.type) return;
+        if (event.origin !== this._vfOrigin || !event.data?.type) return;
 
         const { type, result, error } = event.data;
 
@@ -101,7 +114,7 @@ export default class QuestSchedulingWidget extends LightningElement {
                 if (iframe) {
                     iframe.contentWindow.postMessage(
                         { type: 'QUEST_NEW_TOKEN', token: newToken },
-                        VF_ORIGIN
+                        this._vfOrigin
                     );
                 }
             } catch (e) {

@@ -21,6 +21,7 @@
         </template>
 
         <template lwc:if={iframeUrl}>
+            <button type="button" class="back-btn" onclick={handleBack}>&#8592; Back</button>
             <iframe
                 src={iframeUrl}
                 class="scheduling-frame"

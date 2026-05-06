@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    Quest PSC Scheduling SDK - POC Metadata Package
-    ================================================
+    Quest PSC Scheduling SDK - Metadata Package
+    ============================================
     Deployment manifest for all components required to run the Quest
     scheduling widget in an Experience Cloud community.
 
     Manual post-deploy steps:
-      1. Setup > Sites > [scheduleappointment] > Public Access Settings
+      1. Setup > Custom Metadata Types > Quest API Config
+           - Fill in Client_Id__c and Client_Secret__c on the active record
+           - Set Is_Active__c = true on exactly one record (Stage / Dev / Prod)
+      2. Setup > Sites > [scheduleappointment] > Public Access Settings
            - Enabled Visualforce Pages  : QuestSchedulingPage
            - Enabled Apex Classes       : QuestSchedulingController
-      2. Experience Cloud > Builder > schedule-appointment page
+      3. Experience Cloud > Builder > schedule-appointment page
            - Add questSchedulingWidget LWC to the page
-      3. Assign QuestSchedulingAccess permission set to relevant profiles/users
+      4. Assign QuestSchedulingAccess permission set to relevant profiles/users
 -->
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 
-    <!-- Apex: token acquisition + VF page controller -->
+    <!-- Apex: token acquisition, encryption utils + VF page controller -->
     <types>
         <members>QuestSchedulingController</members>
         <members>QuestSchedulingControllerTest</members>
         <members>QuestSchedulingPageController</members>
+        <members>LabOrderCryptoUtils</members>
         <name>ApexClass</name>
     </types>
 
@@ -34,6 +38,28 @@
         <members>questSchedulingWidget</members>
         <members>scheduleAppointment</members>
         <name>LightningComponentBundle</name>
+    </types>
+
+    <!-- Custom Metadata Type: per-environment API credentials -->
+    <types>
+        <members>Quest_API_Config__mdt</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Quest_API_Config__mdt.Client_Id__c</members>
+        <members>Quest_API_Config__mdt.Client_Secret__c</members>
+        <members>Quest_API_Config__mdt.Auth_URL__c</members>
+        <members>Quest_API_Config__mdt.Scope__c</members>
+        <members>Quest_API_Config__mdt.API_Base_URL__c</members>
+        <members>Quest_API_Config__mdt.VF_Origin__c</members>
+        <members>Quest_API_Config__mdt.Is_Active__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Quest_API_Config.Dev</members>
+        <members>Quest_API_Config.Stage</members>
+        <members>Quest_API_Config.Prod</members>
+        <name>CustomMetadata</name>
     </types>
 
     <!-- Auth: OAuth2 client_credentials flow to AWS Cognito -->

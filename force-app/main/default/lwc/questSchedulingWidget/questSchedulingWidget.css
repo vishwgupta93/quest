@@ -12,6 +12,28 @@
     overflow: hidden;
 }
 
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    padding: 0.5rem 1.25rem;
+    background: #ffffff;
+    border: 1px solid #005290;
+    border-radius: 2rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #005290;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.back-btn:hover {
+    background: #005290;
+    color: #ffffff;
+}
+
 .error-banner {
     display: flex;
     align-items: center;
