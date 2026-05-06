@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Panel_Status__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+    OR(
+        ISPICKVAL(Status__c, &apos;Cancelled&apos;),
+        ISPICKVAL(Status__c, &apos;PA Rejected&apos;),
+        ISPICKVAL(Status__c, &apos;Expired&apos;)
+    ),
+    TEXT(Status__c),
+    IF(
+        AND(
+            Total_TNP_Tests__c = 0,
+            Total_Resulted_Tests__c = 0,
+            Total_In_Progress_Tests__c = 0,
+            Total_Partial_Resulted_Tests__c =0
+        ),
+        &apos;Registered&apos;,
+        IF(
+            Total_Number_of_Tests__c = Total_Resulted_Tests__c,
+            &apos;Results Ready&apos;,
+            IF(
+                Total_Number_of_Tests__c = Total_TNP_Tests__c,
+                &apos;TNP&apos;,
+                IF(
+                    AND(
+                        Total_In_Progress_Tests__c = 0,
+                        Total_Partial_Resulted_Tests__c =0 ,
+                        Total_TNP_Tests__c &gt; 0,
+                        Total_Number_of_Tests__c &lt;&gt; Total_Resulted_Tests__c,
+                        Total_Resulted_Tests__c &gt; 0
+                    ),
+                    &apos;Results Ready&apos;,
+                    IF(
+                        Total_Partial_Resulted_Tests__c &gt; 0,
+                        &apos;Partial Results Ready&apos;,
+                        &apos;In Progress&apos;
+                    )
+                )
+            )
+        )
+    )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Panel Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

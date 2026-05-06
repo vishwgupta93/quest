@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Eligible_To_Expire__c</fullName>
+    <formula>IF(AND(
+ISPICKVAL(Status__c, &apos;PA Approved&apos;),
+TODAY() &gt;
+PWN_Status_Date__c + 65
+), true, false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Eligible To Expire</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
