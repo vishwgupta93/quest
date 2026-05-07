@@ -1,28 +1,62 @@
 public with sharing class PartnerDashboardController {
 
-    private static final Set<String> COMPLETED_STATUSES = new Set<String>{
-        'Results Ready'
-    };
+    // Edit LabOrderStatusConfig__mdt records in Setup to add/remove statuses — no code deploy needed.
+    private static final String CATEGORY_COMPLETED    = 'COMPLETED';
+    private static final String CATEGORY_REVENUE      = 'REVENUE';
+    private static final String CATEGORY_LOST         = 'LOST';
+    private static final String CATEGORY_PRE_SAMPLE   = 'PRE_SAMPLE_COLLECTION';
+    private static final String CATEGORY_POST_SAMPLE  = 'POST_SAMPLE_COLLECTION';
 
-    private static final Set<String> REVENUE_STATUSES = new Set<String>{
-        'Results Ready',
-        'Expired'
-    };
+    private static Map<String, Set<String>> statusCacheByCategory;
 
-    private static final Set<String> LOST_STATUSES = new Set<String>{
-        'Cancelled',
-        'PA Rejected'
-    };
-    private static final Set<String> PRE_SAMPLE_COLLECTION_STATUSES = new Set<String>{
-        'Registered',
-        'Confirmed',
-        'PA Approved'
-    };
-    private static final Set<String> POST_SAMPLE_COLLECTION_STATUSES = new Set<String>{
-        'In Progress',
-        'Partial Results',
-        'Partial Results Ready'
-    };
+    private static void ensureStatusConfig() {
+        if (statusCacheByCategory != null) {
+            return;
+        }
+        statusCacheByCategory = new Map<String, Set<String>>();
+
+        for (LabOrderStatusConfig__mdt rec : [
+            SELECT Status_Category__c, Status_Values__c
+            FROM LabOrderStatusConfig__mdt
+            WHERE Is_Active__c = true
+        ]) {
+            if (String.isBlank(rec.Status_Category__c) || String.isBlank(rec.Status_Values__c)) {
+                continue;
+            }
+            if (!statusCacheByCategory.containsKey(rec.Status_Category__c)) {
+                statusCacheByCategory.put(rec.Status_Category__c, new Set<String>());
+            }
+            Set<String> target = statusCacheByCategory.get(rec.Status_Category__c);
+            for (String val : rec.Status_Values__c.split(',')) {
+                String trimmed = val.trim();
+                if (String.isNotBlank(trimmed)) {
+                    target.add(trimmed);
+                }
+            }
+        }
+    }
+
+    private static Set<String> getStatusSet(String category) {
+        ensureStatusConfig();
+        Set<String> s = statusCacheByCategory.get(category);
+        return s != null ? s : new Set<String>();
+    }
+
+    private static Set<String> COMPLETED_STATUSES {
+        get { return getStatusSet(CATEGORY_COMPLETED); }
+    }
+    private static Set<String> REVENUE_STATUSES {
+        get { return getStatusSet(CATEGORY_REVENUE); }
+    }
+    private static Set<String> LOST_STATUSES {
+        get { return getStatusSet(CATEGORY_LOST); }
+    }
+    private static Set<String> PRE_SAMPLE_COLLECTION_STATUSES {
+        get { return getStatusSet(CATEGORY_PRE_SAMPLE); }
+    }
+    private static Set<String> POST_SAMPLE_COLLECTION_STATUSES {
+        get { return getStatusSet(CATEGORY_POST_SAMPLE); }
+    }
 
     private static final Integer FAST_COMPLETION_DAYS = 5;
     private static final Integer REVENUE_AT_RISK_START_DAYS = 45;

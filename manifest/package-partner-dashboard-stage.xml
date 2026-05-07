@@ -6,6 +6,25 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>LabOrderStatusConfig__mdt</members>
+        <members>LabOrderStatusConfig__mdt.Status_Category__c</members>
+        <members>LabOrderStatusConfig__mdt.Status_Values__c</members>
+        <members>LabOrderStatusConfig__mdt.Is_Active__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>LabOrderStatusConfig__mdt</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>LabOrderStatusConfig.Completed</members>
+        <members>LabOrderStatusConfig.Revenue</members>
+        <members>LabOrderStatusConfig.Lost</members>
+        <members>LabOrderStatusConfig.Pre_Sample_Collection</members>
+        <members>LabOrderStatusConfig.Post_Sample_Collection</members>
+        <name>CustomMetadata</name>
+    </types>
+    <types>
         <members>Partner_Dashboard_Internal_Community_User</members>
         <name>PermissionSet</name>
     </types>

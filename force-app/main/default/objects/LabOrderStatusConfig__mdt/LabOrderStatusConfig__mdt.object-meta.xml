@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Configurable lab order status groupings used by Partner Dashboard logic. Add or deactivate rows here instead of changing Apex code.</description>
+    <label>Lab Order Status Config</label>
+    <pluralLabel>Lab Order Status Configs</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>
