@@ -16,20 +16,33 @@ global with sharing class PartnerOrdersRestAPI {
         ORDER_CSV_HEADER +
         ',panelCode,panelName,panelPrice,panelStatus,testCode,testName,testDescription,testStatus';
 
-    @HttpGet
+    @HttpPost
     global static void getOrders() {
         Long         startMs = System.currentTimeMillis();
         RestRequest  req     = RestContext.request;
         RestResponse res     = RestContext.response;
         res.addHeader('Content-Type', 'application/json');
 
-        // ── 1. Parse parameters ───────────────────────────────────────────────
-        String  partnerId    = req.params.get('partnerId');
-        String  startDateStr = req.params.get('startDate');
-        String  endDateStr   = req.params.get('endDate');
-        String  incTestsStr  = req.params.get('includeTests');
-        String  fmt          = req.params.get('format');
-        Boolean includeTests = 'true'.equalsIgnoreCase(incTestsStr);
+        // ── 1. Parse JSON request body ────────────────────────────────────────
+        String rawBody = (req.requestBody != null) ? req.requestBody.toString() : '';
+        if (String.isBlank(rawBody)) rawBody = '{}';
+
+        Map<String, Object> params;
+        try {
+            params = (Map<String, Object>) JSON.deserializeUntyped(rawBody);
+        } catch (Exception e) {
+            sendError(res, 400, 'INVALID_REQUEST_BODY', 'Request body must be valid JSON');
+            return;
+        }
+
+        String  partnerId    = (String) params.get('partnerId');
+        String  startDateStr = (String) params.get('startDate');
+        String  endDateStr   = (String) params.get('endDate');
+        Object  incTestsRaw  = params.get('includeTests');
+        Boolean includeTests = incTestsRaw instanceof Boolean
+            ? (Boolean) incTestsRaw
+            : 'true'.equalsIgnoreCase(String.valueOf(incTestsRaw));
+        String  fmt          = (String) params.get('format');
         fmt = String.isBlank(fmt) ? FORMAT_JSON : fmt.toLowerCase();
 
         // ── 2. Validate format ────────────────────────────────────────────────
@@ -79,19 +92,22 @@ global with sharing class PartnerOrdersRestAPI {
             return;
         }
 
-        // ── 6. Validate partner ───────────────────────────────────────────────
-        List<PartnerClientMap__c> partners = [
-            SELECT Id, Partner_Name__c, Client_ID__c
+        // ── 6. Validate partner by Client_ID__c ───────────────────────────────
+        // A single Client_ID__c may map to multiple PartnerClientMap__c records;
+        // collect all matching Ids so order queries cover every mapped account.
+        Set<Id> partnerMapIds = new Set<Id>();
+        for (PartnerClientMap__c p : [
+            SELECT Id
             FROM PartnerClientMap__c
-            WHERE Id = :partnerId
-            LIMIT 1
-        ];
-        if (partners.isEmpty()) {
+            WHERE Client_ID__c = :partnerId
+        ]) {
+            partnerMapIds.add(p.Id);
+        }
+        if (partnerMapIds.isEmpty()) {
             sendError(res, 403, 'PARTNER_NOT_FOUND', 'partnerId is unknown or not authorized');
             return;
         }
 
-        Id       partnerMapId   = partners[0].Id;
         Datetime startDt        = Datetime.newInstance(startDate, Time.newInstance(0, 0, 0, 0));
         Datetime endDtExclusive = Datetime.newInstance(endDate.addDays(1), Time.newInstance(0, 0, 0, 0));
 
@@ -100,14 +116,14 @@ global with sharing class PartnerOrdersRestAPI {
         if (includeTests) {
             rowCount = Database.countQuery(
                 'SELECT COUNT() FROM Lab_Panel_Test__c' +
-                ' WHERE Lab_Order_Panel__r.Lab_Order__r.Partner_Client_Map__c = :partnerMapId' +
+                ' WHERE Lab_Order_Panel__r.Lab_Order__r.Partner_Client_Map__c IN :partnerMapIds' +
                 ' AND Lab_Order_Panel__r.Lab_Order__r.CreatedDate >= :startDt' +
                 ' AND Lab_Order_Panel__r.Lab_Order__r.CreatedDate < :endDtExclusive'
             );
         } else {
             rowCount = Database.countQuery(
                 'SELECT COUNT() FROM Lab_Order__c' +
-                ' WHERE Partner_Client_Map__c = :partnerMapId' +
+                ' WHERE Partner_Client_Map__c IN :partnerMapIds' +
                 ' AND CreatedDate >= :startDt' +
                 ' AND CreatedDate < :endDtExclusive'
             );
@@ -125,8 +141,8 @@ global with sharing class PartnerOrdersRestAPI {
         String body;
         try {
             body = includeTests
-                ? buildTestResponse(partnerMapId, startDt, endDtExclusive, fmt)
-                : buildOrderResponse(partnerMapId, startDt, endDtExclusive, fmt);
+                ? buildTestResponse(partnerMapIds, startDt, endDtExclusive, fmt)
+                : buildOrderResponse(partnerMapIds, startDt, endDtExclusive, fmt);
         } catch (System.LimitException le) {
             writeAuditLog(partnerId, startDateStr, endDateStr, includeTests, fmt,
                 rowCount, 413, System.currentTimeMillis() - startMs);
@@ -148,7 +164,7 @@ global with sharing class PartnerOrdersRestAPI {
     // ── Query + format: order-level ───────────────────────────────────────────
 
     private static String buildOrderResponse(
-        Id partnerMapId, Datetime startDt, Datetime endDtExclusive, String fmt
+        Set<Id> partnerMapIds, Datetime startDt, Datetime endDtExclusive, String fmt
     ) {
         Boolean      isCsv = (fmt == FORMAT_CSV);
         List<String> rows  = new List<String>();
@@ -174,7 +190,7 @@ global with sharing class PartnerOrdersRestAPI {
                    Cancellation_Service_Fee__c,
                    Payment_Transaction_Id__c
             FROM Lab_Order__c
-            WHERE Partner_Client_Map__c = :partnerMapId
+            WHERE Partner_Client_Map__c IN :partnerMapIds
               AND CreatedDate >= :startDt
               AND CreatedDate < :endDtExclusive
             ORDER BY CreatedDate ASC, Id ASC
@@ -190,7 +206,7 @@ global with sharing class PartnerOrdersRestAPI {
     // ── Query + format: test-level (one row per Lab_Panel_Test__c) ────────────
 
     private static String buildTestResponse(
-        Id partnerMapId, Datetime startDt, Datetime endDtExclusive, String fmt
+        Set<Id> partnerMapIds, Datetime startDt, Datetime endDtExclusive, String fmt
     ) {
         Boolean      isCsv = (fmt == FORMAT_CSV);
         List<String> rows  = new List<String>();
@@ -224,7 +240,7 @@ global with sharing class PartnerOrdersRestAPI {
                    Test_Description__c,
                    Status__c
             FROM Lab_Panel_Test__c
-            WHERE Lab_Order_Panel__r.Lab_Order__r.Partner_Client_Map__c = :partnerMapId
+            WHERE Lab_Order_Panel__r.Lab_Order__r.Partner_Client_Map__c IN :partnerMapIds
               AND Lab_Order_Panel__r.Lab_Order__r.CreatedDate >= :startDt
               AND Lab_Order_Panel__r.Lab_Order__r.CreatedDate < :endDtExclusive
             ORDER BY Lab_Order_Panel__r.Lab_Order__r.CreatedDate ASC,
@@ -268,9 +284,9 @@ global with sharing class PartnerOrdersRestAPI {
     }
 
     private static String testToJson(Lab_Panel_Test__c lpt) {
-        Lab_Order_Panel__c panel = lpt.Lab_Order_Panel__r;
-        Lab_Order__c       lo    = panel != null ? panel.Lab_Order__r          : null;
-        PartnerClientMap__c pcm  = lo    != null ? lo.Partner_Client_Map__r    : null;
+        Lab_Order_Panel__c  panel = lpt.Lab_Order_Panel__r;
+        Lab_Order__c        lo    = panel != null ? panel.Lab_Order__r          : null;
+        PartnerClientMap__c pcm   = lo    != null ? lo.Partner_Client_Map__r    : null;
         String panelName = (panel != null && panel.Panel__r != null) ? panel.Panel__r.Name : null;
 
         return '{'
@@ -333,9 +349,9 @@ global with sharing class PartnerOrdersRestAPI {
     }
 
     private static String testToCsv(Lab_Panel_Test__c lpt) {
-        Lab_Order_Panel__c panel = lpt.Lab_Order_Panel__r;
-        Lab_Order__c       lo    = panel != null ? panel.Lab_Order__r          : null;
-        PartnerClientMap__c pcm  = lo    != null ? lo.Partner_Client_Map__r    : null;
+        Lab_Order_Panel__c  panel = lpt.Lab_Order_Panel__r;
+        Lab_Order__c        lo    = panel != null ? panel.Lab_Order__r          : null;
+        PartnerClientMap__c pcm   = lo    != null ? lo.Partner_Client_Map__r    : null;
         String panelName = (panel != null && panel.Panel__r != null) ? panel.Panel__r.Name : null;
 
         return String.join(new List<String>{
@@ -384,7 +400,6 @@ global with sharing class PartnerOrdersRestAPI {
         return d != null ? String.valueOf(d) : null;
     }
 
-    // Adds a key-value pair with trailing comma (all fields except the last)
     private static String kv(String key, String val) {
         String encoded = val != null
             ? '"' + val.replace('\\', '\\\\').replace('"', '\\"') + '"'
@@ -392,7 +407,6 @@ global with sharing class PartnerOrdersRestAPI {
         return '"' + key + '":' + encoded + ',';
     }
 
-    // Last key-value pair in a JSON object — no trailing comma
     private static String kvLast(String key, String val) {
         String encoded = val != null
             ? '"' + val.replace('\\', '\\\\').replace('"', '\\"') + '"'
@@ -400,7 +414,6 @@ global with sharing class PartnerOrdersRestAPI {
         return '"' + key + '":' + encoded;
     }
 
-    // RFC-4180 CSV cell escaping
     private static String esc(String val) {
         if (val == null) return '';
         if (val.contains(',') || val.contains('"') || val.contains('\n') || val.contains('\r')) {
@@ -430,14 +443,14 @@ global with sharing class PartnerOrdersRestAPI {
         try {
             System.debug(LoggingLevel.INFO,
                 'PARTNER_API_AUDIT'
-                + ' | principal='     + UserInfo.getUserName()
-                + ' | partnerId='     + partnerId
-                + ' | startDate='     + startDate
-                + ' | endDate='       + endDate
-                + ' | includeTests='  + includeTests
-                + ' | format='        + fmt
-                + ' | rowCount='      + rowCount
-                + ' | statusCode='    + statusCode
+                + ' | principal='      + UserInfo.getUserName()
+                + ' | partnerId='      + partnerId
+                + ' | startDate='      + startDate
+                + ' | endDate='        + endDate
+                + ' | includeTests='   + includeTests
+                + ' | format='         + fmt
+                + ' | rowCount='       + rowCount
+                + ' | statusCode='     + statusCode
                 + ' | responseTimeMs=' + responseTimeMs
             );
         } catch (Exception e) {

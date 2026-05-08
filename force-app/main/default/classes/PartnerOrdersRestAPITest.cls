@@ -65,7 +65,7 @@ private class PartnerOrdersRestAPITest {
         Test.setCreatedDate(labOrders[0].Id, DateTime.now().addDays(-5));
         Test.setCreatedDate(labOrders[1].Id, DateTime.now().addDays(-3));
 
-        // Panel_Code__c and Panel_Status__c are formula / not writable — set only writable fields
+        // Panel_Code__c and Panel_Status__c are not writable — set only writable fields
         Lab_Order_Panel__c panel = new Lab_Order_Panel__c(
             Lab_Order__c   = labOrders[0].Id,
             Panel_Price__c = 49.99
@@ -76,7 +76,7 @@ private class PartnerOrdersRestAPITest {
         Lab_Panel_Test__c lpt = new Lab_Panel_Test__c(
             Lab_Order_Panel__c = panel.Id,
             Lab_Order__c       = labOrders[0].Id,
-            Status__c          = 'Resulted'
+            Status__c          = 'Results Ready'
         );
         insert lpt;
     }
@@ -95,7 +95,7 @@ private class PartnerOrdersRestAPITest {
 
     @isTest
     static void getOrders_missingStartDate_returns400() {
-        setupContext(getPartnerId(), null, '2026-01-15', null, null);
+        setupContext('TP001', null, '2026-01-15', null, null);
         Test.startTest();
         PartnerOrdersRestAPI.getOrders();
         Test.stopTest();
@@ -105,7 +105,7 @@ private class PartnerOrdersRestAPITest {
 
     @isTest
     static void getOrders_missingEndDate_returns400() {
-        setupContext(getPartnerId(), '2026-01-01', null, null, null);
+        setupContext('TP001', '2026-01-01', null, null, null);
         Test.startTest();
         PartnerOrdersRestAPI.getOrders();
         Test.stopTest();
@@ -117,7 +117,7 @@ private class PartnerOrdersRestAPITest {
 
     @isTest
     static void getOrders_invalidStartDateFormat_returns400() {
-        setupContext(getPartnerId(), 'not-a-date', '2026-01-15', null, null);
+        setupContext('TP001', 'not-a-date', '2026-01-15', null, null);
         Test.startTest();
         PartnerOrdersRestAPI.getOrders();
         Test.stopTest();
@@ -127,7 +127,7 @@ private class PartnerOrdersRestAPITest {
 
     @isTest
     static void getOrders_invalidEndDateFormat_returns400() {
-        setupContext(getPartnerId(), '2026-01-01', 'bad', null, null);
+        setupContext('TP001', '2026-01-01', 'bad', null, null);
         Test.startTest();
         PartnerOrdersRestAPI.getOrders();
         Test.stopTest();
@@ -137,7 +137,7 @@ private class PartnerOrdersRestAPITest {
 
     @isTest
     static void getOrders_endDateBeforeStartDate_returns400() {
-        setupContext(getPartnerId(), '2026-01-15', '2026-01-01', null, null);
+        setupContext('TP001', '2026-01-15', '2026-01-01', null, null);
         Test.startTest();
         PartnerOrdersRestAPI.getOrders();
         Test.stopTest();
@@ -147,7 +147,7 @@ private class PartnerOrdersRestAPITest {
 
     @isTest
     static void getOrders_dateRangeExceeds31Days_returns400() {
-        setupContext(getPartnerId(), '2026-01-01', '2026-02-15', null, null);
+        setupContext('TP001', '2026-01-01', '2026-02-15', null, null);
         Test.startTest();
         PartnerOrdersRestAPI.getOrders();
         Test.stopTest();
@@ -157,7 +157,7 @@ private class PartnerOrdersRestAPITest {
 
     @isTest
     static void getOrders_sameDayRange_isAllowed() {
-        setupContext(getPartnerId(), '2026-01-01', '2026-01-01', null, null);
+        setupContext('TP001', '2026-01-01', '2026-01-01', null, null);
         Test.startTest();
         PartnerOrdersRestAPI.getOrders();
         Test.stopTest();
@@ -169,7 +169,7 @@ private class PartnerOrdersRestAPITest {
 
     @isTest
     static void getOrders_invalidFormat_returns400() {
-        setupContext(getPartnerId(), '2026-01-01', '2026-01-15', null, 'xml');
+        setupContext('TP001', '2026-01-01', '2026-01-15', null, 'xml');
         Test.startTest();
         PartnerOrdersRestAPI.getOrders();
         Test.stopTest();
@@ -178,15 +178,30 @@ private class PartnerOrdersRestAPITest {
     }
 
     @isTest
-    static void getOrders_unknownPartnerId_returns403() {
-        // SalesChannel ID is a valid SF ID format but will never match PartnerClientMap__c
-        Id notAPartner = [SELECT Id FROM SalesChannel LIMIT 1].Id;
-        setupContext(notAPartner, '2026-01-01', '2026-01-15', null, null);
+    static void getOrders_unknownClientId_returns403() {
+        setupContext('UNKNOWN-PARTNER-XYZ', '2026-01-01', '2026-01-15', null, null);
         Test.startTest();
         PartnerOrdersRestAPI.getOrders();
         Test.stopTest();
 
         assertError(RestContext.response, 403, 'PARTNER_NOT_FOUND');
+    }
+
+    @isTest
+    static void getOrders_invalidRequestBody_returns400() {
+        RestRequest req = new RestRequest();
+        req.requestURI  = '/services/apexrest/partner/v1/orders';
+        req.httpMethod  = 'POST';
+        req.requestBody = Blob.valueOf('this is not json');
+        req.addHeader('Content-Type', 'application/json');
+        RestContext.request  = req;
+        RestContext.response = new RestResponse();
+
+        Test.startTest();
+        PartnerOrdersRestAPI.getOrders();
+        Test.stopTest();
+
+        assertError(RestContext.response, 400, 'INVALID_REQUEST_BODY');
     }
 
     // ── Success: order-level JSON ─────────────────────────────────────────────
@@ -195,7 +210,7 @@ private class PartnerOrdersRestAPITest {
     static void getOrders_ordersJson_returns200WithCorrectStructure() {
         String startStr = String.valueOf(Date.today().addDays(-10));
         String endStr   = String.valueOf(Date.today());
-        setupContext(getPartnerId(), startStr, endStr, null, 'json');
+        setupContext('TP001', startStr, endStr, null, 'json');
 
         Test.startTest();
         PartnerOrdersRestAPI.getOrders();
@@ -206,24 +221,24 @@ private class PartnerOrdersRestAPITest {
         System.assertEquals(200, res.statusCode);
         System.assert(res.headers.get('Content-Type').contains('application/json'),
             'Content-Type must be application/json');
-        System.assert(body.startsWith('['),                  'Response must be a JSON array');
-        System.assert(body.contains('"orderId"'),            'Must include orderId key');
-        System.assert(body.contains('"clientAccountNumber"'),'Must include clientAccountNumber key');
-        System.assert(body.contains('"partnerName"'),        'Must include partnerName key');
-        System.assert(body.contains('"dateCreated"'),        'Must include dateCreated key');
-        System.assert(body.contains('"wholesalePrice"'),     'Must include wholesalePrice key');
-        System.assert(body.contains('"paymentTransactionId"'), 'Must include paymentTransactionId key');
-        System.assert(body.contains('TP001'),                'Must include client ID value');
-        System.assert(body.contains('LO-T001'),              'Must include order name');
-        System.assert(body.contains('Test Partner'),         'Must include partner name');
-        System.assert(body.contains('TXN-001'),              'Must include payment transaction ID');
+        System.assert(body.startsWith('['),                   'Response must be a JSON array');
+        System.assert(body.contains('"orderId"'),             'Must include orderId key');
+        System.assert(body.contains('"clientAccountNumber"'), 'Must include clientAccountNumber key');
+        System.assert(body.contains('"partnerName"'),         'Must include partnerName key');
+        System.assert(body.contains('"dateCreated"'),         'Must include dateCreated key');
+        System.assert(body.contains('"wholesalePrice"'),      'Must include wholesalePrice key');
+        System.assert(body.contains('"paymentTransactionId"'),'Must include paymentTransactionId key');
+        System.assert(body.contains('TP001'),                 'Must include client ID value');
+        System.assert(body.contains('LO-T001'),               'Must include order name');
+        System.assert(body.contains('Test Partner'),          'Must include partner name');
+        System.assert(body.contains('TXN-001'),               'Must include payment transaction ID');
     }
 
     @isTest
     static void getOrders_defaultFormatIsJson() {
         String startStr = String.valueOf(Date.today().addDays(-10));
         String endStr   = String.valueOf(Date.today());
-        setupContext(getPartnerId(), startStr, endStr, null, null);
+        setupContext('TP001', startStr, endStr, null, null);
 
         Test.startTest();
         PartnerOrdersRestAPI.getOrders();
@@ -232,14 +247,14 @@ private class PartnerOrdersRestAPITest {
         RestResponse res = RestContext.response;
         System.assertEquals(200, res.statusCode);
         System.assert(res.responseBody.toString().startsWith('['),
-            'Omitting format param must default to JSON array');
+            'Omitting format must default to JSON array');
     }
 
     @isTest
     static void getOrders_includeTestsFalse_excludesPanelKeys() {
         String startStr = String.valueOf(Date.today().addDays(-10));
         String endStr   = String.valueOf(Date.today());
-        setupContext(getPartnerId(), startStr, endStr, 'false', 'json');
+        setupContext('TP001', startStr, endStr, false, 'json');
 
         Test.startTest();
         PartnerOrdersRestAPI.getOrders();
@@ -257,7 +272,7 @@ private class PartnerOrdersRestAPITest {
     static void getOrders_ordersCsv_returns200WithHeaderAndData() {
         String startStr = String.valueOf(Date.today().addDays(-10));
         String endStr   = String.valueOf(Date.today());
-        setupContext(getPartnerId(), startStr, endStr, null, 'csv');
+        setupContext('TP001', startStr, endStr, null, 'csv');
 
         Test.startTest();
         PartnerOrdersRestAPI.getOrders();
@@ -268,19 +283,19 @@ private class PartnerOrdersRestAPITest {
         System.assertEquals(200, res.statusCode);
         System.assert(res.headers.get('Content-Type').contains('text/csv'),
             'Content-Type must be text/csv');
-        System.assert(body.contains('clientAccountNumber'),  'Must include clientAccountNumber header');
-        System.assert(body.contains('orderId'),              'Must include orderId header');
-        System.assert(body.contains('paymentTransactionId'), 'Must include paymentTransactionId header');
-        System.assert(body.contains('TP001'),                'Must include client ID value in data row');
-        System.assert(body.contains('LO-T001'),              'Must include order name in data row');
-        System.assert(body.contains('TXN-001'),              'Must include transaction ID in data row');
+        System.assert(body.contains('clientAccountNumber'),   'Must include clientAccountNumber header');
+        System.assert(body.contains('orderId'),               'Must include orderId header');
+        System.assert(body.contains('paymentTransactionId'),  'Must include paymentTransactionId header');
+        System.assert(body.contains('TP001'),                 'Must include client ID value in data row');
+        System.assert(body.contains('LO-T001'),               'Must include order name in data row');
+        System.assert(body.contains('TXN-001'),               'Must include transaction ID in data row');
     }
 
     // ── Success: empty results ────────────────────────────────────────────────
 
     @isTest
     static void getOrders_noOrdersInRange_returns200WithEmptyJsonArray() {
-        setupContext(getPartnerId(), '2020-01-01', '2020-01-31', null, 'json');
+        setupContext('TP001', '2020-01-01', '2020-01-31', null, 'json');
 
         Test.startTest();
         PartnerOrdersRestAPI.getOrders();
@@ -294,7 +309,7 @@ private class PartnerOrdersRestAPITest {
 
     @isTest
     static void getOrders_noOrdersInRange_returns200WithCsvHeaderOnly() {
-        setupContext(getPartnerId(), '2020-01-01', '2020-01-31', null, 'csv');
+        setupContext('TP001', '2020-01-01', '2020-01-31', null, 'csv');
 
         Test.startTest();
         PartnerOrdersRestAPI.getOrders();
@@ -313,7 +328,7 @@ private class PartnerOrdersRestAPITest {
     static void getOrders_includeTestsJson_returns200WithPanelAndTestFields() {
         String startStr = String.valueOf(Date.today().addDays(-10));
         String endStr   = String.valueOf(Date.today());
-        setupContext(getPartnerId(), startStr, endStr, 'true', 'json');
+        setupContext('TP001', startStr, endStr, true, 'json');
 
         Test.startTest();
         PartnerOrdersRestAPI.getOrders();
@@ -323,21 +338,18 @@ private class PartnerOrdersRestAPITest {
         String       body = res.responseBody.toString();
         System.assertEquals(200, res.statusCode);
         System.assert(body.startsWith('['), 'Response must be a JSON array');
-        // Order-level fields
         System.assert(body.contains('"orderId"'),             'Must include orderId key');
         System.assert(body.contains('"clientAccountNumber"'), 'Must include clientAccountNumber key');
         System.assert(body.contains('LO-T001'),               'Must include order name value');
-        // Panel fields
         System.assert(body.contains('"panelCode"'),   'Must include panelCode key');
         System.assert(body.contains('"panelPrice"'),  'Must include panelPrice key');
         System.assert(body.contains('"panelStatus"'), 'Must include panelStatus key');
         System.assert(body.contains('49.99'),         'Must include panel price value');
-        // Test fields
         System.assert(body.contains('"testCode"'),        'Must include testCode key');
         System.assert(body.contains('"testName"'),        'Must include testName key');
         System.assert(body.contains('"testDescription"'), 'Must include testDescription key');
         System.assert(body.contains('"testStatus"'),      'Must include testStatus key');
-        System.assert(body.contains('Resulted'),          'Must include test status value');
+        System.assert(body.contains('Results Ready'),     'Must include test status value');
     }
 
     // ── Success: test-level CSV ───────────────────────────────────────────────
@@ -346,7 +358,7 @@ private class PartnerOrdersRestAPITest {
     static void getOrders_includeTestsCsv_returns200WithTestColumns() {
         String startStr = String.valueOf(Date.today().addDays(-10));
         String endStr   = String.valueOf(Date.today());
-        setupContext(getPartnerId(), startStr, endStr, 'true', 'csv');
+        setupContext('TP001', startStr, endStr, true, 'csv');
 
         Test.startTest();
         PartnerOrdersRestAPI.getOrders();
@@ -361,27 +373,28 @@ private class PartnerOrdersRestAPITest {
         System.assert(body.contains('testCode'),   'Must include testCode in CSV header');
         System.assert(body.contains('testStatus'), 'Must include testStatus in CSV header');
         System.assert(body.contains('49.99'),      'Must include panel price value in CSV');
-        System.assert(body.contains('Resulted'),   'Must include test status value in CSV');
+        System.assert(body.contains('Results Ready'), 'Must include test status value in CSV');
     }
 
     // ── Helpers ───────────────────────────────────────────────────────────────
 
-    private static Id getPartnerId() {
-        return [SELECT Id FROM PartnerClientMap__c WHERE Name = 'Test Partner' LIMIT 1].Id;
-    }
-
+    // Builds a POST body from the supplied params (null values are omitted)
     private static void setupContext(
-        Object partnerId, String startDate, String endDate,
-        String includeTests, String format
+        String partnerId, String startDate, String endDate,
+        Object includeTests, Object format
     ) {
+        Map<String, Object> bodyMap = new Map<String, Object>();
+        if (partnerId    != null) bodyMap.put('partnerId',    partnerId);
+        if (startDate    != null) bodyMap.put('startDate',    startDate);
+        if (endDate      != null) bodyMap.put('endDate',      endDate);
+        if (includeTests != null) bodyMap.put('includeTests', includeTests);
+        if (format       != null) bodyMap.put('format',       format);
+
         RestRequest req = new RestRequest();
-        req.requestURI = '/services/apexrest/partner/v1/orders';
-        req.httpMethod = 'GET';
-        if (partnerId    != null) req.params.put('partnerId',    String.valueOf(partnerId));
-        if (startDate    != null) req.params.put('startDate',    startDate);
-        if (endDate      != null) req.params.put('endDate',      endDate);
-        if (includeTests != null) req.params.put('includeTests', includeTests);
-        if (format       != null) req.params.put('format',       format);
+        req.requestURI  = '/services/apexrest/partner/v1/orders';
+        req.httpMethod  = 'POST';
+        req.requestBody = Blob.valueOf(JSON.serialize(bodyMap));
+        req.addHeader('Content-Type', 'application/json');
         RestContext.request  = req;
         RestContext.response = new RestResponse();
     }
